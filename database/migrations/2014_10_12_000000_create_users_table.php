@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('phone_number')->nulable();
             $table->string('provinsi')->nulable();
             $table->string('kota')->nulable();
-            $table->string('kacamatan')->nulable();
+            $table->string('kecamatan')->nulable();
             $table->boolean('active');
             $table->rememberToken();
             $table->timestamps();

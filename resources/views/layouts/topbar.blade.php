@@ -166,12 +166,37 @@
                         <a class="dropdown-item" href="#"><i
                                 class="bx bx-user font-size-16 align-middle me-1"></i>
                             Profile</a>
-                        <a class="dropdown-item text-danger" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i
-                                class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> Logout</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
+                        <a class="dropdown-item text-danger" href="#" onclick="event.preventDefault(); logoutUser();">
+                                <i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> Logout
+                        </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+
+                            <script>
+                                function logoutUser() {
+                                    const currentRole = '{{ auth()->guard('web')->check() ? 'user' : (auth()->guard('admin')->check() ? 'admin' : (auth()->guard('superadmin')->check() ? 'superadmin' : '')) }}';
+
+                                    let logoutForm = document.getElementById('logout-form');
+
+                                    switch (currentRole) {
+                                        case 'admin':
+                                            logoutForm.action = '{{ route('logout-admin') }}';
+                                            break;
+                                        case 'superadmin':
+                                            logoutForm.action = '{{ route('logout-superadmin') }}';
+                                            break;
+                                        case 'user':
+                                        default:
+                                            logoutForm.action = '{{ route('logout') }}';
+                                            break;
+                                    }
+
+                                    logoutForm.submit();
+                                }
+                            </script>
+
                     </div>
                 </div>
 

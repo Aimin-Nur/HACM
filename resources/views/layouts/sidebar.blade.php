@@ -10,7 +10,7 @@
 
             <div class="mt-3">
 
-                <a href="#" class="text-body fw-medium font-size-16">{{$getUser->name}}</a>
+                <a href="#" class="text-body fw-medium font-size-16">{{$getUser->name ?? ''}}</a>
                 <p class="text-muted mt-1 mb-0 font-size-13">UI/UX Designer</p>
 
             </div>

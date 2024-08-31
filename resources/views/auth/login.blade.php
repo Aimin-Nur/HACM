@@ -30,8 +30,8 @@
                                         <label class="form-label" for="email">Email <span class="text-danger">*
                                             </span></label>
                                         <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                            name="email" id="email" value="admin@themesdesign.com" required
-                                            autocomplete="email" autofocus placeholder="Enter email">
+                                            name="email" id="email" required
+                                            autocomplete="email" autofocus placeholder="Enter your email">
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -43,8 +43,8 @@
                                         <label class="form-label" for="userpassword">Password <span class="text-danger">*
                                             </span></label>
                                         <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                            id="userpassword" name="password" required value="12345678"
-                                            autocomplete="current-password" placeholder="Enter password">
+                                            id="userpassword" name="password" required
+                                            autocomplete="current-password" placeholder="Enter your password">
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>

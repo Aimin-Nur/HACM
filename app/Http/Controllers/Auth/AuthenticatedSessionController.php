@@ -25,11 +25,26 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        $credentials = $request->only('email', 'password');
+        $guards = ['web', 'admin', 'superadmin'];
 
-        $request->session()->regenerate();
+        foreach ($guards as $guard) {
+            if (Auth::guard($guard)->attempt($credentials)) {
+                $request->session()->regenerate();
+                Auth::shouldUse($guard);  // Set the current guard
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+                // Redirect based on guard
+                if ($guard === 'admin' || $guard === 'superadmin') {
+                    return redirect()->intended(RouteServiceProvider::SUPERADMIN);
+                } elseif ($guard === 'web') {
+                    return redirect()->intended(RouteServiceProvider::HOME);
+                }
+            }
+        }
+
+        return back()->withErrors([
+            'email' => 'Email atau Kata Sandi Anda Tidak Terdaftar.',
+        ]);
     }
 
     /**
@@ -38,9 +53,31 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
-
         $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
+        return redirect('/');
+    }
+
+    /**
+     * Handle an incoming logout request for admin.
+     */
+    public function logoutAdmin(Request $request): RedirectResponse
+    {
+        Auth::guard('admin')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+
+    /**
+     * Handle an incoming logout request for superadmin.
+     */
+    public function logoutSuperadmin(Request $request): RedirectResponse
+    {
+        Auth::guard('superadmin')->logout();
+        $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return redirect('/');

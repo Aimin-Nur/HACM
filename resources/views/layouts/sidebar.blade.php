@@ -1,4 +1,41 @@
 <!-- ========== Left Sidebar Start ========== -->
+@if(session('success'))
+    <div id="toast" class="alert alert-success alert-dismissible fade position-fixed top-0 end-0 m-3" role="alert" style="z-index: 1050;">
+        <i id="toast-icon" class="mdi mdi-check-all me-2"></i>
+        <span id="toast-message">{{ session('success') }}</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 3000);
+        });
+    </script>
+@endif
+
+@if(session('error'))
+    <div id="toast" class="alert alert-danger alert-dismissible fade position-fixed top-0 end-0 m-3" role="alert" style="z-index: 1050;">
+        <i id="toast-icon" class="mdi mdi-block-helper me-2"></i>
+        <span id="toast-message">{{ session('error') }}</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 3000);
+        });
+    </script>
+@endif
+
+
 <div class="vertical-menu">
 
     <div class="h-100">
@@ -60,12 +97,30 @@
 
                 </li>
 
+            @auth('admin')
                 <li>
-                    <a href="calendar" class=" waves-effect">
-                        <i class="mdi mdi-calendar-text"></i>
-                        <span>Calendar</span>
+                    <a href="javascript:void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-emoticon-happy-outline"></i>
+                        <span>Users</span>
                     </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('users.index') }}">Users</a></li>
+                    </ul>
                 </li>
+            @endauth
+
+            @auth('superadmin')
+                <li>
+                    <a href="javascript:void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-emoticon-happy-outline"></i>
+                        <span>Users</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('dashboard-panel') }}">Admin</a></li>
+                        <li><a href="{{ route('dashboard-users') }}">Users</a></li>
+                    </ul>
+                </li>
+            @endauth
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -186,19 +241,6 @@
                         <li><a href="charts-flot">Flot Chart</a></li>
                         <li><a href="charts-knob">Jquery Knob Chart</a></li>
                         <li><a href="charts-sparkline">Sparkline Chart</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="mdi mdi-emoticon-happy-outline"></i>
-                        <span>Icons</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="icons-boxicons">Boxicons</a></li>
-                        <li><a href="icons-materialdesign">Material Design</a></li>
-                        <li><a href="icons-dripicons">Dripicons</a></li>
-                        <li><a href="icons-fontawesome">Font awesome</a></li>
                     </ul>
                 </li>
 

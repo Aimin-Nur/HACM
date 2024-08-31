@@ -21,13 +21,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/ticket', function () {
+    return view('ticket');
+});
+
 Route::middleware(['auth:admin', 'verified'])->group(function () {
     Route::get('/dashboard/admin', [AdminController::class, 'index'])->name('dashboard-admin');
+    Route::get('/dashboard/users', [AdminController::class, 'users'])->name('dashboard-users');
     Route::post('/logout/admin', [AuthenticatedSessionController::class, 'logoutAdmin'])->name('logout-admin');
 });
 
 Route::middleware(['auth:superadmin', 'verified'])->group(function () {
     Route::get('/dashboard/admin', [AdminController::class, 'index'])->name('dashboard-superadmin');
+    Route::get('/dashboard/users', [AdminController::class, 'users'])->name('dashboard-users');
+    Route::get('/detail/users/{name}', [AdminController::class, 'detailUsers'])->name('detail-users');
+    Route::get('/dashboard/panel/admin', [AdminController::class, 'admin'])->name('dashboard-panel');
+    Route::post('/admin/update-status/{id}', [AdminController::class, 'updateStatus'])->name('update-admin');
     Route::post('/logout/superadmin', [AuthenticatedSessionController::class, 'logoutAdmin'])->name('logout-superadmin');
 });
 

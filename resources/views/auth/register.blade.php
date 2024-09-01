@@ -9,7 +9,7 @@
     <div class="account-pages my-5 pt-sm-5">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6 col-xl-5">
+                <div class="col-md-8 col-lg-6 col-xl-8">
                     <div class="card overflow-hidden">
                         <div class="bg-login text-center">
                             <div class="bg-login-overlay"></div>
@@ -31,7 +31,7 @@
                                         <label for="name" class="form-label">Name <span
                                                 class="text-danger">*</span></label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                            name="name" value="{{ old('name') }}" required autocomplete="name"
+                                            name="name" value="{{ old('name') }}" autocomplete="name"
                                             autofocus id="name" placeholder="Enter name">
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
@@ -40,24 +40,73 @@
                                         @enderror
                                     </div>
 
+                                    <div class="row">
+                                        <div class="mb-3 col-lg-6">
+                                            <label for="email" class="form-label">Email<span
+                                                    class="text-danger">*</span></label>
+                                            <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                                name="email" value="{{ old('phone_number') }}"  autocomplete="email"
+                                                id="email" placeholder="Enter email">
+                                            @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-3 col-lg-6">
+                                            <label for="phone_number" class="form-label">Phone Number <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="number" class="form-control @error('number') is-invalid @enderror"
+                                                name="phone_number"  autocomplete="+62 *78-xxx-xxx"
+                                                id="phone_number" placeholder="Enter your phone number">
+                                            @error('phone_number')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="mb-3 col-lg-4">
+                                            <label for="province" class="form-label">Province<span class="text-danger">*</span></label>
+                                            <select class="form-control" name="province" id="province">
+                                                <option value="">Select Province</option>
+                                                @foreach($provinces as $province)
+                                                    <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3 col-lg-4">
+                                            <label for="city" class="form-label">City<span class="text-danger">*</span></label>
+                                            <select class="form-control" name="city" id="city">
+                                                <option value="">Select City</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3 col-lg-4">
+                                            <label for="district" class="form-label">District<span class="text-danger">*</span></label>
+                                            <select class="form-control" name="district" id="district">
+                                                <option value="">Select District</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                     <div class="mb-3">
-                                        <label for="email" class="form-label">Email <span
+                                        <label for="email" class="form-label">Address<span
                                                 class="text-danger">*</span></label>
-                                        <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                            name="email" value="{{ old('email') }}" required autocomplete="email"
-                                            id="email" placeholder="Enter email">
-                                        @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                        <input type="text" class="form-control @error('address') is-invalid @enderror"
+                                                name="address" value="{{ old('email') }}"  autocomplete="+62 *78-xxx-xxx"
+                                                id="phone_number" placeholder="Enter your complete Address">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="userpassword" class="form-label">Password <span
                                                 class="text-danger">*</span></label>
                                         <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                            name="password" required autocomplete="new-password" id="userpassword"
+                                            name="password" autocomplete="new-password" id="userpassword"
                                             placeholder="Enter password">
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
@@ -69,7 +118,7 @@
                                     <div class="mb-3">
                                         <label for="password-confirm">Confirm Password <span
                                                 class="text-danger">*</span></label>
-                                        <input type="password" class="form-control" name="password_confirmation" required
+                                        <input type="password" class="form-control" name="password_confirmation"
                                             id="password-confirm" placeholder="Enter confirm password">
                                     </div>
 
@@ -100,3 +149,54 @@
         </div>
     </div>
 @endsection
+
+@push('script')
+<script>
+    $(document).ready(function() {
+        $('#province').on('change', function() {
+            let provinceId = $(this).val();
+            if (provinceId) {
+                $.ajax({
+                    url: '{{ route("get.cities") }}',
+                    type: 'POST',
+                    data: {
+                        province_id: provinceId,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        $('#city').empty().append('<option value="">Select City</option>');
+                        $.each(response, function(key, city) {
+                            $('#city').append('<option value="' + city.id + '">' + city.name + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#city').empty().append('<option value="">Select City</option>');
+            }
+        });
+
+        $('#city').on('change', function() {
+            let cityId = $(this).val();
+            if (cityId) {
+                $.ajax({
+                    url: '{{ route("get.districts") }}',
+                    type: 'POST',
+                    data: {
+                        city_id: cityId,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        $('#district').empty().append('<option value="">Select District</option>');
+                        $.each(response, function(key, district) {
+                            $('#district').append('<option value="' + district.id + '">' + district.name + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#district').empty().append('<option value="">Select District</option>');
+            }
+        });
+    });
+</script>
+
+@endpush

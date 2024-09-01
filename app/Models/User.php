@@ -40,4 +40,21 @@ class User extends Authenticatable
     {
         return $this->hasMany(Ticket::class, 'id_users');
     }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'provinsi');
+    }
+
+    // Relasi ke Kota/Regency
+    public function regency()
+    {
+        return $this->belongsTo(Regency::class, 'kota');
+    }
+
+    // Relasi ke Kecamatan/District
+    public function district()
+    {
+        return $this->belongsTo(District::class, 'kecamatan');
+    }
 }

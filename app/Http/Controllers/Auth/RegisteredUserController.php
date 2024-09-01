@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\Province;
+use App\Models\Regency;
+use App\Models\District;
+
 
 class RegisteredUserController extends Controller
 {
@@ -20,7 +24,10 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $provinces = Province::all();
+        $regencies = Regency::all();
+        $districts = District::all();
+        return view('auth.register', compact('provinces','regencies','districts'));
     }
 
     /**
@@ -31,21 +38,40 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255','unique:'.User::class ],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'phone_number' => ['required', 'max:255'],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'address' => $request->address,
+            'phone_number' => $request->phone_number,
+            'provinsi' => $request->province,
+            'kota' => $request->city,
+            'kecamatan' => $request->district,
             'password' => Hash::make($request->password),
+            'active' => 1,
         ]);
 
         event(new Registered($user));
 
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        session()->flash('status', 'Registration successful!');
+        return redirect()->route('login');
     }
+
+    public function getCities(Request $request)
+    {
+        $cities = Regency::where('province_id', $request->province_id)->get();
+        return response()->json($cities);
+    }
+
+    public function getDistricts(Request $request)
+    {
+        $districts = District::where('regency_id', $request->city_id)->get();
+        return response()->json($districts);
+    }
+
 }

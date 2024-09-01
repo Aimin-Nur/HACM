@@ -67,11 +67,8 @@ class AdminController extends Controller
             session()->flash('success', 'Status admin berhasil diperbarui!');
             return redirect('/dashboard/panel/admin')->session('status', 'success');
         } catch (\Exception $e) {
-            // Menyimpan pesan kesalahan ke session flash
-        session()->flash('error', 'Failed: ' . $e->getMessage());
-
-        // Mengalihkan kembali dengan status error
-        return redirect('/dashboard/panel/admin')
+            session()->flash('error', 'Failed: ' . $e->getMessage());
+            return redirect('/dashboard/panel/admin')
             ->with('status', 'error')
             ->with('message', 'Status admin gagal diperbarui.');
         }

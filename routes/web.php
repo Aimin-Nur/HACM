@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,9 @@ Route::get('/', function () {
 Route::get('/ticket', function () {
     return view('ticket');
 });
+
+Route::post('/get-cities', [RegisteredUserController::class, 'getCities'])->name('get.cities');
+Route::post('/get-districts', [RegisteredUserController::class, 'getDistricts'])->name('get.districts');
 
 Route::middleware(['auth:admin', 'verified'])->group(function () {
     Route::get('/dashboard/admin', [AdminController::class, 'index'])->name('dashboard-admin');

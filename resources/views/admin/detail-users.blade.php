@@ -30,16 +30,9 @@
                                 <div class="profile-widgets py-3">
 
                                     <div class="text-center">
-                                        <div class="">
-                                            <img src="{{ URL::asset('build/images/users/avatar-2.jpg') }}" alt=""
-                                                class="avatar-lg mx-auto img-thumbnail rounded-circle">
-                                            <div class="online-circle"><i class="fas fa-circle text-success"></i>
-                                            </div>
-                                        </div>
-
                                         <div class="mt-3 ">
-                                            <a href="#" class="text-reset fw-medium font-size-16">{{$detail->name ?? ''}}</a>
-                                            <p class="text-body mt-1 mb-1">UI/UX Designer</p>
+                                            <a href="#" class="text-reset fw-medium font-size-20">{{$detail->name ?? ''}}</a>
+                                            <p class="text-body mt-1 mb-1">{{$detail->email}}</p>
 
                                             @if ($detail->active == 1)
                                                 <span class="badge bg-success">Active</span>
@@ -53,21 +46,21 @@
                                                 <h6 class="text-muted">
                                                     Province
                                                 </h6>
-                                                <h5 class="mb-0">{{$detail->provinsi}}</h5>
+                                                <h5 class="mb-0">{{$detail->province->name ?? '-'}}</h5>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <h6 class="text-muted">
                                                     City
                                                 </h6>
-                                                <h5 class="mb-0">{{$detail->kota}}</h5>
+                                                <h5 class="mb-0">{{$detail->regency->name ?? '-'}}</h5>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <h6 class="text-muted">
                                                     District
                                                 </h6>
-                                                <h5 class="mb-0">{{$detail->kecamatan}}</h5>
+                                                <h5 class="mb-0">{{$detail->district->name ?? '-'}}</h5>
                                             </div>
                                         </div>
 

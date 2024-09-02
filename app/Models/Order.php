@@ -17,6 +17,7 @@ class Order extends Model
         'id_users',
         'status',
         'description',
+        'payment_proof',
     ];
 
     public function kelas()

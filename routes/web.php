@@ -41,11 +41,16 @@ Route::middleware(['auth:superadmin', 'verified'])->group(function () {
     Route::get('/detail/users/{name}', [AdminController::class, 'detailUsers'])->name('detail-users');
     Route::get('/dashboard/panel/admin', [AdminController::class, 'admin'])->name('dashboard-panel');
     Route::post('/admin/update-status/{id}', [AdminController::class, 'updateStatus'])->name('update-admin');
+    Route::get('/pricing-class', [AdminController::class, 'pricingClass'])->name('pricing-class');
+    Route::get('/form-class', [AdminController::class, 'formClass'])->name('form-class');
+    Route::post('/store-class', [AdminController::class, 'storeClass'])->name('store-class');
     Route::post('/logout/superadmin', [AuthenticatedSessionController::class, 'logoutAdmin'])->name('logout-superadmin');
 });
 
 Route::middleware(['auth:web', 'verified'])->group(function () {
     Route::get('/dashboard/user', [UserController::class, 'index'])->name('dashboad-user');
+    Route::get('/class', [UserController::class, 'class'])->name('class');
+    Route::post('/submit-payment/{id}', [UserController::class, 'submitPayment'])->name('submit-payment');
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 

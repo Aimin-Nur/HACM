@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Kelas;
 use App\Services\UserTableService;
 use App\Services\AdminTableService;
-
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -73,6 +75,59 @@ class AdminController extends Controller
             ->with('message', 'Status admin gagal diperbarui.');
         }
     }
+
+    public function pricingClass()
+    {
+        $getClass = Kelas::get();
+        return view('admin.pricing', compact('getClass'));
+    }
+
+    public function formClass()
+    {
+        return view('admin.addClass');
+    }
+
+    public function storeClass(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'className' => 'required|string|max:255',
+            'dateClass' => 'required|date',
+            'description' => 'required|string|max:1000',
+            'price' => 'required|numeric',
+            'file.*' => 'mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        try {
+            $uploadedFileNames = [];
+            if ($request->hasFile('file')) {
+                foreach ($request->file('file') as $file) {
+                    $filename = $file->getClientOriginalName();
+                    $file->storeAs('public/uploads', $filename);
+                    $uploadedFileNames[] = $filename;
+                }
+            }
+
+            Kelas::create([
+                'class_name' => $request->input('className'),
+                'date_release' => $request->input('dateClass'),
+                'date_finish' => $request->input('dateClass'),
+                'description' => $request->input('description'),
+                'max_participant' => $request->input('price'),
+                'price' => $request->input('price'),
+                'img' => implode(',', $uploadedFileNames),
+            ]);
+
+            return redirect()->route('pricing-class')->with('success', 'Data saved successfully!');
+
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage())->withInput();
+        }
+    }
+
 
 
 }

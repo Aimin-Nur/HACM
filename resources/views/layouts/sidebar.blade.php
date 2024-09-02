@@ -107,6 +107,16 @@
                         <li><a href="{{ route('users.index') }}">Users</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-calendar-check"></i>
+                        <span>Class</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{route('pricing-class')}}">Pricing Class</a></li>
+                        <li><a href="{{route('form-class')}}">Add Class</a></li>
+                    </ul>
+                </li>
             @endauth
 
             @auth('superadmin')
@@ -120,6 +130,30 @@
                         <li><a href="{{ route('dashboard-users') }}">Users</a></li>
                     </ul>
                 </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-calendar-check"></i>
+                        <span>Class</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{route('pricing-class')}}">Pricing Class</a></li>
+                        <li><a href="{{route('form-class')}}">Add Class</a></li>
+                    </ul>
+                </li>
+            @endauth
+
+            @auth('web')
+            <li>
+                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <i class="mdi mdi-calendar-check"></i>
+                    <span>Class</span>
+                </a>
+                <ul class="sub-menu" aria-expanded="false">
+                    <li><a href="{{route('class')}}">Class</a></li>
+                    {{-- <li><a href="{{route('order-class-user')}}">Class Order</a></li> --}}
+                </ul>
+            </li>
             @endauth
 
                 <li>
@@ -130,18 +164,6 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="email-inbox">Inbox</a></li>
                         <li><a href="email-read">Read Email</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="mdi mdi-calendar-check"></i>
-                        <span>Tasks</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="tasks-list">Task List</a></li>
-                        <li><a href="tasks-kanban">Kanban Board</a></li>
-                        <li><a href="tasks-create">Create Task</a></li>
                     </ul>
                 </li>
 

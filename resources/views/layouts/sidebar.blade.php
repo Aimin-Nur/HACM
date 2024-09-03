@@ -70,33 +70,6 @@
                     </ul>
                 </li>
 
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="mdi mdi-flip-horizontal"></i>
-                        <span>Layouts</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="true">
-                        <li><a href="javascript: void(0);" class="has-arrow">Vertical</a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="layouts-compact-sidebar">Compact Sidebar</a></li>
-                                <li><a href="layouts-icon-sidebar">Icon Sidebar</a></li>
-                                <li><a href="layouts-boxed">Boxed Layout</a></li>
-                                <li><a href="layouts-preloader">Preloader</a></li>
-                            </ul>
-                        </li>
-
-                        <li><a href="javascript: void(0);" class="has-arrow">Horizontal</a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="layouts-horizontal">Horizontal</a></li>
-                                <li><a href="layouts-hori-topbarlight">Topbar Light</a></li>
-                                <li><a href="layouts-hori-boxed">Boxed Layout</a></li>
-                                <li><a href="layouts-hori-preloader">Preloader</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                </li>
-
             @auth('admin')
                 <li>
                     <a href="javascript:void(0);" class="has-arrow waves-effect">
@@ -158,12 +131,11 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="mdi mdi-inbox-full"></i>
-                        <span>Email</span>
+                        <i class="bx bx-dollar"></i>
+                        <span>Payment</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="email-inbox">Inbox</a></li>
-                        <li><a href="email-read">Read Email</a></li>
+                        <li><a href="{{ route('order-list') }}">Order Ticket</a></li>
                     </ul>
                 </li>
 

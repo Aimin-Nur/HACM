@@ -44,6 +44,8 @@ Route::middleware(['auth:superadmin', 'verified'])->group(function () {
     Route::get('/pricing-class', [AdminController::class, 'pricingClass'])->name('pricing-class');
     Route::get('/form-class', [AdminController::class, 'formClass'])->name('form-class');
     Route::post('/store-class', [AdminController::class, 'storeClass'])->name('store-class');
+    Route::get('/order-list', [AdminController::class, 'orderList'])->name('order-list');
+    Route::get('/order-detail/{id}', [AdminController::class, 'orderDetail'])->name('order-detail');
     Route::post('/logout/superadmin', [AuthenticatedSessionController::class, 'logoutAdmin'])->name('logout-superadmin');
 });
 

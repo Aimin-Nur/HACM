@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Admin;
 use App\Models\Kelas;
 use App\Services\UserTableService;
+use App\Services\OrderTableService;
 use App\Services\AdminTableService;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Validator;
@@ -16,11 +17,13 @@ class AdminController extends Controller
 {
     protected $userServices;
     protected $adminServices;
+    protected $orderServices;
 
-    public function __construct(UserTableService $userServices, AdminTableService $adminServices)
+    public function __construct(UserTableService $userServices, AdminTableService $adminServices, OrderTableService $orderServices)
     {
         $this->userServices = $userServices;
         $this->adminServices = $adminServices;
+        $this->orderServices = $orderServices;
     }
 
     public function index()
@@ -126,6 +129,15 @@ class AdminController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage())->withInput();
         }
+    }
+
+    public function orderList(Request $request)
+    {
+        if ($request->ajax()) {
+            $orderServices = $this->orderServices->getOrders();
+            return $this->orderServices->generateDataTable($orderServices);
+        }
+        return view('admin.order-list');
     }
 
 

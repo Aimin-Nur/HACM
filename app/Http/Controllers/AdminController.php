@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\Kelas;
+use App\Models\Order;
 use App\Services\UserTableService;
 use App\Services\OrderTableService;
 use App\Services\AdminTableService;
@@ -140,6 +141,32 @@ class AdminController extends Controller
         return view('admin.order-list');
     }
 
+    public function orderDetail($id)
+    {
+        $getOrderId = Order::with('user', 'kelas')->where('id', $id)->first();
+        return view('admin.order-detail', compact('getOrderId'));
+    }
 
+    public function editPayment(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'status' => 'boolean',
+            ]);
+
+            $getOrder = Order::findOrFail($id);
+            $getOrder->status = $request->input('status');
+            $getOrder->save();
+
+            session()->flash('success', 'Payment has Been Successfully Validated');
+            return redirect()->back()->session('status', 'success');
+        } catch (\Exception $e) {
+            session()->flash('error', 'Failed: ' . $e->getMessage());
+            return redirect()->back()
+            ->with('status', 'error')
+            ->with('message', 'Failed : Payment has Been Successfully Validated, Try more again!');
+        }
+
+    }
 
 }

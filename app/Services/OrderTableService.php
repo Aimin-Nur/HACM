@@ -30,7 +30,7 @@ class OrderTableService
                 return $order->kelas->price;
             })
             ->addColumn('status', function ($order) {
-                if($order->status === 1)
+                if($order->status == 1)
                     return '<span class="badge badge-soft-success">Success</span>';
                 else
                     return '<span class="badge badge-soft-danger">Pending</span>';
@@ -42,7 +42,7 @@ class OrderTableService
                                     <i class="fas fa-ellipsis-v"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href=" ' . route('order-detail', ['id', $order->id]) . '">View Detail</a>
+                                    <a class="dropdown-item" href=" ' . route('order-detail', ['id' => $order->id]) . '">View Detail</a>
                                     <a class="dropdown-item" href="#">View Payment Proof</a>
                                     <a class="dropdown-item" href="#">Accept Validation</a>
                                 </div>

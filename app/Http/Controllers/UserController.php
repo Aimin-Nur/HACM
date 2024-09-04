@@ -43,7 +43,7 @@ class UserController extends Controller
                 $file = $request->file('file');
                 $id_user = auth()->id();
                 $user = User::find($id_user);
-                $filename = $user->name . '_' . time();
+                $filename = $user->name . '_' . time() . '.' . $file->getClientOriginalExtension();
                 $file->storeAs('public/payments', $filename);
 
                 // Simpan detail pembayaran ke database

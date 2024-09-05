@@ -15,7 +15,7 @@
                             <div class="bg-login-overlay"></div>
                             <div class="position-relative">
                                 <h5 class="text-white font-size-20">Welcome Back !</h5>
-                                <p class="text-white-50 mb-0">Sign in to continue to Qovex.</p>
+                                <p class="text-white-50 mb-0">Sign in to continue to HACM.</p>
                                 <a href="/index" class="logo logo-admin mt-4">
                                     <img src="{{ URL::asset('build/images/logo-sm-dark.png') }}" alt=""
                                         height="30">
@@ -30,7 +30,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>
                                 @endif
-                        
+
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <div class="mb-3">

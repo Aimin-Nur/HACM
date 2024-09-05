@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -18,12 +19,10 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/ticket', function () {
-    return view('ticket');
+    return view('ticket.ticket');
 });
 
 Route::post('/get-cities', [RegisteredUserController::class, 'getCities'])->name('get.cities');
@@ -55,6 +54,8 @@ Route::middleware(['auth:web', 'verified'])->group(function () {
     Route::get('/class', [UserController::class, 'class'])->name('class');
     Route::post('/submit-payment/{id}', [UserController::class, 'submitPayment'])->name('submit-payment');
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+    Route::get('/order', [UserController::class, 'order'])->name('order');
+
 });
 
 Route::middleware('auth')->group(function () {

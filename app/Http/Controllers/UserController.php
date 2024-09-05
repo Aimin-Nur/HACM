@@ -69,6 +69,15 @@ class UserController extends Controller
         }
     }
 
+    public function order()
+    {
+        $getUser = Auth::user();
+        $getIdUser = $getUser->id;
+
+        $getOrderUser = Order::where('id_users', $getIdUser)->get();
+        return view('users.order-ticket', compact('getOrderUser'));
+    }
+
 
 
 }

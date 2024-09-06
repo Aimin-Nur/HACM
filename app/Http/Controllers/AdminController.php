@@ -180,7 +180,29 @@ class AdminController extends Controller
             session()->flash('error', 'Failed: ' . $e->getMessage());
             return redirect()->back()
             ->with('status', 'error')
-            ->with('message', 'Failed : Payment has Been Successfully Validated, Try more again!');
+            ->with('message', 'Failed : Failure to Validated Payment, Try more again!');
+        }
+    }
+
+    public function rejectedPayment(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'status' => 'boolean',
+            ]);
+
+            $getOrder = Order::findOrFail($id);
+            $getOrder->status = $request->input('status');
+
+            $getOrder->save();
+
+            session()->flash('success', 'Payment has Been Rejected');
+            return redirect()->session('status', 'success');
+        } catch (\Exception $e) {
+            session()->flash('error', 'Failed: ' . $e->getMessage());
+            return redirect()->back()
+            ->with('status', 'error')
+            ->with('message', 'Failed : Failure to reject payment, Try more again!');
         }
     }
 

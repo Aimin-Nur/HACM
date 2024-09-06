@@ -75,7 +75,11 @@
                                                 class="fa fa-print"></i></a> --}}
                                         @if ($getOrderId->status == 1)
                                         <p class="me-3" style="display: inline"><strong><i>You have validated this order on the date {{$getOrderId->updated_at}}</i></strong></p>
-                                        <button type="button" class="btn btn-outline-primary" disabled>Already validated</button>
+                                        <button type="button" class="btn btn-outline-primary" disabled>Already Validated</button>
+                                        @elseif ($getOrderId->status == 0)
+                                        <p class="me-3" style="display: inline"><strong><i>You have rejected this order on the date {{$getOrderId->updated_at}}</i></strong></p>
+                                        <button type="button" class="btn btn-outline-danger w-md waves-effect waves-light" disabled>Already Rejected</button>
+                                        <a data-bs-toggle="modal" data-bs-target="#exampleModalScrollable{{$getOrderId->id}}" class="btn btn-primary w-md waves-effect waves-light">Accepted Payment</a>
                                         @else
                                         <a data-bs-toggle="modal" data-bs-target="#rejectedModalScrollable{{$getOrderId->id}}" class="btn btn-danger w-md waves-effect waves-light">Rejected Payment</a>
                                         <a data-bs-toggle="modal" data-bs-target="#exampleModalScrollable{{$getOrderId->id}}" class="btn btn-primary w-md waves-effect waves-light">Accepted Payment</a>
@@ -122,9 +126,41 @@
                     <!-- /.modal-content -->
                 </div>
                 <!-- /.modal-accepted -->
+                </div>
 
+                <div class="modal fade bs-example-modal-center" id="rejectedModalScrollable{{$getOrderId->id}}" tabindex="-1" role="dialog"
+                    aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title mt-0">Payment Rejected</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('rejected-payment', ['id' => $getOrderId->id])}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" value="0" name="status">
+                                    <h4 class="text-center">
+                                        Are you sure to rejected this payment?
+                                    </h4>
+                                    <p class="text-center mt-3">This action will reject the user's payment and the user will not be able to generate a ticket.</p>
+                                    <div class="modal-footer align-items-center">
+                                        <button type="button" class="btn btn-danger waves-effect waves-light">
+                                            <i class="bx bx-block font-size-16 align-middle me-3"></i> Close
+                                        </button>
+                                        <button type="submit" class="btn btn-success waves-effect waves-light">
+                                            <i class="bx bx-check-double font-size-16 align-middle me-3"></i> Yes, Rejected Payment
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-accepted -->
+                    </div>
 
-            </div>
                 @endsection
                 @push('script')
                     <script src="{{ URL::asset('build/js/app.js') }}"></script>

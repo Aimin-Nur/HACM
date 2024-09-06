@@ -55,17 +55,6 @@
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title">Menu</li>
 
-                <li>
-                    <a href="javascript: void(0);" class="waves-effect">
-                        <i class="mdi mdi-airplay"></i><span class="badge rounded-pill bg-info float-end">2</span>
-                        <span>Dashboard</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="index">Dashboard 1</a></li>
-                        <li><a href="index-2">Dashboard 2</a></li>
-                    </ul>
-                </li>
-
             @auth('admin')
                 <li>
                     <a href="javascript:void(0);" class="has-arrow waves-effect">
@@ -110,6 +99,15 @@
                         <li><a href="{{route('form-class')}}">Add Class</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-dollar"></i>
+                        <span>Payment</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('order-list') }}">List Order</a></li>
+                    </ul>
+                </li>
             @endauth
 
             @auth('web')
@@ -123,17 +121,16 @@
                     {{-- <li><a href="{{route('order-class-user')}}">Class Order</a></li> --}}
                 </ul>
             </li>
+            <li>
+                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <i class="bx bx-dollar"></i>
+                    <span>Payment</span>
+                </a>
+                <ul class="sub-menu" aria-expanded="false">
+                    <li><a href="{{ route('order') }}">Order Ticket</a></li>
+                </ul>
+            </li>
             @endauth
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="bx bx-dollar"></i>
-                        <span>Payment</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('order') }}">Order Ticket</a></li>
-                    </ul>
-                </li>
             </ul>
         </div>
         <!-- Sidebar -->

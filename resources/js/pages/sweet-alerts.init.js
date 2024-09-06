@@ -51,22 +51,7 @@ File: Sweet alerts
             )
         });
 
-        //Warning Message
-        $('#sa-warning').click(function () {
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#34c38f",
-                cancelButtonColor: "#f46a6a",
-                confirmButtonText: "Yes, delete it!"
-              }).then(function (result) {
-                if (result.value) {
-                  Swal.fire("Deleted!", "Your file has been deleted.", "success");
-                }
-            });
-        });
+
 
         //Parameter
         $('#sa-params').click(function () {

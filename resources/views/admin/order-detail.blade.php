@@ -77,6 +77,7 @@
                                         <p class="me-3" style="display: inline"><strong><i>You have validated this order on the date {{$getOrderId->updated_at}}</i></strong></p>
                                         <button type="button" class="btn btn-outline-primary" disabled>Already validated</button>
                                         @else
+                                        <a data-bs-toggle="modal" data-bs-target="#rejectedModalScrollable{{$getOrderId->id}}" class="btn btn-danger w-md waves-effect waves-light">Rejected Payment</a>
                                         <a data-bs-toggle="modal" data-bs-target="#exampleModalScrollable{{$getOrderId->id}}" class="btn btn-primary w-md waves-effect waves-light">Accepted Payment</a>
                                         @endif
                                     </div>
@@ -120,7 +121,9 @@
                     </div>
                     <!-- /.modal-content -->
                 </div>
-                <!-- /.modal-dialog -->
+                <!-- /.modal-accepted -->
+
+
             </div>
                 @endsection
                 @push('script')

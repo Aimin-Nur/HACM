@@ -35,9 +35,11 @@
                 <div class="card-body">
                     <h4 class="card-title">Order's Information</h4>
                     <div class="mb-4">
-                        <span class="badge badge-soft-danger">Pending</span> <b>:</b> <p style="display: inline" class="card-title-desc">Pending status occurs when the user has sent proof of ticket payment and is still waiting for admin payment validation.
+                        <span class="badge badge-soft-warning">Pending</span> <b>:</b> <p style="display: inline" class="card-title-desc">Pending status occurs when the user has sent proof of ticket payment and is still waiting for admin payment validation.
                         </p> <br>
                         <span class="badge badge-soft-success">Success</span> <b>:</b> <p style="display: inline" class="card-title-desc">Success status occurs when users have sent proof of payment and the admin has approved the payment.
+                        </p> <br>
+                        <span class="badge badge-soft-danger">Rejected</span> <b>:</b> <p style="display: inline" class="card-title-desc">Rejected status occurs when users have sent proof of payment and the admin has rejected the payment.
                         </p>
                     </div>
                     <table id="datatable" class="table table-bordered dt-responsive nowrap"

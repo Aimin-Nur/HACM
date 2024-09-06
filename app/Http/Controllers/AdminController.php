@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Admin;
 use App\Models\Kelas;
 use App\Models\Order;
+use App\Models\Ticket;
 use App\Services\UserTableService;
 use App\Services\OrderTableService;
 use App\Services\AdminTableService;
@@ -156,10 +157,19 @@ class AdminController extends Controller
 
             $getOrder = Order::findOrFail($id);
             $getOrder->status = $request->input('status');
+
+            Ticket::create([
+                'id_class' => $getOrder->id_class,
+                'id_users' => $getOrder->id_users,
+                'id_order' => $getOrder->id,
+                'generate_ticket' => 0,
+                'active' => 1,
+            ]);
+
             $getOrder->save();
 
             session()->flash('success', 'Payment has Been Successfully Validated');
-            return redirect()->back()->session('status', 'success');
+            return redirect()->session('status', 'success');
         } catch (\Exception $e) {
             session()->flash('error', 'Failed: ' . $e->getMessage());
             return redirect()->back()

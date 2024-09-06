@@ -32,8 +32,10 @@ class OrderTableService
             ->addColumn('status', function ($order) {
                 if($order->status == 1)
                     return '<span class="badge badge-soft-success">Success</span>';
+                elseif($order->status == 0)
+                    return '<span class="badge badge-soft-danger">Rejected</span>';
                 else
-                    return '<span class="badge badge-soft-danger">Pending</span>';
+                    return '<span class="badge badge-soft-warning">Pending</span>';
             })
             ->addColumn('action', function ($order) {
                 $buttons = '<div class="dropstart">

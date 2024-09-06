@@ -55,7 +55,8 @@ Route::middleware(['auth:web', 'verified'])->group(function () {
     Route::post('/submit-payment/{id}', [UserController::class, 'submitPayment'])->name('submit-payment');
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     Route::get('/order', [UserController::class, 'order'])->name('order');
-
+    Route::get('/generate-ticket/{id}', [UserController::class, 'generateTicket'])->name('ticket-generate');
+    Route::get('/check-ticket-status', [UserController::class, 'checkTicketStatus'])->name('check-ticket-status');
 });
 
 Route::middleware('auth')->group(function () {

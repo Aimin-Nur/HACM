@@ -6,10 +6,15 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Order;
+use App\Models\Ticket;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Validator;
 use App\Jobs\SendPaymentNotification;
+use App\Jobs\GenerateTicketPdfJob;
+use PDF;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -50,7 +55,6 @@ class UserController extends Controller
                 $order = Order::create([
                     'id_class' => $id,
                     'id_users' => $id_user,
-                    'status' => 0,
                     'payment_proof' => $filename,
                 ]);
 
@@ -75,8 +79,54 @@ class UserController extends Controller
         $getIdUser = $getUser->id;
 
         $getOrderUser = Order::where('id_users', $getIdUser)->get();
-        return view('users.order-ticket', compact('getOrderUser'));
+        $getTicketUser = Ticket::where('id_users', $getIdUser)->get();
+        return view('users.order-ticket', compact('getOrderUser','getTicketUser'));
     }
+
+    public function generateTicket(Request $request, $id)
+    {
+        try {
+            $user = auth()->user();
+            $idUser = $user->id;
+
+            // Ambil data tiket berdasarkan ID pengguna
+            $getTicket = Ticket::where('id_users', $idUser)->where('id', $id)->firstOrFail();
+            $getTicket->generate_ticket = 1;
+
+            // Simpan perubahan pada tiket
+            $getTicket->save();
+
+            // Siapkan data untuk PDF
+            $data = [
+                'name' => $user->name,
+                'ticket_id' => $getTicket->id,
+                'date' => $getTicket->date, // Misalkan ada kolom 'date'
+                'class_name' => $getTicket->class_name // Misalkan ada kolom 'class_name'
+            ];
+
+            // Buat PDF
+            $pdf = PDF::loadView('ticket.ticket', $data);
+
+            // Kembalikan PDF untuk diunduh
+            return $pdf->download('ticket.pdf');
+        } catch (\Exception $e) {
+            session()->flash('error', 'Failed: ' . $e->getMessage());
+            return redirect()->back()->withInput();
+        }
+    }
+
+
+    // public function checkTicketStatus(Request $request)
+    // {
+    //     $jobId = $request->input('job_id');
+    //     $downloadUrl = Cache::get($jobId);
+
+    //     if ($downloadUrl) {
+    //         return response()->json(['status' => 'completed', 'download_url' => $downloadUrl]);
+    //     }
+
+    //     return response()->json(['status' => 'processing']);
+    // }
 
 
 

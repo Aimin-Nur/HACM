@@ -118,7 +118,8 @@
                         <span>Payment</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('order-list') }}">List Order</a></li>
+                        <li><a href="{{ route('order-list') }}">Order List</a></li>
+                        <li><a href="{{ route('ticket-list') }}">Ticket List</a></li>
                     </ul>
                 </li>
             @endauth

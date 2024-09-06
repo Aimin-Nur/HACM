@@ -12,6 +12,7 @@ use App\Models\Ticket;
 use App\Services\UserTableService;
 use App\Services\OrderTableService;
 use App\Services\AdminTableService;
+use App\Services\TicketTableService;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,12 +21,14 @@ class AdminController extends Controller
     protected $userServices;
     protected $adminServices;
     protected $orderServices;
+    protected $ticketServices;
 
-    public function __construct(UserTableService $userServices, AdminTableService $adminServices, OrderTableService $orderServices)
+    public function __construct(UserTableService $userServices, AdminTableService $adminServices, OrderTableService $orderServices, TicketTableService $ticketServices)
     {
         $this->userServices = $userServices;
         $this->adminServices = $adminServices;
         $this->orderServices = $orderServices;
+        $this->ticketServices = $ticketServices;
     }
 
     public function index()
@@ -146,6 +149,15 @@ class AdminController extends Controller
             return $this->orderServices->generateDataTable($orderServices);
         }
         return view('admin.order-list');
+    }
+
+    public function ticketList(Request $request)
+    {
+        if ($request->ajax()) {
+            $ticketServices = $this->ticketServices->getTicket();
+            return $this->ticketServices->generateDataTable($ticketServices);
+        }
+        return view('admin.ticket-list');
     }
 
     public function orderDetail($id)

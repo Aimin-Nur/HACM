@@ -29,18 +29,20 @@ Route::post('/get-cities', [RegisteredUserController::class, 'getCities'])->name
 Route::post('/get-districts', [RegisteredUserController::class, 'getDistricts'])->name('get.districts');
 
 Route::middleware(['auth:admin', 'verified'])->group(function () {
-    Route::get('/dashboard/admin', [AdminController::class, 'index'])->name('dashboard-admin');
+    Route::get('/dashboard/admin', [AdminController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/users', [AdminController::class, 'users'])->name('dashboard-users');
     Route::post('/logout/admin', [AuthenticatedSessionController::class, 'logoutAdmin'])->name('logout-admin');
 });
 
 Route::middleware(['auth:superadmin', 'verified'])->group(function () {
-    Route::get('/dashboard/admin', [AdminController::class, 'index'])->name('dashboard-superadmin');
+    Route::get('/dashboard/admin', [AdminController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/users', [AdminController::class, 'users'])->name('dashboard-users');
     Route::get('/detail/users/{name}', [AdminController::class, 'detailUsers'])->name('detail-users');
     Route::get('/dashboard/panel/admin', [AdminController::class, 'admin'])->name('dashboard-panel');
     Route::post('/admin/update-status/{id}', [AdminController::class, 'updateStatus'])->name('update-admin');
     Route::get('/pricing-class', [AdminController::class, 'pricingClass'])->name('pricing-class');
+    Route::get('/show-arhive-class', [AdminController::class, 'showArchiveClass'])->name('show-archive-class');
+    Route::post('/archive-class/{id}', [AdminController::class, 'archiveClass'])->name('archive');
     Route::get('/form-class', [AdminController::class, 'formClass'])->name('form-class');
     Route::post('/store-class', [AdminController::class, 'storeClass'])->name('store-class');
     Route::get('/order-list', [AdminController::class, 'orderList'])->name('order-list');

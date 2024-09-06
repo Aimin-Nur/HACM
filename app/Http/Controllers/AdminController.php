@@ -83,8 +83,14 @@ class AdminController extends Controller
 
     public function pricingClass()
     {
-        $getClass = Kelas::get();
+        $getClass = Kelas::where('active', 1)->get();
         return view('admin.pricing', compact('getClass'));
+    }
+
+    public function showArchiveClass()
+    {
+        $getClass = Kelas::where('active', 0)->get();
+        return view('admin.archive-class', compact('getClass'));
     }
 
     public function formClass()
@@ -176,7 +182,28 @@ class AdminController extends Controller
             ->with('status', 'error')
             ->with('message', 'Failed : Payment has Been Successfully Validated, Try more again!');
         }
+    }
 
+    public function archiveClass(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'active' => 'boolean',
+            ]);
+
+            $getClass = Kelas::findOrFail($id);
+            $getClass->active = $request->input('active');
+
+            $getClass->update();
+
+            session()->flash('success', 'Class Successfully Removed');
+            return redirect()->session('status', 'success');
+        } catch (\Exception $e) {
+            session()->flash('error', 'Failed: ' . $e->getMessage());
+            return redirect()->back()
+            ->with('status', 'error')
+            ->with('message', 'Failed : Class failed to remove, Try more again!');
+        }
     }
 
 }

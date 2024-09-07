@@ -70,47 +70,49 @@
                             @else
                             @foreach ($getOrderUser as $item)
                             @if ($item->status == 1)
+                            <hr>
                             <div class="faq-box d-flex align-items-start mb-4">
                                 <div class="faq-icon me-3">
                                     <i class="bx bx-badge-check font-size-20 text-success"></i>
                                 </div>
                                 <div class="flex-1">
-                                    <h5 class="font-size-15">Your payment has been successfully validated by the Admin</h5>
+                                    <h5 class="font-size-15">Your Class Payment <b>"{{$item->kelas->class_name}}"</b> has been successfully validated by the Admin <span style="display: inline-block" class="badge badge-soft-success mb-2">Success</span></h5>
                                     <p class="text-muted">Your payment has been successfully validated by admin. Thank you for your transaction! Please Generate your ticket <a href="">here</a>.</p>
                                 </div>
                             </div>
+                            <hr>
                             @elseif ($item->status == NULL)
+                            <hr>
                             <div class="faq-box d-flex align-items-start mb-4">
                                 <div class="faq-icon me-3">
                                     <i class="bx bx-time-five font-size-20 text-warning"></i>
                                 </div>
                                 <div class="flex-1">
-                                    <h5 class="font-size-15">Your payment is still waiting for Admin validation</h5>
+                                    <h5 class="font-size-15">Your Class Payment  <b>"{{$item->kelas->class_name}}"</b> is still waiting for Admin validation  <span style="display: inline-block" class="badge badge-soft-warning mb-2">Pending</span></h5>
                                     <p class="text-muted">Your payment is currently awaiting validation from the admin. Please be patient, and we will notify you as soon as the validation process is complete. Please check your email address periodically</p>
                                 </div>
                             </div>
+                            <hr>
                             @else
+                            <hr>
                             <div class="faq-box d-flex align-items-start mb-4">
                                 <div class="faq-icon me-3">
                                     <i class="bx bx-x-circle font-size-20 text-danger"></i>
                                 </div>
                                 <div class="flex-1">
-                                    <h5 class="font-size-15">Your payment was rejected by the Admin</h5>
+                                    <h5 class="font-size-15">Your Class Payment  <b>"{{$item->kelas->class_name}}"</b> was rejected by the Admin <span style="display: inline-block" class="badge badge-soft-danger mb-2">Rejected</span></h5></h5>
                                     <p class="text-muted">Sorry, your payment has been declined by admin. Please check your payment details or contact our team for more information.</p>
                                 </div>
                             </div>
+                            <hr>
                             @endif
                             @endforeach
                             @endif
                         </div>
                         <div class="tab-pane fade" id="v-pills-privacy" role="tabpanel"
                             aria-labelledby="v-pills-privacy-tab">
-                            <h4 class="card-title mb-2">Your Ticket</h4>
-                            <p class="card-title-desc">For quoting blocks of content from another source
-                                within
-                                your document. Wrap <code class="highlighter-rouge">&lt;blockquote
-                                    class="blockquote"&gt;</code> around any <abbr title="HyperText Markup Language">HTML</abbr> as
-                                the quote.</p>
+                            <h4 class="card-title mb-2">Generate Ticket</h4>
+                            <p class="card-title-desc">Please generate a ticket if your payment has been approved by the Admin.</p>
 
                             <div class="row">
                                 <div class="col-lg-12">
@@ -152,7 +154,7 @@
                                                 Generate Ticket
                                             </a>
                                             @else
-                                            <button type="button" class="btn btn-outline-secondary" disabled>Your Ticket has been generate at : {{$item->updated_at}}</button>
+                                            <button type="button" class="btn btn-outline-primary" disabled>Your ticket has been generate at : {{$item->updated_at}}</button>
                                             @endif
                                         </div>
                                         @endforeach

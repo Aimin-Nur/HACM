@@ -18,6 +18,7 @@ class Ticket extends Model
         'id_order',
         'generate_ticket',
         'active',
+        'ticket_code',
     ];
 
     public function kelas()

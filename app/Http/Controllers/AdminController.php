@@ -176,21 +176,37 @@ class AdminController extends Controller
             $getOrder = Order::findOrFail($id);
             $getOrder->status = $request->input('status');
 
+            $class = Kelas::findOrFail($getOrder->id_class);
+            $classInitial = strtoupper(substr($class->class_name, 0, 1));
+
+            $ticketCount = Ticket::where('id_class', $getOrder->id_class)->count();
+            $orderNumber = str_pad($ticketCount + 1, 2, '0', STR_PAD_LEFT); // Menghasilkan urutan dengan dua digit
+
+            // Ambil 2 digit random dari UUID id_class
+            $classUuidPart = substr(str_replace('-', '', $getOrder->id_class), mt_rand(0, 30), 2);
+
+            // Ambil 2 digit random dari UUID id_users
+            $userUuidPart = substr(str_replace('-', '', $getOrder->id_users), mt_rand(0, 30), 2);
+
+            // Buat ticket_code dengan format E013486
+            $ticketCode = $classInitial . $orderNumber . $classUuidPart . $userUuidPart;
+
             Ticket::create([
                 'id_class' => $getOrder->id_class,
                 'id_users' => $getOrder->id_users,
                 'id_order' => $getOrder->id,
                 'generate_ticket' => 0,
                 'active' => 1,
+                'ticket_code' => $ticketCode,
             ]);
 
             $getOrder->save();
 
             session()->flash('success', 'Payment has Been Successfully Validated');
-            return redirect()->session('status', 'success');
+            return redirect('order-list')->session('status', 'success');
         } catch (\Exception $e) {
             session()->flash('error', 'Failed: ' . $e->getMessage());
-            return redirect()->back()
+            return redirect('order-list')
             ->with('status', 'error')
             ->with('message', 'Failed : Failure to Validated Payment, Try more again!');
         }

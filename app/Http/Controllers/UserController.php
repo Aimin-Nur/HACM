@@ -99,15 +99,15 @@ class UserController extends Controller
             // Siapkan data untuk PDF
             $data = [
                 'name' => $user->name,
-                'ticket_id' => $getTicket->id,
-                'date' => $getTicket->date, // Misalkan ada kolom 'date'
-                'class_name' => $getTicket->class_name // Misalkan ada kolom 'class_name'
+                'email' => $user->email,
+                'ticket_code' => $getTicket->ticket_code,
+                'date' => $getTicket->created_at,
+                'class_name' => $getTicket->kelas->class_name
             ];
 
             // Buat PDF
-            $pdf = PDF::loadView('ticket.ticket', $data);
+            $pdf = PDF::loadView('ticket.ticket', $data)->setPaper([0, 0, 397.6378, 510.236], 'landscape');
 
-            // Kembalikan PDF untuk diunduh
             return $pdf->download('ticket.pdf');
         } catch (\Exception $e) {
             session()->flash('error', 'Failed: ' . $e->getMessage());

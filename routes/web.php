@@ -21,7 +21,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/ticket', function () {
+Route::get('/tes', function () {
     return view('ticket.ticket');
 });
 

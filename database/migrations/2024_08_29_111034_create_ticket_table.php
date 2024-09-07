@@ -18,6 +18,7 @@ return new class extends Migration
             $table->uuid('id_order');
             $table->string('generate_ticket');
             $table->boolean('active')->default(true);
+            $table->string('ticket_code');
             $table->timestamps();
 
             $table->foreign('id_class')->references('id')->on('class')->onDelete('cascade');

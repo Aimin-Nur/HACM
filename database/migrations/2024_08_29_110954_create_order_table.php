@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('order', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('id_class');
-            $table->uuid('id_users'); 
+            $table->uuid('id_users');
             $table->string('status');
             $table->text('description')->nullable();
+            $table->text('payment_proof')->nullable();
             $table->timestamps();
 
             $table->foreign('id_class')->references('id')->on('class')->onDelete('cascade');

@@ -53,7 +53,7 @@
                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
-                                <th>Id</th>
+                                <th>Code</th>
                                 <th>Name</th>
                                 <th>Class</th>
                                 <th>Generate</th>
@@ -79,7 +79,7 @@
             serverSide: true,
             ajax: '{{ route('ticket-list') }}',
             columns: [
-                { data: 'id', name: 'id'},
+                { data: 'ticket_code', name: 'ticket_code'},
                 { data: 'name', name: 'name', searchable:true, orderable:true },
                 { data: 'class', name: 'class' },
                 { data: 'generate', name: 'generate' },

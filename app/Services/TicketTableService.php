@@ -18,8 +18,8 @@ class TicketTableService
     public function generateDataTable($usersQuery)
     {
         return DataTables::of($usersQuery)
-            ->addColumn('id', function ($order) {
-               return $order->id;
+            ->addColumn('ticket_code', function ($order) {
+               return $order->ticket_code;
             })
             ->addColumn('name', function ($order) {
                 return $order->user->name;

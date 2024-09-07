@@ -13,8 +13,14 @@ use App\Services\UserTableService;
 use App\Services\OrderTableService;
 use App\Services\AdminTableService;
 use App\Services\TicketTableService;
+use App\Services\YearlyChartService;
+use App\Services\ChartRegencyService;
+use App\Services\ChartProvinceService;
+use App\Services\LogUserService;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
+use DB;
 
 class AdminController extends Controller
 {
@@ -22,20 +28,171 @@ class AdminController extends Controller
     protected $adminServices;
     protected $orderServices;
     protected $ticketServices;
+    protected $yearlyChartServices;
+    protected $monthAgoChartServices;
+    protected $chartRegencyService;
+    protected $chartProvinceService;
+    protected $logUserService;
 
-    public function __construct(UserTableService $userServices, AdminTableService $adminServices, OrderTableService $orderServices, TicketTableService $ticketServices)
+    public function __construct(UserTableService $userServices, AdminTableService $adminServices, OrderTableService $orderServices, TicketTableService $ticketServices, YearlyChartService $yearlyChartServices, ChartRegencyService $chartRegencyService, ChartProvinceService $chartProvinceService, LogUserService $logUserService)
     {
         $this->userServices = $userServices;
         $this->adminServices = $adminServices;
         $this->orderServices = $orderServices;
         $this->ticketServices = $ticketServices;
+        $this->yearlyChartServices = $yearlyChartServices;
+        $this->chartRegencyService = $chartRegencyService;
+        $this->chartProvinceService = $chartProvinceService;
+        $this->logUserService = $logUserService;
     }
 
     public function index()
     {
         $getUser = Auth::user();
-        return view('admin.index', compact('getUser'));
+
+        $sumPrice = Order::join('class', 'order.id_class', '=', 'class.id')
+                            ->where('order.status', 1)
+                            ->sum('class.price');
+
+        $sumPriceNullVerif = Order::join('class', 'order.id_class', '=', 'class.id')
+                            ->where('order.status', 0)
+                            ->sum('class.price');
+
+        // Get the current date and month (Sales Report)
+        $currentMonth = Carbon::now()->month;
+        $year = Carbon::now()->year;
+
+        // Retrieve traffic (order count) for each class for the current month
+        $classTraffic = DB::table('order')
+            ->join('class', 'order.id_class', '=', 'class.id')
+            ->select('class.class_name', DB::raw('COUNT(order.id) as order_count'))
+            ->whereMonth('order.created_at', $currentMonth)
+            ->whereYear('order.created_at', $year)
+            ->groupBy('class.class_name')
+            ->get();
+
+        // Convert the traffic data into arrays for the ApexCharts
+        $classNames = [];
+        $orderCounts = [];
+
+        foreach ($classTraffic as $traffic) {
+            $classNames[] = $traffic->class_name;
+            $orderCounts[] = $traffic->order_count;
+        }
+
+        // Calculate sales for the current month by summing class prices
+        $currentMonthSales = DB::table('order')
+            ->join('class', 'order.id_class', '=', 'class.id')
+            ->whereMonth('order.created_at', $currentMonth)
+            ->whereYear('order.created_at', $year)
+            ->sum('class.price');
+
+        // Calculate sales for the previous month
+        $previousMonthSales = DB::table('order')
+            ->join('class', 'order.id_class', '=', 'class.id')
+            ->whereMonth('order.created_at', Carbon::now()->subMonth()->month)
+            ->whereYear('order.created_at', $year)
+            ->sum('class.price');
+
+        // Calculate the percentage difference between current and previous month
+        if ($previousMonthSales > 0) {
+            $difference = (($currentMonthSales - $previousMonthSales) / $previousMonthSales) * 100;
+        } else {
+            $difference = 100; // Assume 100% increase if there were no sales last month
+        }
+
+        // Determine if sales increased or decreased
+        $isIncreased = $currentMonthSales > $previousMonthSales;
+
+        // Format the date range for the current month
+        $currentMonthRange = Carbon::now()->format('01 M') . ' - ' . Carbon::now()->format('d M, Y');
+
+
+        // Get monthly sales report data
+        $monthlyData = $this->yearlyChartServices->getMonthlySalesReport();
+
+        // Get yearly sales report data
+        $yearlyData = $this->yearlyChartServices->getYearlySalesData();
+
+        // Ambil data top 10 kota
+        $regency = $this->chartRegencyService->getTopCitiesWithOrders();
+        $topCity = $this->chartRegencyService->topFirstCity();
+
+        $cities = $regency->pluck('city_name')->toArray();
+        $orders = $regency->pluck('total_orders')->toArray();
+
+        // Ambil 5 data provinsi
+        $topProvinces = $this->chartProvinceService->getTopProvincesWithorder(5);
+
+         // Mengambil nama provinsi dan jumlah ordernya untuk radar chart
+        $provinces = [];
+        $orders_prov = [];
+        foreach ($topProvinces as $provinceData) {
+            $provinces[] = $provinceData->province_name;
+            $orders_prov[] = $provinceData->total_orders;
+        }
+
+        $logs = $this->logUserService->getLatestUserLogs();
+
+        return view('admin.index', compact('getUser','sumPrice','sumPriceNullVerif','currentMonthSales',
+            'previousMonthSales',
+            'difference',
+            'isIncreased',
+            'currentMonthRange',
+            'classNames', // Array of class names for the chart series
+            'orderCounts',
+            'monthlyData',
+            'yearlyData',
+            'cities', 'orders',
+            'topCity',
+            'provinces',
+            'orders_prov',
+            'logs')); // Array of order counts for the chart series
     }
+
+    public function yearlySalesReport()
+    {
+        $classes = Kelas::with('orders')->get();
+        $classNames = [];
+        $seriesData = [];
+        $months = [];
+
+        // Populate the months array
+        for ($month = 1; $month <= now()->month; $month++) {
+            $months[] = now()->startOfYear()->addMonths($month - 1)->shortMonthName;
+        }
+
+        foreach ($classes as $class) {
+            $classNames[] = $class->name;
+
+            // Initialize monthly sales with zeroes
+            $monthlySales = array_fill(0, now()->month, 0);
+
+            // Count the orders for each month
+            foreach ($class->orders as $order) {
+                $orderMonth = $order->created_at->month;
+                $monthlySales[$orderMonth - 1]++;
+            }
+
+            $seriesData[] = [
+                'name' => $class->name,
+                'type' => 'line', // or 'column', 'area'
+                'data' => $monthlySales,
+            ];
+        }
+
+        // Ensure no null or empty data is sent
+        if (empty($seriesData)) {
+            $seriesData[] = [
+                'name' => 'No Data',
+                'type' => 'line',
+                'data' => array_fill(0, now()->month, 0),
+            ];
+        }
+
+        return view('sales-report-yearly', compact('classNames', 'seriesData', 'months'));
+    }
+
 
     public function users(Request $request)
     {

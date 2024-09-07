@@ -71,7 +71,7 @@
                             @foreach ($getOrderUser as $item)
                             @if ($item->status == 1)
                             <hr>
-                            <div class="faq-box d-flex align-items-start mb-4">
+                            <div class="faq-box d-flex align-items-start mb-2">
                                 <div class="faq-icon me-3">
                                     <i class="bx bx-badge-check font-size-20 text-success"></i>
                                 </div>
@@ -83,7 +83,7 @@
                             <hr>
                             @elseif ($item->status == NULL)
                             <hr>
-                            <div class="faq-box d-flex align-items-start mb-4">
+                            <div class="faq-box d-flex align-items-start mb-2">
                                 <div class="faq-icon me-3">
                                     <i class="bx bx-time-five font-size-20 text-warning"></i>
                                 </div>
@@ -95,7 +95,7 @@
                             <hr>
                             @else
                             <hr>
-                            <div class="faq-box d-flex align-items-start mb-4">
+                            <div class="faq-box d-flex align-items-start mb-2">
                                 <div class="faq-icon me-3">
                                     <i class="bx bx-x-circle font-size-20 text-danger"></i>
                                 </div>
@@ -135,7 +135,7 @@
                                         <!-- end row -->
                                     </div>
                                     @else
-                                    <div class="card card-body mb-4">
+                                    <div class="card card-body mb-2">
                                         @foreach ($getTicketUser as $item)
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -199,12 +199,9 @@
                 confirmButtonText: "Yes, generate ticket!"
             }).then(function(result) {
                 if (result.value) {
-                    Swal.fire("Success!", "Your ticket is being generated. Thank you.", "success").then(() => {
-                        // Correctly construct the URL with the ticket ID
-                        let url = "{{ route('ticket-generate', ':id') }}"; // Placeholder for the ID
-                        url = url.replace(':id', ticketId); // Replace placeholder with the actual ID
-
-                        // Redirect to the ticket generation route with the ticket ID
+                    Swal.fire("Success!", "Please Click 'Ok' for download your ticket.", "success").then(() => {
+                        let url = "{{ route('ticket-generate', ':id') }}";
+                        url = url.replace(':id', ticketId);
                         window.location.href = url;
                     });
                 }

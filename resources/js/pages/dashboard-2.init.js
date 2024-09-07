@@ -7,43 +7,7 @@ File: Dashboard-2
 */
 
 
-// Radial chart 1
-var options= {
-  series: [70],
-  chart: {
-      height: 120, type: 'radialBar',
-  }
-  ,
-  plotOptions: {
-      radialBar: {
-          offsetY: -12,
-          hollow: {
-              margin: 5, size: '60%', background: 'rgba(59, 93, 231, .25)',
-          }
-          ,
-          dataLabels: {
-              name: {
-                  show: false,
-              }
-              ,
-              value: {
-                  show: true, fontSize: '12px', offsetY: 5,
-              }
-              ,
-              style: {
-                  colors: ['#fff']
-              }
-          }
-      }
-      ,
-  }
-  ,
-  colors: ['#3b5de7'],
-}
 
-;
-var chart=new ApexCharts(document.querySelector("#radial-chart-1"), options);
-chart.render();
 
 
 

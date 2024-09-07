@@ -37,8 +37,10 @@
                                 </div>
 
                                 <div class="col-4">
-                                    <div>
-                                        <div id="radial-chart-1"></div>
+                                    <div class="avatar-sm ms-2 mt-2">
+                                        <span class="avatar-title bg-soft-warning text-warning rounded-circle">
+                                            <i class="bx bxs-error-circle"></i>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -60,8 +62,10 @@
                                 </div>
 
                                 <div class="col-4">
-                                    <div>
-                                        <div id="radial-chart-2"></div>
+                                    <div class="avatar-sm ms-2 mt-2">
+                                        <span class="avatar-title bg-soft-success text-success rounded-circle">
+                                           <i class="bx bxs-check-circle"></i>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -445,6 +449,51 @@
             console.error('Radar chart element not found');
         }
     });
+
+        // Radial chart 1
+        var options= {
+        series: [90],
+        chart: {
+            height: 120, type: 'radialBar',
+        }
+        ,
+        plotOptions: {
+            radialBar: {
+                offsetY: -12,
+                hollow: {
+                    margin: 5, size: '60%', background: 'rgba(59, 93, 231, .25)',
+                }
+                ,
+                dataLabels: {
+                    name: {
+                        show: false,
+                    }
+                    ,
+                    value: {
+                        show: false, fontSize: '12px', offsetY: 5,
+                    },
+                    total: {
+                        show: false,
+                        label: 'Pending',
+                        formatter: function (w) {
+                            // Return SVG logo or image here
+                            return '<svg width="94" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="#3b5de7" stroke-width="4"/><path d="M15 9l-3 3-3-3" stroke="#3b5de7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+                        },
+                    },
+                    style: {
+                        colors: ['#fff']
+                    }
+                }
+            }
+            ,
+        }
+        ,
+        colors: ['#3b5de7'],
+        }
+
+        ;
+        var chart=new ApexCharts(document.querySelector("#radial-chart-1"), options);
+        chart.render();
     </script>
 @endpush
 

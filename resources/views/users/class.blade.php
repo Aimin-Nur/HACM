@@ -38,16 +38,13 @@
 
                 <div class="row">
                     @foreach ($getClass as $item)
-                    <div class="col-xl-3 col-md-6">
+                    <div class="col-xl-4 col-lg-4">
                         <div class="card plan-box">
                             <div class="card-body p-4">
                                 <div class="d-flex align-items-start">
                                     <div class="flex-1 me-3">
-                                        <h6>{{$item->class_name}}</h6>
+                                        <h5>{{$item->class_name}}</h5>
                                         <p class="text-muted">Lorem, ipsum dolor.</p>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <i class="bx bx-walk h1 text-primary"></i>
                                     </div>
                                 </div>
                                 <div class="py-4 mt-4 text-center bg-soft-light">

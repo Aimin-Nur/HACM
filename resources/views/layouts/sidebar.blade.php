@@ -44,7 +44,7 @@
             <div class="mt-3">
 
                 <a href="#" class="text-body fw-medium font-size-16">{{$getUser->name ?? ''}}</a>
-                <p class="text-muted mt-1 mb-0 font-size-13">UI/UX Designer</p>
+                <p class="text-muted mt-1 mb-0 font-size-13">{{$getUser->province->name ?? 'Admin'}}</p>
 
             </div>
         </div>
@@ -57,7 +57,7 @@
 
             @auth('admin')
                 <li>
-                    <a href="{{route('dashboard')}}" class="waves-effect">
+                    <a href="{{route('dashboard-admin')}}" class="waves-effect">
                         <i class="mdi mdi-airplay"></i><span class="badge rounded-pill bg-info float-end">2</span>
                         <span>Dashboard</span>
                     </a>
@@ -68,7 +68,7 @@
                         <span>Users</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('users.index') }}">Users</a></li>
+                        <li><a href="{{route('dashboard-admin-users')}}">Users</a></li>
                     </ul>
                 </li>
                 <li>
@@ -79,6 +79,15 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{route('pricing-class')}}">Pricing Class</a></li>
                         <li><a href="{{route('form-class')}}">Add Class</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-dollar"></i>
+                        <span>Payment</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('order-list-admin') }}">Order List</a></li>
                     </ul>
                 </li>
             @endauth
@@ -109,7 +118,7 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{route('pricing-class')}}">Pricing Class</a></li>
                         <li><a href="{{route('form-class')}}">Add Class</a></li>
-                        <li><a href="{{route('show-archive-class')}}">Archive Class</a></li>
+                        {{-- <li><a href="{{route('show-archive-class')}}">Archive Class</a></li> --}}
                     </ul>
                 </li>
                 <li>
@@ -119,7 +128,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('order-list') }}">Order List</a></li>
-                        <li><a href="{{ route('ticket-list') }}">Ticket List</a></li>
+                        {{-- <li><a href="{{ route('ticket-list') }}">Ticket List</a></li> --}}
                     </ul>
                 </li>
             @endauth

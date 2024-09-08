@@ -29,8 +29,9 @@ Route::post('/get-cities', [RegisteredUserController::class, 'getCities'])->name
 Route::post('/get-districts', [RegisteredUserController::class, 'getDistricts'])->name('get.districts');
 
 Route::middleware(['auth:admin', 'verified'])->group(function () {
-    Route::get('/dashboard/admin', [AdminController::class, 'index'])->name('dashboard');
-    Route::get('/dashboard/users', [AdminController::class, 'users'])->name('dashboard-users');
+    Route::get('/dashboard/admins', [AdminController::class, 'index'])->name('dashboard-admin');
+    Route::get('/dashboard/admin/users', [AdminController::class, 'users'])->name('dashboard-admin-users');
+    Route::get('/order-list/admin', [AdminController::class, 'orderList'])->name('order-list-admin');
     Route::post('/logout/admin', [AuthenticatedSessionController::class, 'logoutAdmin'])->name('logout-admin');
 });
 
@@ -50,7 +51,7 @@ Route::middleware(['auth:superadmin', 'verified'])->group(function () {
     Route::get('/order-detail/{id}', [AdminController::class, 'orderDetail'])->name('order-detail');
     Route::post('/edit-payment/{id}', [AdminController::class, 'editPayment'])->name('edit-payment');
     Route::post('/rejected-payment/{id}', [AdminController::class, 'rejectedPayment'])->name('rejected-payment');
-    Route::post('/logout/superadmin', [AuthenticatedSessionController::class, 'logoutAdmin'])->name('logout-superadmin');
+    Route::post('/logout/superadmin', [AuthenticatedSessionController::class, 'logoutSuperadmin'])->name('logout-superadmin');
 });
 
 Route::middleware(['auth:web', 'verified'])->group(function () {

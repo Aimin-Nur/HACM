@@ -27,7 +27,6 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="invoice-title">
-                                    <h4 class="float-end font-size-16">Order # 12345</h4>
                                     <div class="mb-4">
                                        <h5>{{$getOrderId->kelas->class_name}} Class</h5>
                                     </div>
@@ -52,7 +51,7 @@
                                 </div>
                                 <div class="py-2 mt-3">
                                     <h3 class="font-size-15 fw-bold">Payment Proof</h3>
-                                    <img src="{{ asset('storage/payments/' . $getOrderId->payment_proof) }}" alt="payment proof image" class="border-radius-lg shadow-sm">
+                                    <img src="{{ asset('storage/payments/' . $getOrderId->payment_proof) }}" alt="payment proof image" class="img-fluid border-radius-lg shadow-sm" style="width: 300px">
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table table-nowrap">
@@ -159,7 +158,7 @@
                         <!-- /.modal-content -->
                     </div>
                     <!-- /.modal-accepted -->
-                    </div>
+                </div>
 
                 @endsection
                 @push('script')

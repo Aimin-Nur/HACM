@@ -34,9 +34,11 @@ class AuthenticatedSessionController extends Controller
                 Auth::shouldUse($guard);  // Set the current guard
 
                 // Redirect based on guard
-                if ($guard === 'admin' || $guard === 'superadmin') {
+                if ($guard === 'superadmin') {
                     return redirect()->intended(RouteServiceProvider::SUPERADMIN);
-                } elseif ($guard === 'web') {
+                } elseif ($guard === 'admin') {
+                    return redirect()->intended(RouteServiceProvider::ADMIN);
+                }elseif ($guard === 'web') {
                     return redirect()->intended(RouteServiceProvider::HOME);
                 }
             }

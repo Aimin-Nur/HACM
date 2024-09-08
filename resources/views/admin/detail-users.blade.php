@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Profile
+    User Profile
 @endsection
 @section('content')
 
@@ -13,7 +13,7 @@
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
-                                    <li class="breadcrumb-item active">Profile</li>
+                                    <li class="breadcrumb-item active">User Profile</li>
                                 </ol>
                             </div>
 
@@ -112,38 +112,6 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-xl-4">
-                        <div class="card">
-                            <div class="card-body">
-
-                                <!-- Nav tabs -->
-                                <ul class="nav nav-tabs nav-tabs-custom nav-justified" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" data-bs-toggle="tab" href="#experience" role="tab">
-                                            <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
-                                            <span class="d-none d-sm-block">Experience</span>
-                                        </a>
-                                    </li>
-                                </ul>
-
-                                <!-- Tab panes -->
-                                <div class="tab-content p-3 text-muted">
-                                    <div class="tab-pane active" id="experience" role="tabpanel">
-                                        <div class="timeline-count mt-5">
-                                            <!-- Timeline row Start -->
-                                            <div class="row">
-
-
-                                            </div>
-                                            <!-- Timeline row Over -->
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
 
 
                 </div>

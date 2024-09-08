@@ -65,24 +65,39 @@
 
 @endsection
 @push('script')
-    <script>
-        $(document).ready(function () {
-        $('#datatable').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{{ route('order-list') }}',
-            columns: [
-                { data: 'name', name: 'name', searchable:true, orderable:true },
-                { data: 'email', name: 'email' },
-                { data: 'class', name: 'class' },
-                { data: 'price', name: 'price' },
-                { data: 'status', name: 'status' },
-                { data: 'action', name: 'action' }
-            ]
-        });
+<script>
+    $(document).ready(function () {
+        @if(Auth::guard('superadmin')->check())
+            $('#datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ route('order-list') }}',
+                columns: [
+                    { data: 'name', name: 'name', searchable: true, orderable: true },
+                    { data: 'email', name: 'email' },
+                    { data: 'class', name: 'class' },
+                    { data: 'price', name: 'price' },
+                    { data: 'status', name: 'status' },
+                    { data: 'action', name: 'action' }
+                ]
+            });
+        @elseif(Auth::guard('admin')->check())
+            $('#datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ route('order-list-admin') }}',
+                columns: [
+                    { data: 'name', name: 'name', searchable: true, orderable: true },
+                    { data: 'email', name: 'email' },
+                    { data: 'class', name: 'class' },
+                    { data: 'price', name: 'price' },
+                    { data: 'status', name: 'status' },
+                    { data: 'action', name: 'action' }
+                ]
+            });
+        @endif
     });
-
-    </script>
+</script>
         <!-- Required datatable js -->
     <script src="{{ URL::asset('build/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ URL::asset('build/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>

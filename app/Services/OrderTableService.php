@@ -30,12 +30,15 @@ class OrderTableService
                 return $order->kelas->price;
             })
             ->addColumn('status', function ($order) {
-                if($order->status == 1)
+                if ($order->status == 1) {
                     return '<span class="badge badge-soft-success">Success</span>';
-                elseif($order->status == 0)
+                } elseif ($order->status == 0) {
                     return '<span class="badge badge-soft-danger">Rejected</span>';
-                else
+                } elseif (is_null($order->status)) {
                     return '<span class="badge badge-soft-warning">Pending</span>';
+                } else {
+                    return '<span class="badge badge-soft-warning">Pending</span>'; // Optional, sebagai fallback jika ada nilai selain 1, 0, atau NULL.
+                }
             })
             ->addColumn('action', function ($order) {
                 $buttons = '<div class="dropstart">

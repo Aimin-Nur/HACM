@@ -107,18 +107,16 @@
                             </div>
                             <div class="modal-body">
                                 <div>
-                                    <form method="POST" action="{{ route('submit-payment', ['id' => $item->id])}}"" enctype="multipart/form-data">
+                                    <form method="POST" id="uploadForm-{{$item->id}}" action="{{ route('submit-payment', ['id' => $item->id])}}"" enctype="multipart/form-data">
                                         @csrf
-                                        <input type="file" name="file">
+                                        <input type="file" name="file" id="fileInput-{{$item->id}}">
                                         <button class="btn btn-primary" type="submit">Take Class</button>
-
                                     </form>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-danger" data-bs-target="#exampleModalToggle"
                                     data-bs-toggle="modal">Back</button>
-                                <button class="btn btn-primary" type="submit">Take Class</button>
                             </div>
                         </div>
                     </div>
@@ -128,6 +126,31 @@
 @endsection
 
 @push('script')
+<script>
+    document.querySelectorAll('[id^="uploadForm-"]').forEach(form => {
+        form.addEventListener('submit', function(event) {
+            // Cari input file terkait form yang di-submit
+            const fileInput = form.querySelector('input[type="file"]');
+            const maxSize = 2 * 1024 * 1024; // 2 MB
+
+            if (fileInput.files.length > 0 && fileInput.files[0].size > maxSize) {
+                event.preventDefault(); // Mencegah pengiriman form
+
+                // Tampilkan pesan error dengan toast
+                var toast = document.getElementById('toast');
+                if (toast) {
+                    // Ubah pesan di toast
+                    document.getElementById('toast-message').textContent = 'Proof of payment file exceeding 2 mb';
+                    toast.classList.add('show');
+                    setTimeout(function() {
+                        toast.classList.remove('show');
+                    }, 3000);
+                }
+            }
+        });
+    });
+</script>
+
     <script src="{{ URL::asset('build/libs/dropzone/min/dropzone.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/app.js') }}"></script>
     <script src="{{ URL::asset('build/js/app.js') }}"></script>

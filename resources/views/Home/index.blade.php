@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>HACM - Healthcare & Medical Bootstrap HTML5 Template</title>
-    <meta name="description" content="Medilix - Healthcare & Medical Bootstrap HTML5 Template">
+    <title>HACM - Healthcare & Medical </title>
+    <meta name="description" content="HACM">
     <meta name="author" content="ahmmedsabbirbd">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Place favicon.ico in the root directory -->
@@ -410,8 +410,8 @@
 
                         <a href="pricing.html" class="rr-btn mt-40 mt-xs-30">
                             <span class="btn-wrap">
-                                <span class="text-one">Start now <i class="fa-solid fa-circle-plus"></i></span>
-                                <span class="text-two">Start now <i class="fa-solid fa-circle-plus"></i></span>
+                                <span class="text-one">Get Class <i class="fa-solid fa-circle-plus"></i></span>
+                                <span class="text-two">Get Class <i class="fa-solid fa-circle-plus"></i></span>
                             </span>
                         </a>
                     </div>
@@ -436,8 +436,8 @@
 
                         <a href="pricing.html" class="rr-btn mt-40 mt-xs-30">
                             <span class="btn-wrap">
-                                <span class="text-one">Start now <i class="fa-solid fa-circle-plus"></i></span>
-                                <span class="text-two">Start now <i class="fa-solid fa-circle-plus"></i></span>
+                                <span class="text-one">Get Class <i class="fa-solid fa-circle-plus"></i></span>
+                                <span class="text-two">Get Class <i class="fa-solid fa-circle-plus"></i></span>
                             </span>
                         </a>
                     </div>
@@ -462,8 +462,8 @@
 
                         <a href="pricing.html" class="rr-btn mt-40 mt-xs-30">
                             <span class="btn-wrap">
-                                <span class="text-one">Start now <i class="fa-solid fa-circle-plus"></i></span>
-                                <span class="text-two">Start now <i class="fa-solid fa-circle-plus"></i></span>
+                                <span class="text-one">Get Class <i class="fa-solid fa-circle-plus"></i></span>
+                                <span class="text-two">Get Class <i class="fa-solid fa-circle-plus"></i></span>
                             </span>
                         </a>
                     </div>

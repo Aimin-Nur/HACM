@@ -41,6 +41,8 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255','unique:'.User::class ],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'roles' => ['required'],
+            'address' => ['required'],
             'phone_number' => ['required', 'max:255'],
         ]);
 
@@ -53,12 +55,13 @@ class RegisteredUserController extends Controller
             'kota' => $request->city,
             'kecamatan' => $request->district,
             'password' => Hash::make($request->password),
+            'roles' => $request->roles,
             'active' => 1,
         ]);
 
         event(new Registered($user));
 
-        session()->flash('status', 'Registration successful!');
+        session()->flash('status', 'Registration Successful!');
         return redirect()->route('login');
     }
 

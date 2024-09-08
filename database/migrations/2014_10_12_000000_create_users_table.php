@@ -25,6 +25,7 @@ return new class extends Migration
             $table->boolean('active');
             $table->rememberToken();
             $table->timestamps();
+            $table->string('roles');
         });
     }
 

@@ -100,6 +100,27 @@
                                         <input type="text" class="form-control @error('address') is-invalid @enderror"
                                                 name="address" value="{{ old('email') }}"  autocomplete="+62 *78-xxx-xxx"
                                                 id="phone_number" placeholder="Enter your complete Address">
+                                            @error('address')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="roles" class="form-label">Profession<span class="text-danger">*</span></label>
+                                        <select class="form-control @error('roles') is-invalid @enderror" name="roles">
+                                            <option value="">Select District</option>
+                                            <option value="Specialist Doctors">Specialist Doctors</option>
+                                            <option value="Doctors">Doctors</option>
+                                            <option value="Nurses">Nurses</option>
+                                            <option value="Student">Student</option>
+                                        </select>
+                                        @error('roles')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
 
                                     <div class="mb-3">

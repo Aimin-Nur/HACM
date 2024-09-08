@@ -17,6 +17,7 @@ use App\Services\YearlyChartService;
 use App\Services\ChartRegencyService;
 use App\Services\ChartProvinceService;
 use App\Services\LogUserService;
+use App\Services\GetUser;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
@@ -33,8 +34,9 @@ class AdminController extends Controller
     protected $chartRegencyService;
     protected $chartProvinceService;
     protected $logUserService;
+    protected $getGuard;
 
-    public function __construct(UserTableService $userServices, AdminTableService $adminServices, OrderTableService $orderServices, TicketTableService $ticketServices, YearlyChartService $yearlyChartServices, ChartRegencyService $chartRegencyService, ChartProvinceService $chartProvinceService, LogUserService $logUserService)
+    public function __construct(UserTableService $userServices, AdminTableService $adminServices, OrderTableService $orderServices, TicketTableService $ticketServices, YearlyChartService $yearlyChartServices, ChartRegencyService $chartRegencyService, ChartProvinceService $chartProvinceService, LogUserService $logUserService, GetUser $getGuard)
     {
         $this->userServices = $userServices;
         $this->adminServices = $adminServices;
@@ -44,11 +46,12 @@ class AdminController extends Controller
         $this->chartRegencyService = $chartRegencyService;
         $this->chartProvinceService = $chartProvinceService;
         $this->logUserService = $logUserService;
+        $this->getGuard = $getGuard;
     }
 
     public function index()
     {
-        $getUser = Auth::user();
+        $getUser = $this->getGuard->getCurrentUser();
 
         $sumPrice = Order::join('class', 'order.id_class', '=', 'class.id')
                             ->where('order.status', 1)
@@ -196,12 +199,14 @@ class AdminController extends Controller
 
     public function users(Request $request)
     {
+        $getUser = $this->getGuard->getCurrentUser();
+
         if ($request->ajax()) {
             $userServices = $this->userServices->getUsers();
             return $this->userServices->generateDataTable($userServices);
         }
 
-        return view('admin.users');
+        return view('admin.users', compact('getUser'));
     }
 
     public function detailUsers($name)
@@ -212,12 +217,14 @@ class AdminController extends Controller
 
     public function admin(Request $request)
     {
+        $getUser = $this->getGuard->getCurrentUser();
+
         $admin = Admin::get();
         if ($request->ajax()) {
             $adminServices = $this->adminServices->getAdmin();
             return $this->adminServices->generateDataTable($adminServices);
         }
-        return view('admin.admin', compact('admin'));
+        return view('admin.admin', compact('admin','getUser'));
     }
 
     public function updateStatus(Request $request, $id)
@@ -243,8 +250,10 @@ class AdminController extends Controller
 
     public function pricingClass()
     {
+        $getUser = $this->getGuard->getCurrentUser();
+
         $getClass = Kelas::where('active', 1)->get();
-        return view('admin.pricing', compact('getClass'));
+        return view('admin.pricing', compact('getClass','getUser'));
     }
 
     public function showArchiveClass()
@@ -255,7 +264,8 @@ class AdminController extends Controller
 
     public function formClass()
     {
-        return view('admin.addClass');
+        $getUser = $this->getGuard->getCurrentUser();
+        return view('admin.addClass', compact('getUser'));
     }
 
     public function storeClass(Request $request)
@@ -301,11 +311,13 @@ class AdminController extends Controller
 
     public function orderList(Request $request)
     {
+        $getUser = $this->getGuard->getCurrentUser();
+
         if ($request->ajax()) {
             $orderServices = $this->orderServices->getOrders();
             return $this->orderServices->generateDataTable($orderServices);
         }
-        return view('admin.order-list');
+        return view('admin.order-list', compact('getUser'));
     }
 
     public function ticketList(Request $request)

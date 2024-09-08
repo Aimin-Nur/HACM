@@ -15,19 +15,29 @@ use App\Jobs\GenerateTicketPdfJob;
 use PDF;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use App\Services\GetUser;
 
 class UserController extends Controller
 {
+    protected $getGuard;
+
+    public function __construct(GetUser $getGuard)
+    {
+        $this->getGuard = $getGuard;
+    }
+
     public function index()
     {
-        $getUser = Auth::user();
+        $getUser = $this->getGuard->getCurrentUser();
         return view('users.index', compact('getUser'));
     }
 
     public function class()
     {
+        $getUser = $this->getGuard->getCurrentUser();
+
         $getClass = Kelas::get();
-        return view('users.class', compact('getClass'));
+        return view('users.class', compact('getClass', 'getUser'));
     }
 
     public function submitPayment(Request $request, $id)
@@ -75,12 +85,12 @@ class UserController extends Controller
 
     public function order()
     {
-        $getUser = Auth::user();
+        $getUser = $this->getGuard->getCurrentUser();
         $getIdUser = $getUser->id;
 
         $getOrderUser = Order::where('id_users', $getIdUser)->get();
         $getTicketUser = Ticket::where('id_users', $getIdUser)->get();
-        return view('users.order-ticket', compact('getOrderUser','getTicketUser'));
+        return view('users.order-ticket', compact('getOrderUser','getTicketUser','getUser'));
     }
 
     public function generateTicket(Request $request, $id)

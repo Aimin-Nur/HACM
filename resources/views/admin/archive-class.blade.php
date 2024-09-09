@@ -33,39 +33,96 @@
 
     <div class="row">
         @foreach ($getClass as $item)
-        <div class="col-xl-3 col-md-6">
-            <div class="card plan-box">
-                <div class="card-body p-4">
-                    <div class="d-flex align-items-start">
-                        <div class="flex-1 me-3">
-                            <h6>{{$item->class_name}}</h6>
-                            <p class="text-muted">Lorem, ipsum dolor.</p>
+        <div class="col-lg-6">
+            <img class="card-img-top img-fluid" src="{{ asset('storage/uploads/' . $item->img) }}" alt="Card image cap">
+            <div class="card card-body">
+                <h3 class="card-title mt-0">{{$item->class_name}}</h3>
+                <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam, iusto! Veniam asperiores harum dolores est magnam porro consectetur beatae minima.
+                </p>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="py-4 mt-4 text-center bg-soft-light">
+                            <h1 class="m-0"><sup><small>Rp</small></sup> {{$item->formatted_price_doctor_specialist}}/ <span class="font-size-13"> for
+                                    Doctor Specilist</span></h1>
                         </div>
-                        <div class="ms-auto">
-                            <i class="bx bx-walk h1 text-primary"></i>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="py-4 mt-4 text-center bg-soft-light">
+                            <h1 class="m-0"><sup><small>Rp</small></sup> {{$item->formatted_price_doctor}}/ <span class="font-size-13"> for
+                                    Doctor</span></h1>
                         </div>
                     </div>
-                    <div class="py-4 mt-4 text-center bg-soft-light">
-                        <h1 class="m-0"><sup><small>Rp</small></sup> {{$item->price}}/ <span class="font-size-13">Per
-                                month</span></h1>
+                    <div class="col-lg-6">
+                        <div class="py-4 mt-4 text-center bg-soft-light">
+                            <h1 class="m-0"><sup><small>Rp</small></sup> {{$item->formatted_price_nurses}}/ <span class="font-size-13"> for
+                                    Nurses</span></h1>
+                        </div>
                     </div>
-
-                    <div class="plan-features p-4 text-muted mt-2">
-                        <p><i class="mdi mdi-check-bold text-primary me-4"></i>Unlimited access to
-                            licence</p>
-                        <p><i class="mdi mdi-check-bold text-primary me-4"></i>GB Storage</p>
-                        <p><i class="mdi mdi-check-bold text-primary me-4"></i>No Domain</p>
-                        <p><i class="mdi mdi-check-bold text-primary me-4"></i>SEO optimization</p>
-                        <p><i class="mdi mdi-check-bold text-primary me-4"></i>Unlmited Users</p>
-                        <p><i class="mdi mdi-check-bold text-primary me-4"></i>500 GB Bandwidth</p>
+                    <div class="col-lg-6">
+                        <div class="py-4 mt-4 text-center bg-soft-light">
+                            <h1 class="m-0"><sup><small>Rp</small></sup> {{$item->formatted_price_student}}/ <span class="font-size-13"> for
+                                    Student</span></h1>
+                        </div>
                     </div>
-
-                    <div class="text-center">
-                        <a class="btn btn-primary waves-effect waves-light"
-                        data-bs-toggle="modal" data-bs-target="#exampleModalScrollable{{$item->id}}">Delete Class</a>
-                    </div>
-
                 </div>
+                <div class="col-sm-6 col-lg-12">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Session 1 : Congenital Heart Disease from screening to life saving</h5>
+                            <div class="row mt-5">
+                                <div class="col-lg-6">
+                                    <p class="card-text text-dark"><b>Understanding Early Diagnosis of CHD: Clinical in Your Daily Practice</b></p>
+                                    <p class="card-text"><small class="text-muted">dr. Julius Patimang, Sp.A., Sp.JP(K) FIHA</small>
+                                    </p>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p class="card-text text-dark"><b>Contemporary Nonsurgical Intervention for Treating CHD in Indonesia</b></p>
+                                    <p class="card-text"><small class="text-muted">dr. Andi Alief Utama Armyn, M.Kes., Sp.JP(K) FIHA</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-12">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Session 2 : Unsolving the Puzzle of Cardiometabolic Syndrome</h5>
+                            <div class="row mt-5">
+                                <div class="col-lg-6">
+                                    <p class="card-text text-dark"><b>Dyslipidemia Management: Is Every Statin Same?</b></p>
+                                    <p class="card-text"><small class="text-muted">dr. Diera Gabriela Darda, Sp.JP FIHA</small>
+                                    </p>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p class="card-text text-dark"><b>The Role and Practical Insights of SGLT-2 inhibitor in Heart Failure Patients: Why is it important?</b></p>
+                                    <p class="card-text"><small class="text-muted">dr. Doddy Moniaga, Sp.JP FIHA</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-12">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Session 3 : Treating Hypertension Effectively: Guidelines Advice</h5>
+                            <div class="row mt-5">
+                                <div class="col-lg-6">
+                                    <p class="card-text text-dark"><b>The Practical Use of Single Pill Combination Therapy for Hypertension: The Right Pill for the Right Patient.</b></p>
+                                    <p class="card-text"><small class="text-muted">dr. Pendrik Tendean, Sp.PD KKV</small>
+                                    </p>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p class="card-text text-dark"><b>Managing Hypertensive Crisis: Best Practice Recommendation for General Physician</b></p>
+                                    <p class="card-text"><small class="text-muted">dr. Muchtar Nora Ismail Siregar, Sp.JP FIHA</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable{{$item->id}}">Delete Class</a>
             </div>
         </div>
         @endforeach

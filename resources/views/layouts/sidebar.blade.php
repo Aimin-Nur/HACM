@@ -44,7 +44,7 @@
             <div class="mt-3">
 
                 <a href="#" class="text-body fw-medium font-size-16">{{$getUser->name ?? ''}}</a>
-                <p class="text-muted mt-1 mb-0 font-size-13">{{$getUser->province->name ?? 'Admin'}}, {{$getUser->regency->name}}</p>
+                <p class="text-muted mt-1 mb-0 font-size-13">{{$getUser->province->name ?? 'Admin'}}, {{$getUser->regency->name ?? ''}}</p>
 
             </div>
         </div>
@@ -118,7 +118,7 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{route('pricing-class')}}">Pricing Class</a></li>
                         <li><a href="{{route('form-class')}}">Add Class</a></li>
-                        {{-- <li><a href="{{route('show-archive-class')}}">Archive Class</a></li> --}}
+                        <li><a href="{{route('show-archive-class')}}">Archive Class</a></li>
                     </ul>
                 </li>
                 <li>
@@ -128,7 +128,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('order-list') }}">Order List</a></li>
-                        {{-- <li><a href="{{ route('ticket-list') }}">Ticket List</a></li> --}}
+                        <li><a href="{{ route('ticket-list') }}">Ticket List</a></li>
                     </ul>
                 </li>
             @endauth

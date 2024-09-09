@@ -271,11 +271,15 @@ class AdminController extends Controller
     public function storeClass(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'className' => 'required|string|max:255',
-            'dateClass' => 'required|date',
+            'workshopName' => 'required|string|max:255',
+            'dateClassStart' => 'required|date',
+            'dateClassEnd' => 'required|date',
             'description' => 'required|string|max:1000',
-            'price' => 'required|numeric',
-            'file.*' => 'mimes:jpg,jpeg,png|max:2048',
+            'priceDoctorSpecialist' => 'required|numeric',
+            'priceDoctor' => 'required|numeric',
+            'priceNurses' => 'required|numeric',
+            'priceStudent' => 'required|numeric',
+            'file.*' => 'required|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -293,12 +297,16 @@ class AdminController extends Controller
             }
 
             Kelas::create([
-                'class_name' => $request->input('className'),
-                'date_release' => $request->input('dateClass'),
-                'date_finish' => $request->input('dateClass'),
+                'class_name' => $request->input('workshopName'),
+                'date_release' => $request->input('dateClassStart'),
+                'date_finish' => $request->input('dateClassEnd'),
                 'description' => $request->input('description'),
                 'max_participant' => $request->input('price'),
-                'price' => $request->input('price'),
+                'price_doctor_specialist' => $request->input('priceDoctorSpecialist'),
+                'price_doctor' => $request->input('priceDoctor'),
+                'price_nurses' => $request->input('priceNurses'),
+                'price_student' => $request->input('priceStudent'),
+                'max_participant' => 100,
                 'img' => implode(',', $uploadedFileNames),
             ]);
 
@@ -415,7 +423,7 @@ class AdminController extends Controller
 
             $getClass->update();
 
-            session()->flash('success', 'Class Successfully Removed');
+            session()->flash('success', 'Workshop Successfully Removed');
             return redirect()->session('status', 'success');
         } catch (\Exception $e) {
             session()->flash('error', 'Failed: ' . $e->getMessage());

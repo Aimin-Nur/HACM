@@ -24,6 +24,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/tes', function () {
     return view('ticket.ticket');
 });
+Route::get('/cc', function () {
+    return view('admin.createClass');
+});
 
 Route::post('/get-cities', [RegisteredUserController::class, 'getCities'])->name('get.cities');
 Route::post('/get-districts', [RegisteredUserController::class, 'getDistricts'])->name('get.districts');

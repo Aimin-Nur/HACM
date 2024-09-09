@@ -17,6 +17,10 @@ class Kelas extends Model
         'description',
         'img',
         'price',
+        'price_doctor_specialist',
+        'price_doctor',
+        'price_nurses',
+        'price_student',
         'date_release',
         'date_finish',
         'max_participant',
@@ -31,6 +35,31 @@ class Kelas extends Model
     public function tickets()
     {
         return $this->hasMany(Ticket::class, 'id_class');
+    }
+
+    public function getFormattedPriceAttribute()
+    {
+        return number_format($this->price, 0, ',', '.');
+    }
+
+    public function getFormattedPriceDoctorSpecialistAttribute()
+    {
+        return number_format($this->price_doctor_specialist, 0, ',', '.');
+    }
+
+    public function getFormattedPriceDoctorAttribute()
+    {
+        return number_format($this->price_doctor, 0, ',', '.');
+    }
+
+    public function getFormattedPriceNursesAttribute()
+    {
+        return number_format($this->price_nurses, 0, ',', '.');
+    }
+
+    public function getFormattedPriceStudentAttribute()
+    {
+        return number_format($this->price_student, 0, ',', '.');
     }
 }
 

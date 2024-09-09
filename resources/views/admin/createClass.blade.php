@@ -37,25 +37,15 @@
                                 <div class="form-group row mb-4">
                                     <label for="taskname" class="col-form-label col-lg-2">Workshop Name</label>
                                     <div class="col-lg-10">
-                                        <input id="taskname" name="workshopName" autofocus type="text" class="form-control @error('workshopName') is-invalid @enderror"
+                                        <input id="taskname" name="className" autofocus type="text" class="form-control"
                                             placeholder="Enter Workshop Name...">
-                                        @error('workshopName')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label col-lg-2">Description</label>
                                     <div class="col-lg-10">
-                                        <textarea id="textarea" name="description" class="form-control @error('description') is-invalid @enderror" maxlength="225" rows="3"
+                                        <textarea id="textarea" name="description" class="form-control" maxlength="225" rows="3"
                                         placeholder="This textarea has a limit of 225 chars."></textarea>
-                                        @error('description')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
                                     </div>
                                 </div>
 
@@ -77,13 +67,8 @@
                                         <div data-repeater-item class="inner col-lg-10 ms-md-auto">
                                             <div class="mb-3 row align-items-center">
                                                 <div class="col-md-12">
-                                                    <input type="file" name="file[]" multiple="file" class="inner form-control @error('file.*') is-invalid @enderror">
+                                                    <input type="file" name="file[]" multiple="file" class="inner form-control">
                                                     <p class="card-title-desc mt-1 ms-2">Make sure your file is PNG, JPG, or JPEG format and File Format No Larger than 2 MB.</p>
-                                                    @error('file.*')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -92,52 +77,32 @@
                                 <div class="form-group row mb-4">
                                     <label for="taskbudget" class="col-form-label col-lg-2">Price Doctor Specialist</label>
                                     <div class="col-lg-10">
-                                        <input id="taskbudget" name="priceDoctorSpecialist" type="number"
-                                            placeholder="Enter Price For Doctor Specialist" class="form-control @error('priceDoctorSpecialist') is-invalid @enderror">
-                                            @error('priceDoctorSpecialist')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                            @enderror
+                                        <input id="taskbudget" name="price-1" type="number"
+                                            placeholder="Enter Price For Doctor Specialist" class="form-control">
                                         <p class="card-title-desc mt-1 ms-2">If the price is 500,000, simply write 500000.</p>
                                     </div>
                                 </div>
                                 <div class="form-group row mb-4">
                                     <label for="taskbudget" class="col-form-label col-lg-2">Price Doctor</label>
                                     <div class="col-lg-10">
-                                        <input id="taskbudget" name="priceDoctor" type="number"
-                                            placeholder="Enter Price For Doctor" class="form-control @error('priceDoctor') is-invalid @enderror">
-                                            @error('priceDoctor')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                            @enderror
+                                        <input id="taskbudget" name="price-2" type="number"
+                                            placeholder="Enter Price For Doctor" class="form-control">
                                         <p class="card-title-desc mt-1 ms-2">If the price is 500,000, simply write 500000.</p>
                                     </div>
                                 </div>
                                 <div class="form-group row mb-4">
                                     <label for="taskbudget" class="col-form-label col-lg-2">Price Nurses</label>
                                     <div class="col-lg-10">
-                                        <input id="taskbudget" name="priceNurses" type="number"
-                                            placeholder="Enter Price For Nurses" class="form-control @error('priceNurses') is-invalid @enderror">
-                                            @error('priceNurses')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                            @enderror
+                                        <input id="taskbudget" name="price-3" type="number"
+                                            placeholder="Enter Price For Nurses" class="form-control">
                                         <p class="card-title-desc mt-1 ms-2">If the price is 500,000, simply write 500000.</p>
                                     </div>
                                 </div>
                                 <div class="form-group row mb-4">
                                     <label for="taskbudget" class="col-form-label col-lg-2">Price Student</label>
                                     <div class="col-lg-10">
-                                        <input id="taskbudget" name="priceStudent" type="number"
-                                            placeholder="Enter Price For Student" class="form-control @error('priceStudent') is-invalid @enderror">
-                                            @error('priceStudent')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                            @enderror
+                                        <input id="taskbudget" name="price-4" type="number"
+                                            placeholder="Enter Price For Student" class="form-control">
                                         <p class="card-title-desc mt-1 ms-2">If the price is 500,000, simply write 500000.</p>
                                     </div>
                                 </div>

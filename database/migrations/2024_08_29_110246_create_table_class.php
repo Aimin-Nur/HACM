@@ -20,6 +20,10 @@ return new class extends Migration
             $table->date('date_release');
             $table->date('date_finish');
             $table->integer('max_participant');
+            $table->integer('price_doctor_specialist')->nullable();
+            $table->integer('price_doctor')->nullable();
+            $table->integer('price_nurses')->nullable();
+            $table->integer('price_student')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

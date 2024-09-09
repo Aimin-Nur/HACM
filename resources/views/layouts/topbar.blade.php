@@ -97,19 +97,19 @@
                 <div class="navbar-brand-box">
                     <a href="index" class="logo logo-dark">
                         <span class="logo-sm">
-                            <img src="{{ URL::asset('build/imageds/logo-sm.png') }}" alt="" height="20">
+                            <img src="{{ URL::asset('build/images/logo-sm-dark.png') }}" alt="" height="20">
                         </span>
                         <span class="logo-lg">
-                            <img src="{{ URL::asset('build/imagdes/logo-dark.png') }}" alt="" height="17">
+                            <img class="img-fluid" src="{{ URL::asset('build/images/logo-light.png') }}" alt="" height="19">
                         </span>
                     </a>
 
                     <a href="index" class="logo logo-light">
                         <span class="logo-sm">
-                            <img src="{{ URL::asset('build/idmages/logo-sm.png') }}" alt="" height="20">
+                            <img src="{{ URL::asset('build/images/logo-sm-dark.png') }}" alt="" height="20">
                         </span>
                         <span class="logo-lg">
-                            <img src="{{ URL::asset('build/imadges/logo-light.png') }}" alt="" height="19">
+                            <img class="img-fluid" src="{{ URL::asset('build/images/logo-light.png') }}" alt="" height="19">
                         </span>
                     </a>
                 </div>

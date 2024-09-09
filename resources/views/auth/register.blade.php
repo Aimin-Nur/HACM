@@ -17,8 +17,7 @@
                                 <h5 class="text-white font-size-20">Free Register</h5>
                                 <p class="text-white-50 mb-0">Get your free Qovex account now</p>
                                 <a href="/index" class="logo logo-admin mt-4">
-                                    <img src="{{ URL::asset('build/images/logo-sm-dark.png') }}" alt=""
-                                        height="30">
+                                    <img src="{{ URL::asset('build/images/logo-sm-dark.png') }}" alt="" style="width: 55px">
                                 </a>
                             </div>
                         </div>

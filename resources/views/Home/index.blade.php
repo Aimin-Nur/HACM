@@ -62,7 +62,7 @@
                 <div class="offcanvas__top d-flex justify-content-between align-items-center">
                     <div class="offcanvas__logo">
                         <a href="index.html">
-                            <img src="assets/imgs/logo/logo-white.svg" alt="logo not found">
+                            <img src="{{ URL::asset('home/assets/imgs/logo/logo.png"')}}" alt="logo not found">
                         </a>
                     </div>
                     <div class="offcanvas__close">
@@ -111,7 +111,7 @@
                     <div class="header__logo">
                         <a href="index.html">
                             <div class="logo">
-                                <img src="assets/imgs/logo/lodgo.svg" alt="logo not found">
+                                <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/logo/logo.png')}}" alt="HACM LOGO">
                             </div>
                         </a>
                     </div>
@@ -1042,7 +1042,7 @@
             <div class="col-md-6">
                 <div class="footer__cta-item mb-30 theme-bg-primary d-flex flex-lg-row flex-column align-items-lg-center">
                     <div class="footer__cta-item-icon d-flex align-items-center justify-content-center">
-                        <img class="img-fluid" src="assets/imgs/footer__cta/footer__cta-item-1.png" alt="icon not found">
+                        <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/footer__cta/footer__cta-item-1.png')}}" alt="icon not found">
                     </div>
 
                     <div class="footer__cta-item-text">
@@ -1069,14 +1069,14 @@
 </section>
 <!-- Footer area start -->
 <footer>
-    <section class="footer__area-common white-bg overflow-hidden" data-background="assets/imgs/footer/background.png">
+    <section class="footer__area-common white-bg overflow-hidden" data-background="{{ URL::asset('home/assets/imgs/footer/background.png')}}">
         <div class="container">
             <div class="row mb-minus-50">
                 <div class="col-lg-3 col-6">
                     <div class="footer__widget footer__widget-item-1">
                         <div class="footer__logo mb-30 mb-xs-25">
                             <a href="index.html">
-                                <img class="img-fluid" src="assets/imgs/logo/footers-logo.svg" alt="logo not found">
+                                <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/logo/logo.png')}}" alt="logo not found" style="width:100px">
                             </a>
                         </div>
 

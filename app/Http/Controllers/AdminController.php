@@ -211,8 +211,10 @@ class AdminController extends Controller
 
     public function detailUsers($name)
     {
+        $getUser = $this->getGuard->getCurrentUser();
+
         $detail = User::where('name', $name)->first();
-        return view('admin.detail-users', compact('detail'));
+        return view('admin.detail-users', compact('detail', 'getUser'));
     }
 
     public function admin(Request $request)
@@ -330,11 +332,13 @@ class AdminController extends Controller
 
     public function ticketList(Request $request)
     {
+        $getUser = $this->getGuard->getCurrentUser();
+
         if ($request->ajax()) {
             $ticketServices = $this->ticketServices->getTicket();
             return $this->ticketServices->generateDataTable($ticketServices);
         }
-        return view('admin.ticket-list');
+        return view('admin.ticket-list', compact('getUser'));
     }
 
     public function orderDetail($id)
@@ -350,8 +354,11 @@ class AdminController extends Controller
                 'status' => 'boolean',
             ]);
 
+            // Konversi status input ke boolean
+            $status = filter_var($request->input('status'), FILTER_VALIDATE_BOOLEAN);
+
             $getOrder = Order::findOrFail($id);
-            $getOrder->status = $request->input('status');
+            $getOrder->status = $status; // Simpan status baru
 
             $class = Kelas::findOrFail($getOrder->id_class);
             $classInitial = strtoupper(substr($class->class_name, 0, 1));
@@ -360,14 +367,25 @@ class AdminController extends Controller
             $orderNumber = str_pad($ticketCount + 1, 2, '0', STR_PAD_LEFT); // Menghasilkan urutan dengan dua digit
 
             // Ambil 2 digit random dari UUID id_class
-            $classUuidPart = substr(str_replace('-', '', $getOrder->id_class), mt_rand(0, 30), 2);
+            $classUuidPart = substr(str_replace('-', '', $getOrder->id_class), random_int(0, 30), 2);
 
             // Ambil 2 digit random dari UUID id_users
-            $userUuidPart = substr(str_replace('-', '', $getOrder->id_users), mt_rand(0, 30), 2);
+            $userUuidPart = substr(str_replace('-', '', $getOrder->id_users), random_int(0, 30), 2);
 
             // Buat ticket_code dengan format E013486
             $ticketCode = $classInitial . $orderNumber . $classUuidPart . $userUuidPart;
 
+            // Simpan order dengan status baru terlebih dahulu
+            $getOrder->save();
+
+            // Cek duplikasi kode tiket sebelum membuatnya
+            while (Ticket::where('ticket_code', $ticketCode)->exists()) {
+                $classUuidPart = substr(str_replace('-', '', $getOrder->id_class), random_int(0, 30), 2);
+                $userUuidPart = substr(str_replace('-', '', $getOrder->id_users), random_int(0, 30), 2);
+                $ticketCode = $classInitial . $orderNumber . $classUuidPart . $userUuidPart;
+            }
+
+            // Buat tiket baru
             Ticket::create([
                 'id_class' => $getOrder->id_class,
                 'id_users' => $getOrder->id_users,
@@ -377,15 +395,9 @@ class AdminController extends Controller
                 'ticket_code' => $ticketCode,
             ]);
 
-            $getOrder->save();
-
-            session()->flash('success', 'Payment has Been Successfully Validated');
-            return redirect('order-list')->session('status', 'success');
+            return redirect()->route('order-list')->with('success', 'Data has been successfully validated.');
         } catch (\Exception $e) {
-            session()->flash('error', 'Failed: ' . $e->getMessage());
-            return redirect('order-list')
-            ->with('status', 'error')
-            ->with('message', 'Failed : Failure to Validated Payment, Try more again!');
+            return redirect()->route('order-list')->with('error', 'An error occurred while validating the data.');
         }
     }
 

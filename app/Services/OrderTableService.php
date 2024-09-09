@@ -41,18 +41,67 @@ class OrderTableService
                 }
             })
             ->addColumn('action', function ($order) {
-                $buttons = '<div class="dropstart">
-                                <button type="button" class="btn waves-effect waves-light dropdown-toggle"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href=" ' . route('order-detail', ['id' => $order->id]) . '">View Detail</a>
-                                    <a class="dropdown-item" href="#">View Payment Proof</a>
-                                    <a class="dropdown-item" href="#">Accept Validation</a>
-                                </div>
-                            </div>';
-                return $buttons;
+                if($order->status == 1){
+                    $buttons = '<div class="dropstart">
+                                    <button type="button" class="btn waves-effect waves-light dropdown-toggle"
+                                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                     <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="' . route('order-detail', ['id' => $order->id]) . '">View Detail</a>
+                                    </div>
+                                </div>';
+                    return $buttons;
+                }elseif ($order->status == 0) {
+                    $buttons = '<div class="dropstart">
+                                    <button type="button" class="btn waves-effect waves-light dropdown-toggle"
+                                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="' . route('order-detail', ['id' => $order->id]) . '">View Detail</a>
+                                        <form action="' . route('edit-payment', ['id' => $order->id]) . '" method="POST" class="d-inline">
+                                            ' . csrf_field() . '
+                                            <input type="hidden" value="1" name="status">
+                                            <button type="submit" class="dropdown-item">Accept Validation</button>
+                                        </form>
+                                    </div>
+                                </div>';
+                    return $buttons;
+                } elseif (is_null($order->status)) {
+                    $buttons =  '<div class="dropstart">
+                                    <button type="button" class="btn waves-effect waves-light dropdown-toggle"
+                                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="' . route('order-detail', ['id' => $order->id]) . '">View Detail</a>
+                                        <form action="' . route('edit-payment', ['id' => $order->id]) . '" method="POST" class="d-inline">
+                                            ' . csrf_field() . '
+                                            <input type="hidden" value="1" name="status">
+                                            <button type="submit" class="dropdown-item">Accept Validation</button>
+                                        </form>
+                                    </div>
+                                </div>';
+                    return $buttons;
+                } else {
+                    $buttons = '<div class="dropstart">
+                                    <button type="button" class="btn waves-effect waves-light dropdown-toggle"
+                                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="' . route('order-detail', ['id' => $order->id]) . '">View Detail</a>
+                                        <form action="' . route('edit-payment', ['id' => $order->id]) . '" method="POST" class="d-inline">
+                                            ' . csrf_field() . '
+                                            <input type="hidden" value="1" name="status">
+                                            <button type="submit" class="dropdown-item">Accept Validation</button>
+                                        </form>
+                                    </div>
+                                </div>';
+                    return $buttons;
+                }
+
             })
             ->rawColumns(['action', 'status'])
             ->make(true);

@@ -1,39 +1,62 @@
 <!-- ========== Left Sidebar Start ========== -->
 @if(session('success'))
-    <div id="toast" class="alert alert-success alert-dismissible fade position-fixed top-0 end-0 m-3" role="alert" style="z-index: 1050;">
-        <i id="toast-icon" class="mdi mdi-check-all me-2"></i>
-        <span id="toast-message">{{ session('success') }}</span>
+    <div id="success-toast" class="alert alert-success alert-dismissible fade position-fixed top-0 end-0 m-3" role="alert" style="z-index: 1050;">
+        <i class="mdi mdi-check-all me-2"></i>
+        <span>{{ session('success') }}</span>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var toast = document.getElementById('toast');
-            toast.classList.add('show');
-            setTimeout(function() {
-                toast.classList.remove('show');
-            }, 3000);
+            // Check if toast is already displayed in sessionStorage
+            if (!sessionStorage.getItem('successDisplayed')) {
+                var toast = document.getElementById('success-toast');
+                toast.classList.add('show');
+                setTimeout(function() {
+                    toast.classList.remove('show');
+                }, 3000);
+
+                // Mark as displayed
+                sessionStorage.setItem('successDisplayed', 'true');
+
+                if (window.history.replaceState) {
+                    window.history.replaceState(null, null, window.location.href);
+                }
+            }
         });
     </script>
 @endif
 
 @if(session('error'))
-    <div id="toast" class="alert alert-danger alert-dismissible fade position-fixed top-0 end-0 m-3" role="alert" style="z-index: 1050;">
-        <i id="toast-icon" class="mdi mdi-block-helper me-2"></i>
-        <span id="toast-message">{{ session('error') }}</span>
+    <div id="error-toast" class="alert alert-danger alert-dismissible fade position-fixed top-0 end-0 m-3" role="alert" style="z-index: 1050;">
+        <i class="mdi mdi-block-helper me-2"></i>
+        <span>{{ session('error') }}</span>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var toast = document.getElementById('toast');
-            toast.classList.add('show');
-            setTimeout(function() {
-                toast.classList.remove('show');
-            }, 3000);
+            // Check if toast is already displayed in sessionStorage
+            if (!sessionStorage.getItem('errorDisplayed')) {
+                var toast = document.getElementById('error-toast');
+                toast.classList.add('show');
+                setTimeout(function() {
+                    toast.classList.remove('show');
+                }, 3000);
+
+                // Mark as displayed
+                sessionStorage.setItem('errorDisplayed', 'true');
+
+                if (window.history.replaceState) {
+                    window.history.replaceState(null, null, window.location.href);
+                }
+            }
         });
     </script>
 @endif
+
+
+
 
 
 <div class="vertical-menu">
@@ -43,9 +66,18 @@
         <div class="user-wid text-center py-4">
             <div class="mt-3">
 
-                <a href="#" class="text-body fw-medium font-size-16">{{$getUser->name ?? ''}}</a>
-                <p class="text-muted mt-1 mb-0 font-size-13">{{$getUser->province->name ?? 'Admin'}}, {{$getUser->regency->name ?? ''}}</p>
-
+                <a href="#" class="text-body fw-medium font-size-16"><b>{{$getUser->name ?? ''}}</b></a> <br>
+                @if ($getUser->roles == "Specilist Doctor")
+                    <span class="badge bg-success">{{$getUser->roles}}</span>
+                @elseif ($getUser->roles == "Doctor")
+                    <span class="badge bg-info">{{$getUser->roles}}</span>
+                @elseif ($getUser->roles == "Nurse")
+                    <span class="badge bg-warning">{{$getUser->roles}}</span>
+                @elseif ($getUser->roles == "Student")
+                    <span class="badge bg-primary">{{$getUser->roles}}</span>
+               @else
+                    <span class="badge badge-md bg-info">Administator</span>
+                @endif
             </div>
         </div>
 

@@ -93,11 +93,13 @@
                                             <ui class="list-inline social-source-list">
                                                 <li class="list-inline-item">
                                                     @if ($detail->active == 1)
-                                                        <button type="button" class="btn btn-warning waves-effect waves-light">
+                                                        <button type="button" class="btn btn-warning waves-effect waves-light" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal{{$detail->id}}" data-bs-whatever="@getbootstrap">
                                                             <i class="bx bx-error font-size-16 align-middle me-2"></i> Turn off user account
                                                         </button>
                                                     @else
-                                                        <button type="button" class="btn btn-success waves-effect waves-light">
+                                                        <button type="button" class="btn btn-success waves-effect waves-light" data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModal{{$detail->id}}" data-bs-whatever="@getbootstrap">
                                                             <i class="bx bx-check-double font-size-16 align-middle me-2"></i> Turn On user account
                                                         </button>
                                                     @endif
@@ -117,6 +119,41 @@
                 </div>
 
                 <!-- end row -->
+
+                <div class="modal fade" id="exampleModal{{$detail->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Edit Status</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="{{ route('update-user', ['id' => $detail->id]) }}">
+                                    @csrf
+                                    @if ($detail->active === 1)
+                                    <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label">This Action Will Make the User Account Inactive</label>
+                                        <input type="hidden" value="0" name="is_active">
+                                    </div>
+                                    @else
+                                    <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label">This Action Will Make the User Account Actice</label>
+                                        <input type="hidden" value="1" name="is_active">
+                                    </div>
+                                    @endif
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Change Status</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!--end modal-->
+
 
 @endsection
 @push('script')

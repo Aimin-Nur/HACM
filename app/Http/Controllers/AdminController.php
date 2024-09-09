@@ -240,13 +240,26 @@ class AdminController extends Controller
             $user->active = $request->input('is_active');
             $user->save();
 
-            session()->flash('success', 'Status admin berhasil diperbarui!');
-            return redirect('/dashboard/panel/admin')->session('status', 'success');
+            return redirect()->route('/dashboard/panel/admins')->with('success', 'Status Admin saved successfully!');
         } catch (\Exception $e) {
-            session()->flash('error', 'Failed: ' . $e->getMessage());
-            return redirect('/dashboard/panel/admin')
-            ->with('status', 'error')
-            ->with('message', 'Status admin gagal diperbarui.');
+            return redirect()->back()->with('error', $e->getMessage())->withInput();
+        }
+    }
+
+    public function editUser(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'is_active' => 'boolean',
+            ]);
+
+            $user = User::findOrFail($id);
+            $user->active = $request->input('is_active');
+            $user->save();
+
+            return redirect('/dashboard/users')->with('success', 'Status User saved successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage())->withInput();
         }
     }
 

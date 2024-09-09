@@ -75,9 +75,12 @@
                                 <div class="faq-icon me-3">
                                     <i class="bx bx-badge-check font-size-20 text-success"></i>
                                 </div>
-                                <div class="flex-1">
+                                <div class="flex-1" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                     <h5 class="font-size-15">Your Class Payment <b>"{{$item->kelas->class_name}}"</b> has been successfully validated by the Admin <span style="display: inline-block" class="badge badge-soft-success mb-2">Success</span></h5>
-                                    <p class="text-muted">Your payment has been successfully validated by admin. Thank you for your transaction! Please Generate your ticket <a href="">here</a>.</p>
+                                    <p class="text-muted">
+                                        Your payment has been successfully validated by admin. Thank you for your transaction!
+                                        Please Generate your ticket, Thank you.
+                                    </p>
                                 </div>
                             </div>
                             <hr>
@@ -135,30 +138,45 @@
                                         <!-- end row -->
                                     </div>
                                     @else
-                                    <div class="card card-body mb-2">
-                                        @foreach ($getTicketUser as $item)
+                                    @foreach ($getTicketUser as $item)
+                                    <div class="card card-body">
                                         <div class="row">
-                                            <div class="col-lg-6">
-                                                <h3 class="card-title mt-4">Special title treatment</h3>
-                                                <p class="card-text">WYou currently do not have any tickets to generate. Contact Admin if you think this message is wrong.
+                                            <div class="col-lg-9">
+                                                <h3 class="card-title mt-4">{{$item->kelas->class_name}}</h3>
+                                                <p class="card-text"> <i>Congratulations your payment has been successfully validated by Admin at <b>{{$item->updated_at}}</b>, Make sure you have tickets for the event.</i>
                                                 </p>
+
                                             </div>
-                                            <div class="col-lg-6">
-                                                <div class="maintenance-img mb-2" style="display: inline">
-                                                    <img src="{{ URL::asset('build/images/ticket.png') }}" alt=""
-                                                        class="img-fluid mx-auto d-block" style="width: 150px">
-                                                </div>
-                                            </div>
+
+                                            <div class="col-lg-3">
                                             @if ($item->generate_ticket == 0)
-                                            <a data-ticket-id="{{ $item->id }}" class="generate-ticket btn btn-primary waves-effect waves-light mt-2">
-                                                Generate Ticket
-                                            </a>
-                                            @else
-                                            <button type="button" class="btn btn-outline-primary" disabled>Your ticket has been generate at : {{$item->updated_at}}</button>
+                                                <button data-ticket-id="{{ $item->id }}" class="generate-ticket btn btn-primary waves-effect waves-light mt-2">
+                                                    <div class="row text-center col-lg-12">
+                                                        <div class="col-md-12 text-center ms-2">
+                                                            <i class=" bx bxs-coupon"></i>
+                                                        </div>
+                                                        <div class="col-md-12 ms-2">
+                                                            Generate Your Ticket
+                                                        </div>
+                                                    </div>
+                                                </button>
+                                                @else
+                                                <button type="button" class="btn btn-outline-primary" disabled>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <i class=" bx bxs-coupon"></i>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                          Your ticket has been generate at : {{$item->updated_at}}
+                                                        </div>
+                                                    </div></button>
                                             @endif
                                         </div>
-                                        @endforeach
+
+                                        </div>
+
                                     </div>
+                                    @endforeach
                                     @endif
                                 </div>
                             </div>
@@ -183,6 +201,14 @@
 <!-- Sweet alert init js-->
 <script src="{{ URL::asset('build/js/pages/sweet-alerts.init.js') }}"></script>
 <script src="{{ URL::asset('build/js/app.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $('#generate-ticket').on('click', function(e) {
+            e.preventDefault(); // Mencegah perilaku default tautan
+            $('#v-pills-privacy-tab').click(); // Mengaktifkan tab Tiket
+        });
+    });
+</script>
 <script>
     $(document).ready(function() {
         $('.generate-ticket').click(function(event) {
@@ -210,3 +236,4 @@
     });
 </script>
 @endpush
+

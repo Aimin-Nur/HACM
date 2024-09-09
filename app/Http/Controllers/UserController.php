@@ -36,7 +36,7 @@ class UserController extends Controller
     {
         $getUser = $this->getGuard->getCurrentUser();
 
-        $getClass = Kelas::get();
+        $getClass = Kelas::where('active', 1)->get();
         return view('users.class', compact('getClass', 'getUser'));
     }
 

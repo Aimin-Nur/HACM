@@ -1,6 +1,6 @@
 <!-- ========== Left Sidebar Start ========== -->
 @if(session('success'))
-    <div id="success-toast" class="alert alert-success alert-dismissible fade position-fixed top-0 end-0 m-3" role="alert" style="z-index: 1050;">
+    <div id="success-toast" class="alert alert-success alert-dismissible fade position-fixed top-0 end-0 m-3 show" role="alert" style="z-index: 1050;">
         <i class="mdi mdi-check-all me-2"></i>
         <span>{{ session('success') }}</span>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -8,27 +8,21 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if toast is already displayed in sessionStorage
-            if (!sessionStorage.getItem('successDisplayed')) {
-                var toast = document.getElementById('success-toast');
-                toast.classList.add('show');
-                setTimeout(function() {
-                    toast.classList.remove('show');
-                }, 3000);
+            var toast = document.getElementById('success-toast');
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 3000);
 
-                // Mark as displayed
-                sessionStorage.setItem('successDisplayed', 'true');
-
-                if (window.history.replaceState) {
-                    window.history.replaceState(null, null, window.location.href);
-                }
+            // Remove session 'success' to prevent it from showing again after page reload
+            if (window.history.replaceState) {
+                window.history.replaceState(null, null, window.location.href);
             }
         });
     </script>
 @endif
 
 @if(session('error'))
-    <div id="error-toast" class="alert alert-danger alert-dismissible fade position-fixed top-0 end-0 m-3" role="alert" style="z-index: 1050;">
+    <div id="error-toast" class="alert alert-danger alert-dismissible fade position-fixed top-0 end-0 m-3 show" role="alert" style="z-index: 1050;">
         <i class="mdi mdi-block-helper me-2"></i>
         <span>{{ session('error') }}</span>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -36,25 +30,18 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if toast is already displayed in sessionStorage
-            if (!sessionStorage.getItem('errorDisplayed')) {
-                var toast = document.getElementById('error-toast');
-                toast.classList.add('show');
-                setTimeout(function() {
-                    toast.classList.remove('show');
-                }, 3000);
+            var toast = document.getElementById('error-toast');
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 3000);
 
-                // Mark as displayed
-                sessionStorage.setItem('errorDisplayed', 'true');
-
-                if (window.history.replaceState) {
-                    window.history.replaceState(null, null, window.location.href);
-                }
+            // Remove session 'error' to prevent it from showing again after page reload
+            if (window.history.replaceState) {
+                window.history.replaceState(null, null, window.location.href);
             }
         });
     </script>
 @endif
-
 
 
 
@@ -67,7 +54,7 @@
             <div class="mt-3">
 
                 <a href="#" class="text-body fw-medium font-size-16"><b>{{$getUser->name ?? ''}}</b></a> <br>
-                @if ($getUser->roles == "Specilist Doctor")
+                @if ($getUser->roles == "Specialist Doctor")
                     <span class="badge bg-success">{{$getUser->roles}}</span>
                 @elseif ($getUser->roles == "Doctor")
                     <span class="badge bg-info">{{$getUser->roles}}</span>

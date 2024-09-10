@@ -240,7 +240,7 @@ class AdminController extends Controller
             $user->active = $request->input('is_active');
             $user->save();
 
-            return redirect()->route('/dashboard/panel/admins')->with('success', 'Status Admin saved successfully!');
+            return redirect()->route('dashboard-panel')->with('success', 'Status Admin saved successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage())->withInput();
         }
@@ -273,8 +273,10 @@ class AdminController extends Controller
 
     public function showArchiveClass()
     {
+        $getUser = $this->getGuard->getCurrentUser();
+
         $getClass = Kelas::where('active', 0)->get();
-        return view('admin.archive-class', compact('getClass'));
+        return view('admin.archive-class', compact('getClass', 'getUser'));
     }
 
     public function formClass()
@@ -356,8 +358,10 @@ class AdminController extends Controller
 
     public function orderDetail($id)
     {
+        $getUser = $this->getGuard->getCurrentUser();
+
         $getOrderId = Order::with('user', 'kelas')->where('id', $id)->first();
-        return view('admin.order-detail', compact('getOrderId'));
+        return view('admin.order-detail', compact('getOrderId','getUser'));
     }
 
     public function editPayment(Request $request, $id)

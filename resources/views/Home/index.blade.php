@@ -341,7 +341,7 @@
                 <div class="col-xxl-3 col-lg-4 col-md-6">
                     <div class="treatment-process__item mb-30 text-center">
                         <div class="treatment-process__item-icon mb-20 mb-xs-15">
-                            <img src="assets/imgs/treatment-process/treatment-process__item-1.png" alt="icon not found">
+                            <img src="{{ URL::asset('home/assets/imgs/treatment-process/treatment-process__item-1.png')}}" alt="icon not found">
                         </div>
                         <h4 class="mb-15 mb-xs-10"><a href="service-details.html">Catalyst Services</a></h4>
                         <p class="mb-0">Et purus duis sollicitudin sed dign issim habi tant.</p>
@@ -350,7 +350,7 @@
                 <div class="col-xxl-3 col-lg-4 col-md-6">
                     <div class="treatment-process__item mb-30 text-center">
                         <div class="treatment-process__item-icon mb-20 mb-xs-15">
-                            <img src="assets/imgs/treatment-process/treatment-process__item-2.png" alt="icon not found">
+                            <img src="{{ URL::asset('home/assets/imgs/treatment-process/treatment-process__item-2.png')}}" alt="icon not found">
                         </div>
                         <h4 class="mb-15 mb-xs-10"><a href="service-details.html">Wave Solutions</a></h4>
                         <p class="mb-0">Et purus duis sollicitudin sed dign issim habi tant.</p>
@@ -359,7 +359,7 @@
                 <div class="col-xxl-3 col-lg-4 col-md-6">
                     <div class="treatment-process__item mb-30 text-center">
                         <div class="treatment-process__item-icon mb-20 mb-xs-15">
-                            <img src="assets/imgs/treatment-process/treatment-process__item-3.png" alt="icon not found">
+                            <img src="{{ URL::asset('home/assets/imgs/treatment-process/treatment-process__item-3.png')}}" alt="icon not found">
                         </div>
                         <h4 class="mb-15 mb-xs-10"><a href="service-details.html">Health Hub</a></h4>
                         <p class="mb-0">Et purus duis sollicitudin sed dign issim habi tant.</p>
@@ -368,7 +368,7 @@
                 <div class="col-xxl-3 col-lg-4 col-md-6">
                     <div class="treatment-process__item mb-30 text-center">
                         <div class="treatment-process__item-icon mb-20 mb-xs-15">
-                            <img src="assets/imgs/treatment-process/treatment-process__item-4.png" alt="icon not found">
+                            <img src="{{ URL::asset('home/assets/imgs/treatment-process/treatment-process__item-4.png')}}" alt="icon not found">
                         </div>
                         <h4 class="mb-15 mb-xs-10"><a href="service-details.html">Weave Solutions</a></h4>
                         <p class="mb-0">Et purus duis sollicitudin sed dign issim habi tant.</p>
@@ -479,7 +479,7 @@
             <div class="row align-items-center">
                 <div class="col-xl-6">
                     <div class="testimonial__media">
-                        <img class="img-fluid" src="assets/imgs/testimonial/testimonial.png" alt="image not found">
+                        <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/testimonial/testimonial.png')}}" alt="image not found">
                     </div>
                 </div>
                 <div class="col-xl-6">
@@ -488,7 +488,7 @@
                             <div class="swiper-slide">
                                 <div class="testimonial__item">
                                     <div class="testimonial__item-icon mb-20 mb-xs-15">
-                                        <img class="img-fluid" src="assets/imgs/testimonial/qoute.png" alt="icon not found">
+                                        <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/testimonial/qoute.png')}}" alt="icon not found">
                                     </div>
 
                                     <div class="testimonial__item-content mb-35 mb-xs-30">
@@ -497,7 +497,7 @@
 
                                     <div class="testimonial__item-author d-flex align-items-center">
                                         <div class="testimonial__item-thumb">
-                                            <img class="img-fluid" src="assets/imgs/testimonial/thumb.png" alt="icon not found">
+                                            <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/testimonial/thumb.png')}}" alt="icon not found">
                                         </div>
                                         <div class="testimonial__item-text">
                                             <h4>Eleanor Pena</h4>
@@ -509,7 +509,7 @@
                             <div class="swiper-slide">
                                 <div class="testimonial__item">
                                     <div class="testimonial__item-icon mb-20 mb-xs-15">
-                                        <img class="img-fluid" src="assets/imgs/testimonial/qoute.png" alt="icon not found">
+                                        <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/testimonial/qoute.png')}}" alt="icon not found">
                                     </div>
 
                                     <div class="testimonial__item-content mb-35 mb-xs-30">
@@ -518,7 +518,7 @@
 
                                     <div class="testimonial__item-author d-flex align-items-center">
                                         <div class="testimonial__item-thumb">
-                                            <img class="img-fluid" src="assets/imgs/testimonial/thumb.png" alt="icon not found">
+                                            <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/testimonial/thumb.png')}}" alt="icon not found">
                                         </div>
                                         <div class="testimonial__item-text">
                                             <h4>Eleanor Pena</h4>
@@ -554,7 +554,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="section__title-wrapper ask-question__content mb-40 mb-xs-30">
-                        <h5 class="section__subtitle color-theme-primary mb-15 mb-xs-10 title-animation"><img src="assets/imgs/ask-quesiton/heart.png" alt="icon not found" class="img-fluid"> Ask Question</h5>
+                        <h5 class="section__subtitle color-theme-primary mb-15 mb-xs-10 title-animation"><img src="{{ URL::asset('home/assets/imgs/ask-quesiton/heart.png')}}" alt="icon not found" class="img-fluid"> Ask Question</h5>
                         <h2 class="section__title mb-0 title-animation">Healing Harmony Uniting Care and Compassion by HACM</h2>
                     </div>
 
@@ -622,35 +622,35 @@
                             <div class="swiper-slide">
                                 <div class="brand__item text-center">
                                     <div class="brand__thumb">
-                                        <img class="img-fluid" src="assets/imgs/brand/brand-1.png" alt="image not found">
+                                        <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/brand/brand-1.png')}}" alt="image not found">
                                     </div>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="brand__item text-center">
                                     <div class="brand__thumb">
-                                        <img class="img-fluid" src="assets/imgs/brand/brand-2.png" alt="image not found">
+                                        <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/brand/brand-2.png')}}" alt="image not found">
                                     </div>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="brand__item text-center">
                                     <div class="brand__thumb">
-                                        <img class="img-fluid" src="assets/imgs/brand/brand-3.png" alt="image not found">
+                                        <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/brand/brand-3.png')}}" alt="image not found">
                                     </div>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="brand__item text-center">
                                     <div class="brand__thumb">
-                                        <img class="img-fluid" src="assets/imgs/brand/brand-4.png" alt="image not found">
+                                        <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/brand/brand-4.png')}}" alt="image not found">
                                     </div>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="brand__item text-center">
                                     <div class="brand__thumb">
-                                        <img class="img-fluid" src="assets/imgs/brand/brand-5.png" alt="image not found">
+                                        <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/brand/brand-5.png')}}" alt="image not found">
                                     </div>
                                 </div>
                             </div>
@@ -680,7 +680,7 @@
                             <div class="swiper-slide">
                                 <div class="team__item">
                                     <div class="team__item-media">
-                                        <img class="img-fluid" src="assets/imgs/team/team__item-1.jpg" alt="image not found">
+                                        <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/team/team__item-1.jpg')}}" alt="image not found">
                                     </div>
 
                                     <div class="team__item-content">
@@ -709,7 +709,7 @@
                             <div class="swiper-slide">
                                 <div class="team__item">
                                     <div class="team__item-media">
-                                        <img class="img-fluid" src="assets/imgs/team/team__item-2.jpg" alt="image not found">
+                                        <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/team/team__item-2.jpg')}}" alt="image not found">
                                     </div>
 
                                     <div class="team__item-content">
@@ -738,7 +738,7 @@
                             <div class="swiper-slide">
                                 <div class="team__item">
                                     <div class="team__item-media">
-                                        <img class="img-fluid" src="assets/imgs/team/team__item-3.jpg" alt="image not found">
+                                        <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/team/team__item-3.jpg')}}" alt="image not found">
                                     </div>
 
                                     <div class="team__item-content">
@@ -767,7 +767,7 @@
                             <div class="swiper-slide">
                                 <div class="team__item">
                                     <div class="team__item-media">
-                                        <img class="img-fluid" src="assets/imgs/team/team__item-1.jpg" alt="image not found">
+                                        <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/team/team__item-1.jpg')}}" alt="image not found">
                                     </div>
 
                                     <div class="team__item-content">
@@ -862,7 +862,7 @@
     <!-- take-appointment area start -->
     <section id="appointment" class="take-appointment section-space overflow-hidden">
         <div class="container">
-            <div class="take-appointment__container-shape" data-background="assets/imgs/take-appointment/container-shape.png">
+            <div class="take-appointment__container-shape" data-background="{{ URL::asset('home/assets/imgs/take-appointment/container-shape.png')}}">
             </div>
             <div class="row">
                 <div class="col-lg-6">
@@ -982,7 +982,7 @@
                     <div class="blog__item mb-30">
                         <a href="blog-details.html" class="blog__item-media d-block position-relative overflow-hidden">
                             <div class="panel wow"></div>
-                            <img class="img-fluid" src="assets/imgs/blog/blog-item-1.jpg" alt="image not found">
+                            <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/blog/blog-item-1.jpg')}}" alt="image not found">
                         </a>
 
                         <div class="blog__item-content">
@@ -999,7 +999,7 @@
                     <div class="blog__item mb-30">
                         <a href="blog-details.html" class="blog__item-media d-block position-relative overflow-hidden">
                             <div class="panel wow"></div>
-                            <img class="img-fluid" src="assets/imgs/blog/blog-item-2.jpg" alt="image not found">
+                            <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/blog/blog-item-2.jpg')}}" alt="image not found">
                         </a>
 
                         <div class="blog__item-content">
@@ -1016,7 +1016,7 @@
                     <div class="blog__item mb-30">
                         <a href="blog-details.html" class="blog__item-media d-block position-relative overflow-hidden">
                             <div class="panel wow"></div>
-                            <img class="img-fluid" src="assets/imgs/blog/blog-item-3.jpg" alt="image not found">
+                            <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/blog/blog-item-3.jpg')}}" alt="image not found">
                         </a>
 
                         <div class="blog__item-content">
@@ -1055,7 +1055,7 @@
             <div class="col-md-6">
                 <div class="footer__cta-item mb-30 theme-bg-glow d-flex flex-lg-row flex-column align-items-lg-center">
                     <div class="footer__cta-item-icon d-flex align-items-center justify-content-center">
-                        <img class="img-fluid" src="assets/imgs/footer__cta/footer__cta-item-2.png" alt="icon not found">
+                        <img class="img-fluid" src="{{ URL::asset('home/assets/imgs/footer__cta/footer__cta-item-2.png')}}" alt="icon not found">
                     </div>
 
                     <div class="footer__cta-item-text">

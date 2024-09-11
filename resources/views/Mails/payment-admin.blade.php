@@ -273,7 +273,7 @@
                                 <tr>
                                  <td valign="top" align="center">
                                   <div class="pc-font-alt pc-w620-fontSize-14px pc-w620-lineHeight-140pc" style="line-height: 140%; letter-spacing: 0px; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 14px; font-weight: normal; font-variant-ligatures: normal; color: #001942; text-align: center; text-align-last: center;">
-                                   <div><span style="letter-spacing: 0px;" data-letter-spacing-original="0">Great news! </span><span>You have an Order Request on behalf of Fulan Bin Fulan as a Specialist Doctor, Validate Payment Immediately!</span>
+                                   <div><span style="letter-spacing: 0px;" data-letter-spacing-original="0">Great news! </span><span>You have an Order Request on behalf of <b>{{$user->name}}</b> as a <b>{{$user->roles}}</b>, Validate Payment Immediately!</span>
                                    </div>
                                   </div>
                                  </td>
@@ -366,20 +366,6 @@
            </tr>
           </table>
           <!-- END MODULE: Footer -->
-         </td>
-        </tr>
-        <tr>
-         <td>
-          <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
-           <tr>
-            <td align="center" valign="top" style="padding-top: 20px; padding-bottom: 20px; vertical-align: top;">
-             <a href="https://designmodo.com/postcards?uid=MjY0NDA5&type=footer" target="_blank" style="text-decoration: none; overflow: hidden; border-radius: 2px; display: inline-block;">
-              <img src="https://cloudfilesdm.com/postcards/promo-footer-dark.jpg" width="198" height="46" alt="Made with (o -) postcards" style="width: 198px; height: auto; margin: 0 auto; border: 0; outline: 0; line-height: 100%; -ms-interpolation-mode: bicubic; vertical-align: top;">
-             </a>
-             <img src="https://api-postcards.designmodo.com/tracking/mail/promo?uid=MjY0NDA5" width="1" height="1" alt="" style="display:none; width: 1px; height: 1px;">
-            </td>
-           </tr>
-          </table>
          </td>
         </tr>
        </table>

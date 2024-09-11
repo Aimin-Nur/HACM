@@ -27,7 +27,7 @@ class OrderTableService
                 return $order->kelas->class_name;
             })
             ->addColumn('price', function ($order) {
-                return $order->kelas->price;
+                return $order->formatted_price ?? '';
             })
             ->addColumn('status', function ($order) {
                 if ($order->status == 1) {

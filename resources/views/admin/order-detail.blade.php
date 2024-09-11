@@ -62,7 +62,7 @@
                                                     <strong>Total</strong>
                                                 </td>
                                                 <td class="border-0 text-end">
-                                                    <h4 class="m-0">Rp. {{$getOrderId->kelas->price}}</h4>
+                                                    <h4 class="m-0">Rp. {{$getOrderId->formatted_price ?? 'NULL'}}</h4>
                                                 </td>
                                             </tr>
                                         </tbody>

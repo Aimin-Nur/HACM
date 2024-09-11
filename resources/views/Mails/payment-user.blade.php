@@ -459,7 +459,7 @@
                     <tr>
                      <td valign="top" class="pc-w620-padding-0-0-0-0" align="center">
                       <div class="pc-font-alt pc-w620-fontSize-16px pc-w620-lineHeight-28" style="line-height: 140%; letter-spacing: 0px; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 14px; font-weight: normal; font-variant-ligatures: normal; color: #001942; text-align: center; text-align-last: center;">
-                       <div><span style="letter-spacing: 0px;" data-letter-spacing-original="0">Order number: #7348</span>
+                       <div><span style="letter-spacing: 0px;" data-letter-spacing-original="0">s</span>
                        </div>
                       </div>
                      </td>
@@ -503,7 +503,7 @@
                         <tr>
                          <td valign="top" align="right">
                           <div class="pc-font-alt pc-w620-fontSize-16 pc-w620-lineHeight-20" style="line-height: 140%; letter-spacing: -0.03em; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 600; font-variant-ligatures: normal; color: #001942; text-align: right; text-align-last: right;">
-                           <div><span>$258</span>
+                           <div><span>Rp. 2</span>
                            </div>
                           </div>
                          </td>
@@ -800,20 +800,6 @@
            </tr>
           </table>
           <!-- END MODULE: Footer -->
-         </td>
-        </tr>
-        <tr>
-         <td>
-          <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
-           <tr>
-            <td align="center" valign="top" style="padding-top: 20px; padding-bottom: 20px; vertical-align: top;">
-             <a href="https://designmodo.com/postcards?uid=MjY0NDA5&type=footer" target="_blank" style="text-decoration: none; overflow: hidden; border-radius: 2px; display: inline-block;">
-              <img src="https://cloudfilesdm.com/postcards/promo-footer-dark.jpg" width="198" height="46" alt="Made with (o -) postcards" style="width: 198px; height: auto; margin: 0 auto; border: 0; outline: 0; line-height: 100%; -ms-interpolation-mode: bicubic; vertical-align: top;">
-             </a>
-             <img src="https://api-postcards.designmodo.com/tracking/mail/promo?uid=MjY0NDA5" width="1" height="1" alt="" style="display:none; width: 1px; height: 1px;">
-            </td>
-           </tr>
-          </table>
          </td>
         </tr>
        </table>

@@ -36,5 +36,35 @@ class Order extends Model
         return $this->hasOne(Ticket::class, 'id_order');
     }
 
-   
+    /**
+     * Accessor untuk mendapatkan harga sesuai dengan role pengguna.
+     */
+    public function getPriceAttribute()
+    {
+        $kelas = $this->kelas;
+        $userRole = $this->user->roles;
+
+        switch ($userRole) {
+            case 'Specialist Doctor':
+                return $kelas->price_doctor_specialist;
+            case 'Doctor':
+                return $kelas->price_doctor;
+            case 'Nurse':
+                return $kelas->price_nurses;
+            case 'Student':
+                return $kelas->price_student;
+            default:
+                return $kelas->price;
+        }
+    }
+
+    /**
+     * Accessor untuk mendapatkan harga format sesuai role pengguna.
+     */
+    public function getFormattedPriceAttribute()
+    {
+        return number_format($this->price, 0, ',', '.');
+    }
+
+
 }

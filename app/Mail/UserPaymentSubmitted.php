@@ -13,12 +13,19 @@ class UserPaymentSubmitted extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $user;
+    public $order;
+
     /**
      * Create a new message instance.
+     *
+     * @param \App\Models\User $user
+     * @param \App\Models\Order $order
      */
-    public function __construct()
+    public function __construct($user, $order)
     {
-        //
+        $this->user = $user;
+        $this->order = $order;
     }
 
     /**

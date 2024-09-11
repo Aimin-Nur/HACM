@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -28,7 +29,8 @@ class User extends Authenticatable
         'address',
         'provinsi',
         'kota',
-        'kecamatan'
+        'kecamatan',
+        'roles'
     ];
 
     public function orders()

@@ -73,7 +73,7 @@
 
                                             <div class="mt-3">
                                                 <p class="font-size-12 text-muted mb-1">Email Address</p>
-                                                <h6 class="">{{$detail->email}}</h6>
+                                                <h6 class=""><a href="mailto:{{$detail->email}}">{{$detail->email}}</a></h6>
                                             </div>
 
                                             <div class="mt-3">
@@ -83,7 +83,8 @@
 
                                             <div class="mt-3">
                                                 <p class="font-size-12 text-muted mb-1">Creted Account At</p>
-                                                <h6 class="">{{$detail->created_at}}</h6>
+                                                <h6 class="">{{ \Carbon\Carbon::parse($detail->created_at)->format('M d, Y') }}
+                                                </h6>
                                             </div>
 
                                         </div>

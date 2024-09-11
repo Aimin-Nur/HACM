@@ -143,7 +143,8 @@
                                         <div class="row">
                                             <div class="col-lg-9">
                                                 <h3 class="card-title mt-4">{{$item->kelas->class_name}}</h3>
-                                                <p class="card-text"> <i>Congratulations your payment has been successfully validated by Admin at <b>{{$item->updated_at}}</b>, Make sure you have tickets for the event.</i>
+                                                <p class="card-text"> <i>Congratulations your payment has been successfully validated by Admin at <b>{{ \Carbon\Carbon::parse($item->updated_at)->format('M d, Y') }}
+                                                </b>, Make sure you have tickets for the event.</i>
                                                 </p>
 
                                             </div>
@@ -167,7 +168,8 @@
                                                             <i class=" bx bxs-coupon"></i>
                                                         </div>
                                                         <div class="col-lg-12">
-                                                          Your ticket has been generate at : {{$item->updated_at}}
+                                                          Your ticket has been generate at : {{ \Carbon\Carbon::parse($item->updated_at)->format('M d, Y') }}
+
                                                         </div>
                                                     </div></button>
                                             @endif

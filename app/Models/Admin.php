@@ -23,4 +23,15 @@ class Admin extends Authenticatable
         'password',
         'active',
     ];
+
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format('M d, Y');
+    }
+
+    // Accessor untuk updated_at
+    public function getUpdatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format('M d, Y');
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Carbon\Carbon;
 
 class Order extends Model
 {
@@ -34,4 +35,6 @@ class Order extends Model
     {
         return $this->hasOne(Ticket::class, 'id_order');
     }
+
+   
 }

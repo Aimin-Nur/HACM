@@ -120,7 +120,8 @@
                         <tr>
                             <td>
                                 {{$class_name}}<br>
-                               Tiket Created at ; {{$date}}<br>
+                               Tiket Created at ; {{ \Carbon\Carbon::parse($date)->format('M d, Y') }}
+                               <br>
                             </td>
 
                             <td>

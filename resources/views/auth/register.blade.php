@@ -109,10 +109,10 @@
                                     <div class="mb-3">
                                         <label for="roles" class="form-label">Profession<span class="text-danger">*</span></label>
                                         <select class="form-control @error('roles') is-invalid @enderror" name="roles">
-                                            <option value="">Select District</option>
+                                            <option value="">Select Profession</option>
                                             <option value="Specialist Doctor">Specialist Doctor</option>
                                             <option value="Doctors">Doctor</option>
-                                            <option value="Nurse">Nurses</option>
+                                            <option value="Nurse">Nurse</option>
                                             <option value="Student">Student</option>
                                         </select>
                                         @error('roles')

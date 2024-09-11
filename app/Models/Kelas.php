@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Carbon\Carbon;
 
 class Kelas extends Model
 {
@@ -61,5 +62,16 @@ class Kelas extends Model
     {
         return number_format($this->price_student, 0, ',', '.');
     }
+
+    // public function getCreatedAtAttribute($value)
+    // {
+    //     return Carbon::parse($value)->format('M d, Y');
+    // }
+
+    // // Accessor untuk updated_at
+    // public function getUpdatedAtAttribute($value)
+    // {
+    //     return Carbon::parse($value)->format('M d, Y');
+    // }
 }
 

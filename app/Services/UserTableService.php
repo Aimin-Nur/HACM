@@ -6,6 +6,7 @@ use App\Models\User;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Auth;
 
+
 class UserTableService
 {
     public function getUsers()
@@ -27,10 +28,10 @@ class UserTableService
                 return $user->phone_number;
             })
             ->addColumn('provinsi', function ($user) {
-                return $user->provinsi;
+                return $user->province->name;
             })
             ->addColumn('kota', function ($user) {
-                return $user->kota;
+                return $user->regency->name;
             })
             ->rawColumns(['name'])
             ->make(true);

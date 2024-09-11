@@ -43,20 +43,39 @@ class TicketTableService
                 else
                     return '<span class="badge badge-soft-warning">Null</span>';
             })
+            ->addColumn('update', function ($order) {
+                return $order->updated_at;
+            })
             ->addColumn('action', function ($order) {
                 $buttons = '<div class="dropstart">
                                 <button type="button" class="btn waves-effect waves-light dropdown-toggle"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href=" ' . route('order-detail', ['id' => $order->id]) . '">View Detail</a>
-                                    <a class="dropdown-item" href="#">View Payment Proof</a>
-                                    <a class="dropdown-item" href="#">Accept Validation</a>
-                                </div>
-                            </div>';
+                                <div class="dropdown-menu">';
+
+                if ($order->active == 1) {
+                    $buttons .= '<form action="' . route('generate-again', ['id' => $order->id]) . '" method="POST">
+                                    ' . csrf_field() . '
+                                    <button type="submit" class="dropdown-item">Validate Ticket</button>
+                                 </form>';
+                } elseif ($order->active == NULL) {
+                    $buttons .= '<form action="' . route('validate-ticket', ['id' => $order->id]) . '" method="POST">
+                                    ' . csrf_field() . '
+                                    <button type="submit" class="dropdown-item">Validate Ticket</button>
+                                 </form>';
+                } elseif ($order->generate_ticket == 1) {
+                    $buttons .= '<form action="' . route('generate-again', ['id' => $order->id]) . '" method="POST">
+                                    ' . csrf_field() . '
+                                    <button type="submit" class="dropdown-item">Generate Again</button>
+                                 </form>';
+                }
+
+                $buttons .= '</div></div>';
+
                 return $buttons;
             })
+
             ->rawColumns(['action', 'generate', 'active'])
             ->make(true);
     }

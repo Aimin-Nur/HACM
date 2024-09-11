@@ -136,7 +136,7 @@
 
                 {{-- MODAL TAKE CLASS --}}
                 @foreach ($getClass as $item)
-                <div class="modal fade" id="exampleModalToggle{{$item->id}}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                <div class="modal fade" id="exampleModalToggle{{$item->id}}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" data-bs-backdrop="static">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -144,12 +144,20 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                Do you want to take the <b>{{$item->class_name}}</b> class for Rp. {{$item->price}}?
+                            <div class="modal-body text-center">
+                                @if ($getUser->roles == "Specialist Doctor")
+                                   <p class="text-dark mt-3">Are you sure to take this workshop as a <mark>Specilialist Doctor</mark> at a price of Rp. 5,000,000?</p>
+                                @elseif ($getUser->roles == "Specialist Doctor")
+                                    <p class="text-dark mt-3">Are you sure to take this workshop as a <mark>Doctor</mark> at a price of Rp. 5,000,000?</p>
+                                @elseif ($getUser->roles == "Nurse")
+                                    <p class="text-dark mt-3"> Are you sure to take this workshop as a <mark>Nurse</mark> at a price of Rp. 5,000,000?</p>
+                                @elseif ($getUser->roles == "Student")
+                                    <p  class="text-dark mt-3">Are you sure to take this workshop as a <mark>Student</mark> at a price of Rp. 5,000,000?</p>
+                                @endif
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-primary" data-bs-target="#exampleModalToggle2{{$item->id}}"
-                                    data-bs-toggle="modal">Open second modal</button>
+                                    data-bs-toggle="modal">Yes, I Sure</button>
                             </div>
                         </div>
                     </div>
@@ -159,7 +167,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
+                                <h5 class="modal-title" id="exampleModalToggleLabel2">Payment</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>

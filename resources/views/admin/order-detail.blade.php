@@ -70,18 +70,15 @@
                                 </div>
                                 <div class="d-print-none">
                                     <div class="float-end">
-                                        {{-- <a href="javascript:window.print()"
-                                            class="btn btn-success waves-effect waves-light"><i
-                                                class="fa fa-print"></i></a> --}}
                                         @if ($getOrderId->status == 1)
                                         <p class="me-3" style="display: inline"><strong><i>You have validated this order on the date {{$getOrderId->updated_at}}</i></strong></p>
                                         <button type="button" class="btn btn-outline-primary" disabled>Already Validated</button>
-                                        @elseif ($getOrderId->status == 0)
-                                        <p class="me-3" style="display: inline"><strong><i>You have rejected this order on the date {{$getOrderId->updated_at}}</i></strong></p>
-                                        <button type="button" class="btn btn-outline-danger w-md waves-effect waves-light" disabled>Already Rejected</button>
+                                        @elseif ($getOrderId->status == NULL)
+                                        <a data-bs-toggle="modal" data-bs-target="#rejectedModalScrollable{{$getOrderId->id}}" class="btn btn-danger w-md waves-effect waves-light">Rejected Payment</a>
                                         <a data-bs-toggle="modal" data-bs-target="#exampleModalScrollable{{$getOrderId->id}}" class="btn btn-primary w-md waves-effect waves-light">Accepted Payment</a>
                                         @else
-                                        <a data-bs-toggle="modal" data-bs-target="#rejectedModalScrollable{{$getOrderId->id}}" class="btn btn-danger w-md waves-effect waves-light">Rejected Payment</a>
+                                        <p class="me-3" style="display: inline"><strong><i>You have rejected this order on the date {{$getOrderId->updated_at}}</i></strong></p>
+                                        <button type="button" class="btn btn-outline-danger w-md waves-effect waves-light" disabled>Already Rejected</button>
                                         <a data-bs-toggle="modal" data-bs-target="#exampleModalScrollable{{$getOrderId->id}}" class="btn btn-primary w-md waves-effect waves-light">Accepted Payment</a>
                                         @endif
                                     </div>

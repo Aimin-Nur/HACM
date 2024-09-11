@@ -55,6 +55,8 @@ Route::middleware(['auth:superadmin', 'verified'])->group(function () {
     Route::post('/edit-payment/{id}', [AdminController::class, 'editPayment'])->name('edit-payment');
     Route::post('/edit-user/{id}', [AdminController::class, 'editUser'])->name('update-user');
     Route::post('/rejected-payment/{id}', [AdminController::class, 'rejectedPayment'])->name('rejected-payment');
+    Route::post('/generate-again/{id}', [AdminController::class, 'generateTicketAgain'])->name('generate-again');
+    Route::post('/validate-ticket/{id}', [AdminController::class, 'validateTicket'])->name('validate-ticket');
     Route::post('/logout/superadmin', [AuthenticatedSessionController::class, 'logoutSuperadmin'])->name('logout-superadmin');
 });
 

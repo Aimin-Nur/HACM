@@ -32,12 +32,10 @@ class OrderTableService
             ->addColumn('status', function ($order) {
                 if ($order->status == 1) {
                     return '<span class="badge badge-soft-success">Success</span>';
-                } elseif ($order->status == 0) {
-                    return '<span class="badge badge-soft-danger">Rejected</span>';
-                } elseif (is_null($order->status)) {
+                } elseif ($order->status == NULL) {
                     return '<span class="badge badge-soft-warning">Pending</span>';
                 } else {
-                    return '<span class="badge badge-soft-warning">Pending</span>'; // Optional, sebagai fallback jika ada nilai selain 1, 0, atau NULL.
+                    return '<span class="badge badge-soft-danger">Rejected</span>';
                 }
             })
             ->addColumn('action', function ($order) {

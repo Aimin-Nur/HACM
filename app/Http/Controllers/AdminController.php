@@ -408,7 +408,7 @@ class AdminController extends Controller
                 'id_users' => $getOrder->id_users,
                 'id_order' => $getOrder->id,
                 'generate_ticket' => 0,
-                'active' => 1,
+                'active' => 0,
                 'ticket_code' => $ticketCode,
             ]);
 
@@ -459,6 +459,36 @@ class AdminController extends Controller
             return redirect()->back()
             ->with('status', 'error')
             ->with('message', 'Failed : Class failed to remove, Try more again!');
+        }
+    }
+
+    public function generateTicketAgain($id)
+    {
+        try {
+
+            $getTicket = Ticket::findOrFail($id);
+            $getTicket->generate_ticket = 0;
+
+            $getTicket->save();
+
+            return redirect()->route('ticket-list')->with('success', 'Generate ticket has been successfully update.');
+        } catch (\Exception $e) {
+            return redirect()->route('ticket-list')->with('error', 'An error occurred: ' . $e->getMessage());
+        }
+    }
+
+    public function validateTicket($id)
+    {
+        try {
+
+            $getTicket = Ticket::findOrFail($id);
+            $getTicket->active = 1;
+
+            $getTicket->save();
+
+            return redirect()->route('ticket-list')->with('success', 'Ticket has been successfully validate.');
+        } catch (\Exception $e) {
+            return redirect()->route('ticket-list')->with('error', 'An error occurred: ' . $e->getMessage());
         }
     }
 

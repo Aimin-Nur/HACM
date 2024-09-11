@@ -70,7 +70,7 @@ class UserController extends Controller
 
                 SendPaymentNotification::dispatch($user, $order);
 
-                session()->flash('success', 'Bukti pembayaran berhasil dikirim!');
+                session()->flash('success', 'Proof of Payment has been Successfully Saved, Please Check your Email Regularly for More Information!');
                 return redirect('/class')->with('status', 'success');
             }
 

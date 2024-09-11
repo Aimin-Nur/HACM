@@ -57,7 +57,8 @@
                                 <th>Name</th>
                                 <th>Class</th>
                                 <th>Generate</th>
-                                <th>Active</th>
+                                <th>Validate</th>
+                                <th>Update at</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -84,6 +85,7 @@
                 { data: 'class', name: 'class' },
                 { data: 'generate', name: 'generate' },
                 { data: 'active', name: 'active' },
+                { data: 'update', name: 'update', searchable:false, orderable:true },
                 { data: 'action', name: 'action' }
             ]
         });

@@ -9,8 +9,8 @@
   <meta content="" name="description">
 
   <!-- Favicons -->
-  <link href="img/favicon-32x32.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{{ URL::asset('home/img/favicon-32x32.png')}}" rel="icon">
+  <link href="{{ URL::asset('home/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
@@ -87,7 +87,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-6">
-            <h2>About The Event</h2>
+            <h2>About The HACM</h2>
             <p>Sed nam ut dolor qui repellendus iusto odit. Possimus inventore eveniet accusamus error amet eius aut
               accusantium et. Non odit consequatur repudiandae sequi ea odio molestiae. Enim possimus sunt inventore in
               est ut optio sequi unde.</p>
@@ -739,7 +739,7 @@
 
         <div class="section-header">
           <h2>Contact Us</h2>
-          <p>Nihil officia ut sint molestiae tenetur.</p>
+          <p>Contact us for more details</p>
         </div>
 
         <div class="row contact-info">

@@ -7,6 +7,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- Favicons -->
   <link href="{{ URL::asset('home/img/favicon-32x32.png')}}" rel="icon">
@@ -895,90 +896,118 @@
     });
 </script>
 
-
 <script>
     document.addEventListener('click', async function(e) {
-      if (e.target && e.target.classList.contains('buy-ticket')) {
-        const itemId = e.target.id.replace('validation', '');
-        const className = e.target.dataset.className;
-        const priceSpecialist = e.target.dataset.priceSpecialist;
-        const priceDoctor = e.target.dataset.priceDoctor;
-        const priceNurse = e.target.dataset.priceNurse;
-        const priceStudent = e.target.dataset.priceStudent;
+        if (e.target && e.target.classList.contains('buy-ticket')) {
+            const itemId = e.target.id.replace('validation', '');
+            const className = e.target.dataset.className;
+            const priceSpecialist = e.target.dataset.priceSpecialist;
+            const priceDoctor = e.target.dataset.priceDoctor;
+            const priceNurse = e.target.dataset.priceNurse;
+            const priceStudent = e.target.dataset.priceStudent;
 
-        // Dapatkan role pengguna (ini harus sesuai dengan cara Anda menyimpan role pengguna)
-        const userRole = 'specialist_doctor'; // Ganti ini dengan variabel yang sesuai
+            // Dapatkan role pengguna (ini harus sesuai dengan cara Anda menyimpan role pengguna)
+            const userRole = 'specialist_doctor'; // Ganti ini dengan variabel yang sesuai
 
-        // Tentukan harga berdasarkan role pengguna
-        let price;
-        switch(userRole) {
-          case 'specialist_doctor':
-            price = priceSpecialist;
-            break;
-          case 'doctor':
-            price = priceDoctor;
-            break;
-          case 'nurse':
-            price = priceNurse;
-            break;
-          case 'student':
-            price = priceStudent;
-            break;
-          default:
-            price = 'Harga tidak tersedia';
-        }
-
-        // Modal 1: Konfirmasi untuk event
-        const confirmResult = await Swal.fire({
-          title: `Apakah anda yakin?`,
-          text: `Apakah anda yakin mengambil ${className} seharga Rp. ${price}?`,
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: 'Ya, Saya Yakin',
-          cancelButtonText: 'Batal',
-        });
-
-        // Jika pengguna mengonfirmasi (klik "Ya, Saya Yakin")
-        if (confirmResult.isConfirmed) {
-          // Modal 2: Informasi pembayaran dengan logo Bank BRI
-          await Swal.fire({
-            title: "Payment Information",
-            html: `<p>Silahkan melakukan pembayaran sebesar Rp. ${price} ke rekening berikut ini:</p>
-            <img src="https://buatlogoonline.com/wp-content/uploads/2022/10/Logo-Bank-BRI.png" alt="Bank BRI Logo" style="width: 100px; margin-bottom: 10px;"> <br>
-                   <strong>PERKI Cabang Gorontalo</strong><br>
-                   <p>BRI 002701002879560</p>`,
-            icon: "info",
-            confirmButtonText: 'OK'
-          });
-
-          // Setelah modal pembayaran, munculkan modal input file
-          const { value: file } = await Swal.fire({
-            title: "Upload Payment Proof",
-            input: "file",
-            inputAttributes: {
-              "accept": "image/*",
-              "aria-label": "Upload your payment proof"
+            // Tentukan harga berdasarkan role pengguna
+            let price;
+            switch(userRole) {
+                case 'specialist_doctor':
+                    price = priceSpecialist;
+                    break;
+                case 'doctor':
+                    price = priceDoctor;
+                    break;
+                case 'nurse':
+                    price = priceNurse;
+                    break;
+                case 'student':
+                    price = priceStudent;
+                    break;
+                default:
+                    price = 'Harga tidak tersedia';
             }
-          });
 
-          // Jika ada file yang diunggah
-          if (file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-              Swal.fire({
-                title: "Your Payment Proof",
-                imageUrl: e.target.result,
-                imageAlt: "Uploaded payment proof"
-              });
-            };
-            reader.readAsDataURL(file);
-          }
+            // Modal 1: Konfirmasi untuk event
+            const confirmResult = await Swal.fire({
+                title: `Apakah anda yakin?`,
+                text: `Apakah anda yakin mengambil ${className} seharga Rp. ${price}?`,
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Saya Yakin',
+                cancelButtonText: 'Batal',
+            });
+
+            // Jika pengguna mengonfirmasi (klik "Ya, Saya Yakin")
+            if (confirmResult.isConfirmed) {
+                // Modal 2: Informasi pembayaran dengan logo Bank BRI
+                const paymentInfoResult = await Swal.fire({
+                    title: "Payment Information",
+                    html: `<p>Silahkan melakukan pembayaran sebesar Rp. ${price} ke rekening berikut ini:</p>
+                    <img src="https://buatlogoonline.com/wp-content/uploads/2022/10/Logo-Bank-BRI.png" alt="Bank BRI Logo" style="width: 100px; margin-bottom: 10px;"> <br>
+                        <strong>PERKI Cabang Gorontalo</strong><br>
+                        <p>BRI 002701002879560</p>`,
+                    icon: "info",
+                    confirmButtonText: 'OK'
+                });
+
+                // Setelah modal pembayaran, munculkan modal input file
+                const { value: file } = await Swal.fire({
+                    title: "Upload Payment Proof",
+                    input: "file",
+                    inputAttributes: {
+                        "accept": "image/*",
+                        "aria-label": "Upload your payment proof"
+                    }
+                });
+
+                // Jika ada file yang diunggah
+                if (file) {
+                    const formData = new FormData();
+                    formData.append('file', file);
+
+                    // Kirim file
+                    fetch(`/home-submit-payment/${itemId}`, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}' // Pastikan CSRF token ada
+                        }
+                    })
+                    .then(response => response.json())  // Pastikan responsnya JSON
+                    .then(data => {
+                        if (data.status === 'success') {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: data.message,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then(() => {
+                                window.location.href = data.redirect_url; // Redirect ke halaman order
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: data.message,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'An unexpected error occurred.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    });
+                }
+            }
         }
-      }
     });
 </script>
-
-
 
 </body>
 

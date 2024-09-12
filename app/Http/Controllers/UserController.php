@@ -70,16 +70,66 @@ class UserController extends Controller
 
                 SendPaymentNotification::dispatch($user, $order);
 
-                session()->flash('success', 'Proof of Payment has been Successfully Saved, Please Check your Email Regularly for More Information!');
-                return redirect('/class')->with('status', 'success');
+                return redirect()->route('order')->with('success', 'Proof of Payment has been Successfully Saved, Please Check your Email Regularly for More Information!');
             }
 
-            session()->flash('error', 'Tidak ada file yang diupload.');
-            return redirect()->back()->with('status', 'error')->withInput();
+            return redirect()->route('order')->with('error', 'There is some problem, plese try again!');
 
         } catch (\Exception $e) {
-            session()->flash('error', 'Terjadi kesalahan: ' . $e->getMessage());
-            return redirect()->back()->withInput();
+            return redirect()->route('order')->with('error', 'Failed: ' . $e->getMessage());
+        }
+    }
+
+    public function homeSubmitPayment(Request $request, $id)
+    {
+        // Validasi data request
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|mimes:jpg,jpeg,png|max:2048'
+        ]);
+
+        if ($validator->fails()) {
+            $firstError = $validator->errors()->first();
+            return response()->json([
+                'status' => 'error',
+                'message' => $firstError
+            ], 400); // Status HTTP 400: Bad Request
+        }
+
+        try {
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                $id_user = auth()->id();
+                $user = User::find($id_user);
+                $filename = $user->name . '_' . time() . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('public/payments', $filename);
+
+                // Simpan detail pembayaran ke database
+                $order = Order::create([
+                    'id_class' => $id,
+                    'id_users' => $id_user,
+                    'payment_proof' => $filename,
+                ]);
+
+                SendPaymentNotification::dispatch($user, $order);
+
+                // Kembalikan JSON dengan status sukses dan URL redirect
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Proof of Payment has been Successfully Saved, Please Check your Email Regularly for More Information!',
+                    'redirect_url' => route('order') // URL untuk redirect
+                ], 200); // Status HTTP 200: OK
+            }
+
+            return response()->json([
+                'status' => 'error',
+                'message' => 'There is some problem, please try again!'
+            ], 400); // Status HTTP 400: Bad Request
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed: ' . $e->getMessage()
+            ], 500); // Status HTTP 500: Internal Server Error
         }
     }
 
@@ -88,8 +138,8 @@ class UserController extends Controller
         $getUser = $this->getGuard->getCurrentUser();
         $getIdUser = $getUser->id;
 
-        $getOrderUser = Order::where('id_users', $getIdUser)->get();
-        $getTicketUser = Ticket::where('id_users', $getIdUser)->get();
+        $getOrderUser = Order::where('id_users', $getIdUser)->orderBy('updated_at', 'desc')->get();
+        $getTicketUser = Ticket::where('id_users', $getIdUser)->orderBy('updated_at', 'desc')->get();
         return view('users.order-ticket', compact('getOrderUser','getTicketUser','getUser'));
     }
 

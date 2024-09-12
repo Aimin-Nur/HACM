@@ -14,11 +14,10 @@
             <h4 class="page-title mb-0 font-size-18">Order Ticket</h4>
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
-                    <li class="breadcrumb-item active">FAQS</li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Payment</a></li>
+                    <li class="breadcrumb-item active">Order Ticket</li>
                </ol>
             </div>
-
         </div>
     </div>
 </div>
@@ -168,8 +167,8 @@
                                                             <i class=" bx bxs-coupon"></i>
                                                         </div>
                                                         <div class="col-lg-12">
-                                                          Your ticket has been generate at : {{ \Carbon\Carbon::parse($item->updated_at)->format('M d, Y') }}
-
+                                                          <span>Your ticket has been generate : {{ \Carbon\Carbon::parse($item->updated_at)->format('M d, Y') }}
+                                                        </span>
                                                         </div>
                                                     </div></button>
                                             @endif

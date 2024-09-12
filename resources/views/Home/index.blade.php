@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>TheEvent - Bootstrap Event Template</title>
+  <title>HACM - Annual Meeting</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -27,12 +27,9 @@
   <!-- Main Stylesheet File -->
   <link href="{{ URL::asset('home/css/style.css')}}" rel="stylesheet">
 
-  <!-- =======================================================
-    Theme Name: TheEvent
-    Theme URL: https://bootstrapmade.com/theevent-conference-event-bootstrap-template/
-    Author: BootstrapMade.com
-    License: https://bootstrapmade.com/license/
-  ======================================================= -->
+  {{-- Sweet Alert --}}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
@@ -57,9 +54,14 @@
           <li><a href="#schedule">Schedule</a></li>
           <li><a href="#venue">Venue</a></li>
           <li><a href="#gallery">Announcement</a></li>
-          <li><a href="#sponsors">Sponsors</a></li>
           <li><a href="#contact">Contact</a></li>
+          @if (is_null($getUser))
+            <li class="buy-tickets"><a href="#" id="myButton">Buy Tickets</a></li>
+          @else
+          <li><a href="{{route('order')}}">My Order</a></li>
           <li class="buy-tickets"><a href="#buy-tickets">Buy Tickets</a></li>
+          @endif
+
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>
@@ -558,137 +560,144 @@
         </div>
 
         <div class="row">
-          <div class="col-lg-12 mb-5">
-            <div class="card mb-5 mb-lg-0">
-              <h3 class="text-dark text-uppercase text-center mt-4"><b>Event Simposium</b></h3>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-lg-6 mt-3">
-                    <h5 class="card-title text-muted text-uppercase text-center">Specialist Doctor</h5>
-                    <h6 class="card-price text-center">$150</h6>
-                  </div>
-                  <div class="col-lg-6 mt-3">
-                    <h5 class="card-title text-muted text-uppercase text-center">Doctor</h5>
-                    <h6 class="card-price text-center">$150</h6>
-                  </div>
-                  <div class="col-lg-6 mt-3">
-                    <h5 class="card-title text-muted text-uppercase text-center">Nurse</h5>
-                    <h6 class="card-price text-center">$150</h6>
-                  </div>
-                  <div class="col-lg-6 mt-3">
-                    <h5 class="card-title text-muted text-uppercase text-center">Student</h5>
-                    <h6 class="card-price text-center">$150</h6>
-                  </div>
-                </div>
-                <hr>
-                <div class="col-sm-6 col-lg-12">
-                  <div class="card text-center">
-                      <div class="card-body">
-                          <h3 class="card-title">Session 1 : Congenital Heart Disease from screening to life saving</h3>
-                          <div class="row mt-5">
-                              <div class="col-lg-6">
-                                  <p class="card-text text-dark"><b>Understanding Early Diagnosis of CHD: Clinical in Your Daily Practice</b></p>
-                                  <p class="card-text"><small class="text-muted"><b>dr. Julius Patimang, Sp.A., Sp.JP(K) FIHA</b></small>
-                                  </p>
-                              </div>
-                              <div class="col-lg-6">
-                                  <p class="card-text text-dark"><b>Contemporary Nonsurgical Intervention for Treating CHD in Indonesia</b></p>
-                                  <p class="card-text"><small class="text-muted"><b>dr. Andi Alief Utama Armyn, M.Kes., Sp.JP(K) FIHA</b></small>
-                                  </p>
-                              </div>
-                          </div>
+            @foreach ($getClass as $item)
+            <div class="col-lg-12 mb-5">
+                <div class="card mb-5 mb-lg-0">
+                  <h3 class="text-dark text-uppercase text-center mt-4"><b>Event {{$item->class_name}}</b></h3>
+                  <div class="card-body">
+                    @if ($item->class_name == 'Simposium')
+                    <div class="row">
+                        <div class="col-lg-6 mt-3">
+                          <h5 class="card-title text-muted text-uppercase text-center">Specialist Doctor</h5>
+                          <h6 class="card-price text-center">Rp. {{$item->formatted_price_doctor_specialist}}</h6>
+                        </div>
+                        <div class="col-lg-6 mt-3">
+                          <h5 class="card-title text-muted text-uppercase text-center">Doctor</h5>
+                          <h6 class="card-price text-center">Rp. {{$item->formatted_price_doctor}}</h6>
+                        </div>
+                        <div class="col-lg-6 mt-3">
+                          <h5 class="card-title text-muted text-uppercase text-center">Nurse</h5>
+                          <h6 class="card-price text-center">Rp. {{$item->formatted_price_nurses}}</h6>
+                        </div>
+                        <div class="col-lg-6 mt-3">
+                          <h5 class="card-title text-muted text-uppercase text-center">Student</h5>
+                          <h6 class="card-price text-center">Rp. {{$item->formatted_price_student}}</h6>
+                        </div>
                       </div>
-                  </div>
-              </div>
-              <div class="col-sm-6 col-lg-12">
-                  <div class="card text-center">
-                      <div class="card-body">
-                          <h5 class="card-title">Session 2 : Unsolving the Puzzle of Cardiometabolic Syndrome</h5>
-                          <div class="row mt-5">
-                              <div class="col-lg-6">
-                                  <p class="card-text text-dark"><b>Dyslipidemia Management: Is Every Statin Same?</b></p>
-                                  <p class="card-text"><small class="text-muted"><b>dr. Diera Gabriela Darda, Sp.JP FIHA</b></small>
-                                  </p>
-                              </div>
-                              <div class="col-lg-6">
-                                  <p class="card-text text-dark"><b>The Role and Practical Insights of SGLT-2 inhibitor in Heart Failure Patients: Why is it important?</b></p>
-                                  <p class="card-text"><small class="text-muted"><b>dr. Doddy Moniaga, Sp.JP FIHA</b></small>
-                                  </p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-sm-6 col-lg-12">
-                  <div class="card text-center">
-                      <div class="card-body">
-                          <h5 class="card-title">Session 3 : Treating Hypertension Effectively: Guidelines Advice</h5>
-                          <div class="row mt-5">
-                              <div class="col-lg-6">
-                                  <p class="card-text text-dark"><b>The Practical Use of Single Pill Combination Therapy for Hypertension: The Right Pill for the Right Patient.</b></p>
-                                  <p class="card-text"><small class="text-muted"><b>dr. Pendrik Tendean, Sp.PD KKV</b></small>
-                                  </p>
-                              </div>
-                              <div class="col-lg-6">
-                                  <p class="card-text text-dark"><b>Managing Hypertensive Crisis: Best Practice Recommendation for General Physician</b></p>
-                                  <p class="card-text"><small class="text-muted"><b>dr. Muchtar Nora Ismail Siregar, Sp.JP FIHA</b></small>
-                                  </p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-                <hr>
-                <div class="text-center">
-                  <button type="button" class="btn" data-toggle="modal" data-target="#buy-ticket-modal" data-ticket-type="standard-access">Buy Now</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-12 mt-5">
-            <div class="card mb-5 mb-lg-0">
-              <h3 class="text-dark text-uppercase text-center mt-4"><b>Event Saronde</b></h3>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-lg-4 mt-3">
-                    <h5 class="card-title text-muted text-uppercase text-center">Specialist Doctor</h5>
-                    <h6 class="card-price text-center">$150</h6>
-                  </div>
-                  <div class="col-lg-4 mt-3">
-                    <h5 class="card-title text-muted text-uppercase text-center">Doctor</h5>
-                    <h6 class="card-price text-center">$150</h6>
-                  </div>
-                  <div class="col-lg-4 mt-3">
-                    <h5 class="card-title text-muted text-uppercase text-center">Nurse</h5>
-                    <h6 class="card-price text-center">$150</h6>
-                  </div>
-                </div>
-                <hr>
-                <div class="col-sm-6 col-lg-12">
-                  <div class="card text-center">
-                      <div class="card-body">
-                          <h3 class="card-title">Saronde Event Including 1 Workshop Plus Symposium Event</h3>
-                          <div class="row mt-3">
-                              <div class="col-lg-4 mt-3">
-                                  <p class="card-text text-dark"><b>Acute Coronary Syndrome in Clinical Practice</b></p>
-                              </div>
-                              <div class="col-lg-4 mt-3">
-                                  <p class="card-text text-dark"><b>Heart Failure: From Admission to Discharge</b></p>
-                              </div>
-                              <div class="col-lg-4 mt-3">
-                                <p class="card-text text-dark"><b>Management of Code Blue</b></p>
+                      <hr>
+                    <div class="col-sm-6 col-lg-12">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h3 class="card-title">Session 1 : Congenital Heart Disease from screening to life saving</h3>
+                                <div class="row mt-5">
+                                    <div class="col-lg-6">
+                                        <p class="card-text text-dark"><b>Understanding Early Diagnosis of CHD: Clinical in Your Daily Practice</b></p>
+                                        <p class="card-text"><small class="text-muted"><b>dr. Julius Patimang, Sp.A., Sp.JP(K) FIHA</b></small>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <p class="card-text text-dark"><b>Contemporary Nonsurgical Intervention for Treating CHD in Indonesia</b></p>
+                                        <p class="card-text"><small class="text-muted"><b>dr. Andi Alief Utama Armyn, M.Kes., Sp.JP(K) FIHA</b></small>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-12">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">Session 2 : Unsolving the Puzzle of Cardiometabolic Syndrome</h5>
+                                <div class="row mt-5">
+                                    <div class="col-lg-6">
+                                        <p class="card-text text-dark"><b>Dyslipidemia Management: Is Every Statin Same?</b></p>
+                                        <p class="card-text"><small class="text-muted"><b>dr. Diera Gabriela Darda, Sp.JP FIHA</b></small>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <p class="card-text text-dark"><b>The Role and Practical Insights of SGLT-2 inhibitor in Heart Failure Patients: Why is it important?</b></p>
+                                        <p class="card-text"><small class="text-muted"><b>dr. Doddy Moniaga, Sp.JP FIHA</b></small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-12">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">Session 3 : Treating Hypertension Effectively: Guidelines Advice</h5>
+                                <div class="row mt-5">
+                                    <div class="col-lg-6">
+                                        <p class="card-text text-dark"><b>The Practical Use of Single Pill Combination Therapy for Hypertension: The Right Pill for the Right Patient.</b></p>
+                                        <p class="card-text"><small class="text-muted"><b>dr. Pendrik Tendean, Sp.PD KKV</b></small>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <p class="card-text text-dark"><b>Managing Hypertensive Crisis: Best Practice Recommendation for General Physician</b></p>
+                                        <p class="card-text"><small class="text-muted"><b>dr. Muchtar Nora Ismail Siregar, Sp.JP FIHA</b></small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @else
+                    <div class="row">
+                        <div class="col-lg-4 mt-3">
+                          <h5 class="card-title text-muted text-uppercase text-center">Specialist Doctor</h5>
+                          <h6 class="card-price text-center">{{$item->price_formatted_doctor_specialist}}</h6>
+                        </div>
+                        <div class="col-lg-4 mt-3">
+                          <h5 class="card-title text-muted text-uppercase text-center">Doctor</h5>
+                          <h6 class="card-price text-center">{{$item->price_formatted_doctor}}</h6>
+                        </div>
+                        <div class="col-lg-4 mt-3">
+                          <h5 class="card-title text-muted text-uppercase text-center">Nurse</h5>
+                          <h6 class="card-price text-center">{{$item->price_nurse}}</h6>
+                        </div>
                       </div>
+                      <hr>
+                    <div class="col-sm-6 col-lg-12">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h3 class="card-title">Saronde Event Including 1 Workshop Plus Symposium Event</h3>
+                                <div class="row mt-3">
+                                    <div class="col-lg-4 mt-3">
+                                        <p class="card-text text-dark"><b>Acute Coronary Syndrome in Clinical Practice</b></p>
+                                    </div>
+                                    <div class="col-lg-4 mt-3">
+                                        <p class="card-text text-dark"><b>Heart Failure: From Admission to Discharge</b></p>
+                                    </div>
+                                    <div class="col-lg-4 mt-3">
+                                      <p class="card-text text-dark"><b>Management of Code Blue</b></p>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    <hr>
+                    <div class="text-center">
+                        @if (is_null($getUser))
+                           <a class="btn" id="login">Buy Tickets</a>
+                        @else
+                        <a class="btn buy-ticket"
+                            id="validation{{$item->id}}"
+                            data-class-name="{{$item->class_name}}"
+                            data-price-specialist="{{$item->formatted_price_doctor_specialist}}"
+                            data-price-doctor="{{$item->formatted_price_doctor}}"
+                            data-price-nurse="{{$item->formatted_price_nurse}}"
+                            data-price-student="{{$item->formatted_price_student}}">
+                            Buy Tickets
+                        </a>
+                        @endif
+
+                    </div>
                   </div>
-              </div>
-                <hr>
-                <div class="text-center">
-                  <button type="button" class="btn" data-toggle="modal" data-target="#buy-ticket-modal" data-ticket-type="standard-access">Buy Now</button>
                 </div>
               </div>
-            </div>
-          </div>
+            @endforeach
         </div>
 
       </div>
@@ -824,7 +833,7 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong>TheEvent</strong>. All Rights Reserved
+        &copy; Copyright <strong>HACM Gorontalo</strong>. All Rights Reserved
       </div>
       <div class="credits">
         Designed by <a href="https://aiminnur.vercel.app/home">Aiminnur</a>
@@ -850,6 +859,127 @@
 
   <!-- Template Main Javascript File -->
   <script src="{{ URL::asset('home/js/main.js')}}"></script>
+
+<script>
+    // Event listener untuk tombol 'myButton'
+    document.getElementById('myButton').addEventListener('click', function() {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You must login to purchase tickets",
+        footer: '<a href="/register">I do not have an account yet. register now</a>',
+        showCancelButton: true,
+        confirmButtonText: 'Login Now',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = '/login';
+        }
+      });
+    });
+
+    document.getElementById('login').addEventListener('click', function() {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You must login to purchase tickets",
+        footer: '<a href="/register">I do not have an account yet. register now</a>',
+        showCancelButton: true,
+        confirmButtonText: 'Login Now',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = '/login';
+        }
+      });
+    });
+</script>
+
+
+<script>
+    document.addEventListener('click', async function(e) {
+      if (e.target && e.target.classList.contains('buy-ticket')) {
+        const itemId = e.target.id.replace('validation', '');
+        const className = e.target.dataset.className;
+        const priceSpecialist = e.target.dataset.priceSpecialist;
+        const priceDoctor = e.target.dataset.priceDoctor;
+        const priceNurse = e.target.dataset.priceNurse;
+        const priceStudent = e.target.dataset.priceStudent;
+
+        // Dapatkan role pengguna (ini harus sesuai dengan cara Anda menyimpan role pengguna)
+        const userRole = 'specialist_doctor'; // Ganti ini dengan variabel yang sesuai
+
+        // Tentukan harga berdasarkan role pengguna
+        let price;
+        switch(userRole) {
+          case 'specialist_doctor':
+            price = priceSpecialist;
+            break;
+          case 'doctor':
+            price = priceDoctor;
+            break;
+          case 'nurse':
+            price = priceNurse;
+            break;
+          case 'student':
+            price = priceStudent;
+            break;
+          default:
+            price = 'Harga tidak tersedia';
+        }
+
+        // Modal 1: Konfirmasi untuk event
+        const confirmResult = await Swal.fire({
+          title: `Apakah anda yakin?`,
+          text: `Apakah anda yakin mengambil ${className} seharga Rp. ${price}?`,
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: 'Ya, Saya Yakin',
+          cancelButtonText: 'Batal',
+        });
+
+        // Jika pengguna mengonfirmasi (klik "Ya, Saya Yakin")
+        if (confirmResult.isConfirmed) {
+          // Modal 2: Informasi pembayaran dengan logo Bank BRI
+          await Swal.fire({
+            title: "Payment Information",
+            html: `<p>Silahkan melakukan pembayaran sebesar Rp. ${price} ke rekening berikut ini:</p>
+            <img src="https://buatlogoonline.com/wp-content/uploads/2022/10/Logo-Bank-BRI.png" alt="Bank BRI Logo" style="width: 100px; margin-bottom: 10px;"> <br>
+                   <strong>PERKI Cabang Gorontalo</strong><br>
+                   <p>BRI 002701002879560</p>`,
+            icon: "info",
+            confirmButtonText: 'OK'
+          });
+
+          // Setelah modal pembayaran, munculkan modal input file
+          const { value: file } = await Swal.fire({
+            title: "Upload Payment Proof",
+            input: "file",
+            inputAttributes: {
+              "accept": "image/*",
+              "aria-label": "Upload your payment proof"
+            }
+          });
+
+          // Jika ada file yang diunggah
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              Swal.fire({
+                title: "Your Payment Proof",
+                imageUrl: e.target.result,
+                imageAlt: "Uploaded payment proof"
+              });
+            };
+            reader.readAsDataURL(file);
+          }
+        }
+      }
+    });
+</script>
+
+
+
 </body>
 
 </html>

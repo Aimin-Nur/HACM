@@ -19,6 +19,7 @@ use App\Services\ChartProvinceService;
 use App\Services\LogUserService;
 use App\Services\GetUser;
 use App\Jobs\SuccessPaymentNotification;
+use App\Jobs\RejectedPaymentNotification;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
@@ -436,15 +437,18 @@ class AdminController extends Controller
             $getOrder = Order::findOrFail($id);
             $getOrder->status = $request->input('status');
 
+            // Get User
+            $userId = $getOrder->id_users; // ID pengguna
+            $user = User::findOrFail($userId); // Ambil instance dari User berdasarkan ID
+
             $getOrder->save();
 
-            session()->flash('success', 'Payment has Been Rejected');
-            return redirect()->session('status', 'success');
+            RejectedPaymentNotification::dispatch($user, $getOrder);
+
+            return redirect()->back()->with('success', 'Payment has been Rejected');
+
         } catch (\Exception $e) {
-            session()->flash('error', 'Failed: ' . $e->getMessage());
-            return redirect()->back()
-            ->with('status', 'error')
-            ->with('message', 'Failed : Failure to reject payment, Try more again!');
+            return redirect()->back()->with('error', 'An error occurred while validating the data.');
         }
     }
 

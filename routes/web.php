@@ -26,7 +26,7 @@ Route::fallback(function () {
 });
 
 Route::get('/cc', function () {
-    return view('admin.createClass');
+    return view('mails.rejected-payment');
 });
 
 Route::post('/get-cities', [RegisteredUserController::class, 'getCities'])->name('get.cities');

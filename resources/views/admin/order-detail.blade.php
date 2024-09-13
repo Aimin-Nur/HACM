@@ -71,13 +71,13 @@
                                 <div class="d-print-none">
                                     <div class="float-end">
                                         @if ($getOrderId->status == 1)
-                                        <p class="me-3" style="display: inline"><strong><i>You have validated this order on the date {{$getOrderId->updated_at}}</i></strong></p>
+                                        <p class="me-3" style="display: inline"><strong><i>You have validated this order on the date {{ \Carbon\Carbon::parse($getOrderId->updated_at)->format('M d, Y') }}</i></strong></p>
                                         <button type="button" class="btn btn-outline-primary" disabled>Already Validated</button>
                                         @elseif ($getOrderId->status == NULL)
                                         <a data-bs-toggle="modal" data-bs-target="#rejectedModalScrollable{{$getOrderId->id}}" class="btn btn-danger w-md waves-effect waves-light">Rejected Payment</a>
                                         <a data-bs-toggle="modal" data-bs-target="#exampleModalScrollable{{$getOrderId->id}}" class="btn btn-primary w-md waves-effect waves-light">Accepted Payment</a>
                                         @else
-                                        <p class="me-3" style="display: inline"><strong><i>You have rejected this order on the date {{$getOrderId->updated_at}}</i></strong></p>
+                                        <p class="me-3" style="display: inline"><strong><i>You have rejected this order on the date{{ \Carbon\Carbon::parse($getOrderId->updated_at)->format('M d, Y') }}</i></strong></p>
                                         <button type="button" class="btn btn-outline-danger w-md waves-effect waves-light" disabled>Already Rejected</button>
                                         <a data-bs-toggle="modal" data-bs-target="#exampleModalScrollable{{$getOrderId->id}}" class="btn btn-primary w-md waves-effect waves-light">Accepted Payment</a>
                                         @endif
@@ -105,9 +105,6 @@
                                 <h4 class="text-center">
                                     Are you sure to validate this payment?
                                 </h4>
-                                <div class="justify-center items-center">
-                                    <img class="img-fluid" src="{{ URL::asset('build/images/validation.jpg') }}" alt="logo" style="width: 50px;"/>
-                                </div>
                                 <p class="text-center">This action will allow users to generate tickets and the user's payment will be declared successful.</p>
                                 <div class="modal-footer align-items-center">
                                     <button type="button" class="btn btn-danger waves-effect waves-light">

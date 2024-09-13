@@ -11,7 +11,7 @@ class OrderTableService
 {
     public function getOrders()
     {
-        return Order::with('user', 'kelas')->get();
+        return Order::with('user', 'kelas')->orderBy('updated_at', 'desc')->get();
     }
 
     public function generateDataTable($usersQuery)

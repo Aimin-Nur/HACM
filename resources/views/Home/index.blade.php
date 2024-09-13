@@ -30,6 +30,19 @@
 
   {{-- Sweet Alert --}}
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    .countdown {
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 50px;
+    }
+    .message {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 1.5rem;
+    }
+</style>
 
 </head>
 
@@ -74,7 +87,7 @@
   <section id="intro">
     <div class="intro-container wow fadeIn">
       <h1 class="mb-4 pb-0">Hulundalo<span> Annual</span> <br> Cardiovascular Meeting</h1>
-      <p class="mb-4 pb-0">02-03 November, Aston Hotel Gorontalo, Souht Sulawesi</p>
+      <p class="mb-4 pb-0">02-03 November, Aston Hotel Gorontalo, Gorontalo</p>
       <a href="https://www.youtube.com/watch?v=6h48NynSgOw" class="venobox play-btn mb-4" data-vbtype="video"
         data-autoplay="true"></a>
       <a href="#about" class="about-btn scrollto">About The Event</a>
@@ -340,7 +353,7 @@
           <div class="col-lg-6 venue-info">
             <div class="row justify-content-center">
               <div class="col-11 col-lg-8">
-                <h3>Downtown Conference Center, New York</h3>
+                <h3>Aston Hotel Venue, Gorontalo</h3>
                 <p>Iste nobis eum sapiente sunt enim dolores labore accusantium autem. Cumque beatae ipsam. Est quae sit qui voluptatem corporis velit. Qui maxime accusamus possimus. Consequatur sequi et ea suscipit enim nesciunt quia velit.</p>
               </div>
             </div>
@@ -409,7 +422,7 @@
     <!--==========================
       Sponsors Section
     ============================-->
-    <section id="sponsors" class="section-with-bg wow fadeInUp">
+    {{-- <section id="sponsors" class="section-with-bg wow fadeInUp">
 
       <div class="container">
         <div class="section-header">
@@ -470,12 +483,12 @@
 
       </div>
 
-    </section>
+    </section> --}}
 
     <!--==========================
       F.A.Q Section
     ============================-->
-    <section id="faq" class="wow fadeInUp">
+    {{-- <section id="faq" class="wow fadeInUp">
 
       <div class="container">
 
@@ -547,7 +560,7 @@
 
       </div>
 
-    </section>
+    </section> --}}
 
     <!--==========================
       Buy Ticket Section
@@ -643,19 +656,19 @@
                             </div>
                         </div>
                     </div>
-                    @else
+                    @elseif($item->class_name == 'Saronde')
                     <div class="row">
                         <div class="col-lg-4 mt-3">
                           <h5 class="card-title text-muted text-uppercase text-center">Specialist Doctor</h5>
-                          <h6 class="card-price text-center">{{$item->price_formatted_doctor_specialist}}</h6>
+                          <h6 class="card-price text-center">Rp. {{$item->formatted_price_doctor_specialist}}</h6>
                         </div>
                         <div class="col-lg-4 mt-3">
                           <h5 class="card-title text-muted text-uppercase text-center">Doctor</h5>
-                          <h6 class="card-price text-center">{{$item->price_formatted_doctor}}</h6>
+                          <h6 class="card-price text-center">Rp. {{$item->formatted_price_doctor}}</h6>
                         </div>
                         <div class="col-lg-4 mt-3">
                           <h5 class="card-title text-muted text-uppercase text-center">Nurse</h5>
-                          <h6 class="card-price text-center">{{$item->price_nurse}}</h6>
+                          <h6 class="card-price text-center">Rp. {{$item->formatted_price_nurses}}</h6>
                         </div>
                       </div>
                       <hr>
@@ -702,7 +715,14 @@
         </div>
 
       </div>
-
+      <div class="container">
+        <div class="countdown text-primary" id="countdown">
+            <!-- Timer akan muncul di sini -->
+        </div>
+        <div class="message">
+            Ticket prices will increase on November 03, 2024.</span>
+        </div>
+    </div>
       <!-- Modal Order Form -->
       <div id="buy-ticket-modal" class="modal fade">
         <div class="modal-dialog" role="document">
@@ -860,6 +880,36 @@
 
   <!-- Template Main Javascript File -->
   <script src="{{ URL::asset('home/js/main.js')}}"></script>
+
+  <script>
+    // Tanggal target
+    const targetDate = new Date("November 2, 2024 00:00:00").getTime();
+
+    // Update countdown setiap detik
+    const countdownFunction = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        // Hitung waktu yang tersisa
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Tampilkan hasil di elemen dengan id "countdown"
+        document.getElementById("countdown").innerHTML = `${days} Days : ${hours} Hours : ${minutes} Minutes : ${seconds} Second`;
+
+        // Tampilkan waktu yang tersisa untuk pesan
+        document.getElementById("time-remaining").innerHTML = `${days} Hari ${hours} Jam ${minutes} Menit ${seconds} Detik`;
+
+        // Jika waktu habis, tampilkan pesan
+        if (distance < 0) {
+            clearInterval(countdownFunction);
+            document.getElementById("countdown").innerHTML = "Time is out!";
+            document.getElementById("time-remaining").innerHTML = "Ticket Prices Have Already Increased";
+        }
+    }, 1000);
+</script>
 
 <script>
     // Event listener untuk tombol 'myButton'

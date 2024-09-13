@@ -44,7 +44,7 @@ class TicketTableService
                     return '<span class="badge badge-soft-warning">Null</span>';
             })
             ->addColumn('update', function ($order) {
-                return $order->updated_at;
+                return \Carbon\Carbon::parse($order->updated_at)->format('M d, Y');
             })
             ->addColumn('action', function ($order) {
                 $buttons = '<div class="dropstart">

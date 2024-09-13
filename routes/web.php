@@ -22,7 +22,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/tes', function () {
-    return view('ticket.ticket');
+    return view('mails.success-payment');
 });
 Route::get('/cc', function () {
     return view('admin.createClass');

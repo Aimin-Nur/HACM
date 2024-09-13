@@ -107,7 +107,7 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="https://cloudfilesdm.com/postcards/image-1725892397067.png" alt="">
+                                <small style="font-size: 30px">Hulundalo Annual Cardiovascular Meeting</small>
                             </td>
                         </tr>
                     </table>

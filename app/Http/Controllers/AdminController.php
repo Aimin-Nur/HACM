@@ -18,6 +18,7 @@ use App\Services\ChartRegencyService;
 use App\Services\ChartProvinceService;
 use App\Services\LogUserService;
 use App\Services\GetUser;
+use App\Jobs\SuccessPaymentNotification;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
@@ -371,11 +372,16 @@ class AdminController extends Controller
                 'status' => 'boolean',
             ]);
 
+
             // Konversi status input ke boolean
             $status = filter_var($request->input('status'), FILTER_VALIDATE_BOOLEAN);
 
             $getOrder = Order::findOrFail($id);
             $getOrder->status = $status; // Simpan status baru
+
+           // Get User
+            $userId = $getOrder->id_users; // ID pengguna
+            $user = User::findOrFail($userId); // Ambil instance dari User berdasarkan ID
 
             $class = Kelas::findOrFail($getOrder->id_class);
             $classInitial = strtoupper(substr($class->class_name, 0, 1));
@@ -411,6 +417,8 @@ class AdminController extends Controller
                 'active' => 0,
                 'ticket_code' => $ticketCode,
             ]);
+
+            SuccessPaymentNotification::dispatch($user, $getOrder);
 
             return redirect()->route('order-list')->with('success', 'Data has been successfully validated.');
         } catch (\Exception $e) {

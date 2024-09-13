@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="home-btn d-none d-sm-block">
-        <a href="/index" class="text-reset"><i class="fas fa-home h2"></i></a>
+        <a href="/" class="text-reset"><i class="fas fa-home h2"></i></a>
     </div>
     <div class="account-pages my-5 pt-sm-5">
         <div class="container">
@@ -16,7 +16,7 @@
                             <div class="position-relative">
                                 <h5 class="text-white font-size-20">Free Register</h5>
                                 <p class="text-white-50 mb-0">Get your free Qovex account now</p>
-                                <a href="/index" class="logo logo-admin mt-4">
+                                <a href="/" class="logo logo-admin mt-4">
                                     <img src="{{ URL::asset('build/images/logo-sm-dark.png') }}" alt="" style="width: 55px">
                                 </a>
                             </div>
@@ -160,7 +160,7 @@
                         <p>Already have an account ? <a href="{{ route('login') }}" class="fw-medium text-primary">
                                 Login</a> </p>
                         <p>©
-                            {{ date('Y') }} Qovex. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand
+                            {{ date('Y') }} HACM Gorontalo. Develop by <a href="https://aiminnur.vercel.app/home" target="_blank">Aiminnur</a>
                         </p>
                     </div>
 

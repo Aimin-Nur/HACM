@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="home-btn d-none d-sm-block">
-        <a href="/index" class="text-reset"><i class="fas fa-home h2"></i></a>
+        <a href="/" class="text-reset"><i class="fas fa-home h2"></i></a>
     </div>
     <div class="account-pages my-5 pt-sm-5">
         <div class="container">
@@ -16,7 +16,7 @@
                             <div class="position-relative">
                                 <h5 class="text-white font-size-20">Welcome Back !</h5>
                                 <p class="text-white-50 mb-0">Sign in to continue to HACM.</p>
-                                <a href="/index" class="logo logo-admin mt-4">
+                                <a href="/" class="logo logo-admin mt-4">
                                     <img src="{{ URL::asset('build/images/logo-sm-dark.png') }}" alt=""
                                         height="30">
                                 </a>
@@ -86,8 +86,7 @@
                         <p>Don't have an account ? <a href="{{ route('register') }}" class="fw-medium text-primary"> Signup
                                 now </a> </p>
                         <p>©
-                            {{ date('Y') }} Qovex. Crafted with <i class="mdi mdi-heart text-danger"></i> by
-                            Themesbrand
+                            {{ date('Y') }} HACM Gorontalo. Develop by <a href="https://aiminnur.vercel.app/home" target="_blank">Aiminnur</a>
                         </p>
                     </div>
 

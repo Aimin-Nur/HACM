@@ -21,9 +21,10 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/tes', function () {
-    return view('mails.success-payment');
+Route::fallback(function () {
+    return response()->view('errors.404', [], 404);
 });
+
 Route::get('/cc', function () {
     return view('admin.createClass');
 });

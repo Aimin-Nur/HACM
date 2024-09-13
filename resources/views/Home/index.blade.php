@@ -47,7 +47,6 @@
 </head>
 
 <body>
-
   <!--==========================
     Header
   ============================-->
@@ -695,7 +694,7 @@
                     <div class="text-center">
                         @if (is_null($getUser))
                            <a class="btn" id="login">Buy Tickets</a>
-                        @else
+                        @elseif($getUser->roles != 'Student' || $item->class_name != 'Saronde')
                         <a class="btn buy-ticket"
                             id="validation{{$item->id}}"
                             data-class-name="{{$item->class_name}}"
@@ -704,6 +703,11 @@
                             data-price-nurse="{{$item->formatted_price_nurse}}"
                             data-price-student="{{$item->formatted_price_student}}">
                             Buy Tickets
+                        </a>
+                        @else
+                        <a class="btn" id="student"
+                            >
+                         oo
                         </a>
                         @endif
 
@@ -957,21 +961,21 @@
             const priceStudent = e.target.dataset.priceStudent;
 
             // Dapatkan role pengguna (ini harus sesuai dengan cara Anda menyimpan role pengguna)
-            const userRole = 'specialist_doctor'; // Ganti ini dengan variabel yang sesuai
+            const userRole = '{{ auth()->user()->roles ?? '' }}'; // Ganti ini dengan variabel yang sesuai
 
             // Tentukan harga berdasarkan role pengguna
             let price;
             switch(userRole) {
-                case 'specialist_doctor':
+                case 'Specialist Doctor':
                     price = priceSpecialist;
                     break;
-                case 'doctor':
+                case 'Doctor':
                     price = priceDoctor;
                     break;
-                case 'nurse':
+                case 'Nurse':
                     price = priceNurse;
                     break;
-                case 'student':
+                case 'Student':
                     price = priceStudent;
                     break;
                 default:
@@ -1056,6 +1060,17 @@
                 }
             }
         }
+    });
+</script>
+
+<script>
+    document.getElementById('student').addEventListener('click', function() {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Students are not assigned an order in the Saronde Event.",
+            footer: '<a href="#">Call Admin For More Informastion</a>'
+        });
     });
 </script>
 

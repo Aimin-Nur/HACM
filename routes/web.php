@@ -35,6 +35,7 @@ Route::post('/get-districts', [RegisteredUserController::class, 'getDistricts'])
 Route::middleware(['auth:admin', 'verified'])->group(function () {
     Route::get('/dashboard/admins', [AdminController::class, 'index'])->name('dashboard-admin');
     Route::get('/dashboard/admin/users', [AdminController::class, 'users'])->name('dashboard-admin-users');
+    Route::get('/detail/users/{name}', [AdminController::class, 'detailUsers'])->name('detail-users');
     Route::get('/order-list/admin', [AdminController::class, 'orderList'])->name('order-list-admin');
     Route::post('/logout/admin', [AuthenticatedSessionController::class, 'logoutAdmin'])->name('logout-admin');
 });

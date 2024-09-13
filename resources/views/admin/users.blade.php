@@ -62,20 +62,34 @@
 @push('script')
     <script>
         $(document).ready(function () {
-        $('#datatable').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{{ route('dashboard-users') }}',
-            columns: [
-                { data: 'name', name: 'name', searchable:true, orderable:true },
-                { data: 'email', name: 'email' },
-                { data: 'phone_number', name: 'phone_number' },
-                { data: 'provinsi', name: 'provinsi' },
-                { data: 'kota', name: 'kota' }
-            ]
-        });
-    });
-
+            @if(Auth::guard('superadmin')->check())
+                $('#datatable').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: '{{ route('dashboard-users') }}',
+                    columns: [
+                        { data: 'name', name: 'name', searchable:true, orderable:true },
+                        { data: 'email', name: 'email' },
+                        { data: 'phone_number', name: 'phone_number' },
+                        { data: 'provinsi', name: 'provinsi' },
+                        { data: 'kota', name: 'kota' }
+                    ]
+                });
+            @elseif(Auth::guard('admin')->check())
+                $('#datatable').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: '{{ route('dashboard-admin-users') }}',
+                    columns: [
+                        { data: 'name', name: 'name', searchable:true, orderable:true },
+                        { data: 'email', name: 'email' },
+                        { data: 'phone_number', name: 'phone_number' },
+                        { data: 'provinsi', name: 'provinsi' },
+                        { data: 'kota', name: 'kota' }
+                    ]
+                });
+            @endif
+            });
     </script>
         <!-- Required datatable js -->
     <script src="{{ URL::asset('build/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>

@@ -150,27 +150,19 @@
 
                                             <div class="col-lg-3">
                                             @if ($item->generate_ticket == 0)
-                                                <button data-ticket-id="{{ $item->id }}" class="generate-ticket btn btn-primary waves-effect waves-light mt-2">
-                                                    <div class="row text-center col-lg-12">
-                                                        <div class="col-md-12 text-center ms-2">
-                                                            <i class=" bx bxs-coupon"></i>
-                                                        </div>
-                                                        <div class="col-md-12 ms-2">
-                                                            Generate Your Ticket
-                                                        </div>
+                                                <button data-ticket-id="{{ $item->id }}" class="generate-ticket btn btn-primary waves-effect waves-light mt-3 w-100">
+                                                    <div class="d-flex flex-column align-items-center text-center">
+                                                        <i class="bx bxs-coupon mb-2"></i>
+                                                        <span>Click Here To Generate Ticket</span>
                                                     </div>
                                                 </button>
                                                 @else
-                                                <button type="button" class="btn btn-outline-primary" disabled>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <i class=" bx bxs-coupon"></i>
-                                                        </div>
-                                                        <div class="col-lg-12">
-                                                          <span>Your ticket has been generate : {{ \Carbon\Carbon::parse($item->updated_at)->format('M d, Y') }}
-                                                        </span>
-                                                        </div>
-                                                    </div></button>
+                                                <button type="button" class="btn btn-outline-primary mt-3 w-100 text-center" disabled>
+                                                    <div class="d-flex flex-column align-items-center">
+                                                        <i class="bx bxs-coupon mb-2"></i>
+                                                        <span>Your ticket has been generated: {{ \Carbon\Carbon::parse($item->updated_at)->format('M d, Y') }}</span>
+                                                    </div>
+                                                </button>
                                             @endif
                                         </div>
 

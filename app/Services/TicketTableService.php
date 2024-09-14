@@ -54,17 +54,16 @@ class TicketTableService
                                 </button>
                                 <div class="dropdown-menu">';
 
-               if ($order->active != 1) {
+               if ($order->active != 1 || $order->generate_ticket == 1) {
                     $buttons .= '<form action="' . route('validate-ticket', ['id' => $order->id]) . '" method="POST">
                                     ' . csrf_field() . '
                                     <button type="submit" class="dropdown-item">Validate Ticket</button>
                                  </form>';
-                } elseif ($order->generate_ticket == 1) {
                     $buttons .= '<form action="' . route('generate-again', ['id' => $order->id]) . '" method="POST">
-                                    ' . csrf_field() . '
-                                    <button type="submit" class="dropdown-item">Generate Again</button>
-                                 </form>';
-                } elseif ($order->active == 1 || $order->generate_ticket != 1 ) {
+                                 ' . csrf_field() . '
+                                 <button type="submit" class="dropdown-item">Generate Again</button>
+                              </form>';
+                } elseif ($order->generate_ticket == 1 || $order->generate_ticket == 1)  {
                     $buttons .= '<small class="dropdown-item"> <i>Has Been Validated <br>' . \Carbon\Carbon::parse($order->updated_at)->format('M d, Y').'</i> </small>';
                 }
 

@@ -14,13 +14,15 @@ class AdminPaymentNotification extends Mailable
     use Queueable, SerializesModels;
 
     public $user;
+    public $order;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($user)
+    public function __construct($user, $order)
     {
         $this->user = $user;
+        $this->order = $order;
     }
 
     /**

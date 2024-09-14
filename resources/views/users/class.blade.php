@@ -45,19 +45,19 @@
                                 @if ($item->class_name == 'Simposium')
                                 <div class="col-lg-6">
                                     <div class="py-4 mt-4 text-center bg-soft-light">
-                                        <h1 class="m-0"><sup><small>Rp</small></sup> {{$item->formatted_price_doctor_specialist}}/ <span class="font-size-13"> for
+                                        <h1 class="m-0"><sup><small>Rp</small></sup> {{$item->formatted_price_doctor_specialist}}/ <span class="font-size-13">
                                                 Doctor Specilist</span></h1>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="py-4 mt-4 text-center bg-soft-light">
-                                        <h1 class="m-0"><sup><small>Rp</small></sup> {{$item->formatted_price_doctor}}/ <span class="font-size-13"> for
+                                        <h1 class="m-0"><sup><small>Rp</small></sup> {{$item->formatted_price_doctor}}/ <span class="font-size-13"> 
                                                 Doctor</span></h1>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="py-4 mt-4 text-center bg-soft-light">
-                                        <h1 class="m-0"><sup><small>Rp</small></sup> {{$item->formatted_price_nurses}}/ <span class="font-size-13"> for
+                                        <h1 class="m-0"><sup><small>Rp</small></sup> {{$item->formatted_price_nurses}}/ <span class="font-size-13">
                                                 Nurses</span></h1>
                                     </div>
                                 </div>
@@ -127,19 +127,19 @@
                                 @else
                                 <div class="col-lg-4">
                                     <div class="py-4 mt-4 text-center bg-soft-light">
-                                        <h1 class="m-0"><sup><small>Rp</small></sup> {{$item->formatted_price_doctor_specialist}}/ <span class="font-size-13"> for
+                                        <h1 class="m-0"><sup><small>Rp</small></sup> {{$item->formatted_price_doctor_specialist}}/ <span class="font-size-13">
                                                 Doctor Specilist</span></h1>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="py-4 mt-4 text-center bg-soft-light">
-                                        <h1 class="m-0"><sup><small>Rp</small></sup> {{$item->formatted_price_doctor}}/ <span class="font-size-13"> for
+                                        <h1 class="m-0"><sup><small>Rp</small></sup> {{$item->formatted_price_doctor}}/ <span class="font-size-13">
                                                 Doctor</span></h1>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="py-4 mt-4 text-center bg-soft-light">
-                                        <h1 class="m-0"><sup><small>Rp</small></sup> {{$item->formatted_price_nurses}}/ <span class="font-size-13"> for
+                                        <h1 class="m-0"><sup><small>Rp</small></sup> {{$item->formatted_price_nurses}}/ <span class="font-size-13">
                                                 Nurses</span></h1>
                                     </div>
                                 </div>
@@ -190,7 +190,7 @@
                                 @elseif ($getUser->roles == "Specialist Doctor")
                                     <p class="text-dark mt-3">Are you sure to take this workshop as a <mark>Doctor</mark> at a price of Rp. {{$item->formatted_price_doctor}}?</p>
                                 @elseif ($getUser->roles == "Nurse")
-                                    <p class="text-dark mt-3"> Are you sure to take this workshop as a <mark>Nurse</mark> at a price of Rp. {{$item->formatted_price_nurse}}?</p>
+                                    <p class="text-dark mt-3"> Are you sure to take this workshop as a <mark>Nurse</mark> at a price of Rp. {{$item->formatted_price_nurses}}?</p>
                                 @elseif ($getUser->roles == "Student")
                                     <p  class="text-dark mt-3">Are you sure to take this workshop as a <mark>Student</mark> at a price of Rp. {{$item->formatted_price_student}}?</p>
                                 @endif

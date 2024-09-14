@@ -601,7 +601,7 @@
                                             <tr>
                                              <td valign="top" class="pc-w620-padding-0-0-0-0 pc-w620-textAlign-left" align="left">
                                               <div class="pc-font-alt pc-w620-textAlign-left" style="line-height: 140%; letter-spacing: -0.03em; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 17px; font-weight: 600; font-variant-ligatures: normal; color: #001942; text-align: left; text-align-last: left;">
-                                               <div><span style="letter-spacing: -0.03em;" data-letter-spacing-original="-0.03em">hacm@mail.com</span>
+                                               <div><span style="letter-spacing: -0.03em;" data-letter-spacing-original="-0.03em">hacmgorontalo@mail.com</span>
                                                </div>
                                               </div>
                                              </td>
@@ -696,7 +696,7 @@
                                             <tr>
                                              <td valign="top" class="pc-w620-padding-0-0-0-0 pc-w620-textAlign-left" align="left">
                                               <div class="pc-font-alt pc-w620-textAlign-left" style="line-height: 140%; letter-spacing: -0.03em; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 17px; font-weight: 600; font-variant-ligatures: normal; color: #001942; text-align: left; text-align-last: left;">
-                                               <div><span>+1 (234) 567-8901</span>
+                                               <div><span>+62 812-1311-1565</span>
                                                </div>
                                               </div>
                                              </td>

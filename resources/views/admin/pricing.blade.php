@@ -25,8 +25,7 @@
         <div class="col-lg-6">
             <div class="text-center mb-5">
                 <h4>Cost Breakdown Summary</h4>
-                <p class="text-muted">To achieve this, it would be necessary to have uniform grammar,
-                    pronunciation and more common words If several languages coalesce</p>
+                <p class="text-muted">Exploring Current Developments and Solutions to Global Health Issues</p>
             </div>
         </div>
     </div>

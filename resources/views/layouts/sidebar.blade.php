@@ -154,6 +154,10 @@
 
             @auth('web')
             <li>
+                <a href="/" class="waves-effect">
+                    <i class="mdi mdi-home"></i>
+                    <span>Home</span>
+                </a>
                 <a href="javascript: void(0);" class="has-arrow waves-effect">
                     <i class="mdi mdi-calendar-check"></i>
                     <span>Class</span>

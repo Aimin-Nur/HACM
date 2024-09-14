@@ -10,8 +10,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- Favicons -->
-  <link href="{{ URL::asset('home/img/favicon-32x32.png')}}" rel="icon">
-  <link href="{{ URL::asset('home/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+  <link href="{{ URL::asset('home/img/favicon.ico')}}" rel="icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
@@ -700,7 +699,7 @@
                             data-class-name="{{$item->class_name}}"
                             data-price-specialist="{{$item->formatted_price_doctor_specialist}}"
                             data-price-doctor="{{$item->formatted_price_doctor}}"
-                            data-price-nurse="{{$item->formatted_price_nurse}}"
+                            data-price-nurse="{{$item->formatted_price_nurses}}"
                             data-price-student="{{$item->formatted_price_student}}">
                             Buy Tickets
                         </a>

@@ -288,18 +288,8 @@
                            <td align="center" valign="top">
                             <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
                              <tr>
-                              <th valign="top" align="center" style="text-align: center; font-weight: normal; line-height: 1;">
-                               <!--[if mso]>
-        <table border="0" cellpadding="0" cellspacing="0" role="presentation" align="center" style="border-collapse: separate; border-spacing: 0; margin-right: auto; margin-left: auto;">
-            <tr>
-                <td valign="middle" align="center" style="border-radius: 500px 500px 500px 500px; background-color: #0067ff; text-align:center; color: #ffffff; padding: 14px 28px 14px 28px; mso-padding-left-alt: 0; margin-left:28px;" bgcolor="#0067ff">
-                                    <a class="pc-font-alt" style="display: inline-block; text-decoration: none; font-variant-ligatures: normal; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-weight: 500; font-size: 17px; line-height: 24px; text-align: center; color: #ffffff;" href="https://designmodo.com/postcards" target="_blank"><span style="display: block;"><span>Check Order Now</span></span></a>
-                                </td>
-            </tr>
-        </table>
-        <![endif]-->
-                               <!--[if !mso]><!-- -->
-                               <a style="display: inline-block; box-sizing: border-box; border-radius: 500px 500px 500px 500px; background-color: #0067ff; padding: 14px 28px 14px 28px; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-weight: 500; font-size: 17px; line-height: 24px; color: #ffffff; vertical-align: top; text-align: center; text-align-last: center; text-decoration: none; -webkit-text-size-adjust: none;" href="https://designmodo.com/postcards" target="_blank"><span style="display: block;"><span>Check Order Now</span></span></a>
+                                <th valign="top" align="center" style="text-align: center; font-weight: normal; line-height: 1;">
+                               <a style="display: inline-block; box-sizing: border-box; border-radius: 500px 500px 500px 500px; background-color: #0067ff; padding: 14px 28px 14px 28px; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-weight: 500; font-size: 17px; line-height: 24px; color: #ffffff; vertical-align: top; text-align: center; text-align-last: center; text-decoration: none; -webkit-text-size-adjust: none;" href="https://hacm-gorontalo.com/order-detail/{{ $order->id }}" target="_blank"><span style="display: block;"><span>Check Order Now</span></span></a>
                                <!--<![endif]-->
                               </th>
                              </tr>

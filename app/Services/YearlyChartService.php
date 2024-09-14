@@ -34,7 +34,7 @@ class YearlyChartService
 
             $seriesData[] = [
                 'name' => $class->class_name,
-                'type' => 'line', // or 'column', 'area'
+                'type' => 'column', // or 'column', 'area'
                 'data' => $monthlySales,
             ];
         }

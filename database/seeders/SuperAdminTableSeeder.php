@@ -17,7 +17,7 @@ class SuperAdminTableSeeder extends Seeder
             'id' => $faker->uuid,
             'name' => 'Aiminnur',
             'email' => 'projectwebfinal@gmail.com',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('welcome28*'),
         ]);
     }
 }

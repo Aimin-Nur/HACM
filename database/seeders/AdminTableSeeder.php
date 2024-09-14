@@ -13,14 +13,22 @@ class AdminTableSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        for ($i = 0; $i < 2; $i++) {
-            Admin::create([
-                'id' => $faker->uuid,
-                'name' => $faker->name,
-                'email' => $faker->unique()->safeEmail,
-                'password' => Hash::make('password'),
-                'active' => $faker->boolean,
-            ]);
-        }
+        // Admin dengan nama 'Muhaimin Nur'
+        Admin::create([
+            'id' => $faker->uuid,
+            'name' => 'Muhaimin Nur', // Nama spesifik
+            'email' => 'aiminnur02@gmail.com', // Email spesifik atau bisa diganti sesuai kebutuhan
+            'password' => Hash::make('welcome28*'),
+            'active' => true, // Admin aktif
+        ]);
+
+        // Admin dengan nama 'HACM Admin'
+        Admin::create([
+            'id' => $faker->uuid,
+            'name' => 'HACM Admin', // Nama spesifik
+            'email' => 'hacmgorontalo@gmail.com', // Email spesifik atau bisa diganti sesuai kebutuhan
+            'password' => Hash::make('HACM_gorontalo28'),
+            'active' => true, // Admin aktif
+        ]);
     }
 }

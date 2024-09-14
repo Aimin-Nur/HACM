@@ -54,18 +54,27 @@ class TicketTableService
                                 </button>
                                 <div class="dropdown-menu">';
 
-               if ($order->active != 1 || $order->generate_ticket == 1) {
-                    $buttons .= '<form action="' . route('validate-ticket', ['id' => $order->id]) . '" method="POST">
-                                    ' . csrf_field() . '
-                                    <button type="submit" class="dropdown-item">Validate Ticket</button>
-                                 </form>';
-                    $buttons .= '<form action="' . route('generate-again', ['id' => $order->id]) . '" method="POST">
-                                 ' . csrf_field() . '
-                                 <button type="submit" class="dropdown-item">Generate Again</button>
-                              </form>';
-                } elseif ($order->generate_ticket == 1 || $order->generate_ticket == 1)  {
-                    $buttons .= '<small class="dropdown-item"> <i>Has Been Validated <br>' . \Carbon\Carbon::parse($order->updated_at)->format('M d, Y').'</i> </small>';
-                }
+                                if ($order->generate_ticket == 0 && $order->active == 0) {
+                                    // Jika tiket belum di-generate dan belum tervalidasi
+                                    $buttons .= '<small class="dropdown-item">The user has not generated a ticket yet.</small>';
+                                } elseif ($order->generate_ticket == 0) {
+                                    // Jika tiket belum di-generate oleh pengguna
+                                    $buttons .= '<form action="' . route('generate-again', ['id' => $order->id]) . '" method="POST">
+                                                    ' . csrf_field() . '
+                                                    <button type="submit" class="dropdown-item">Generate Ticket</button>
+                                                 </form>';
+                                } elseif ($order->generate_ticket == 1 && $order->active == 0) {
+                                    // Jika tiket sudah di-generate tetapi belum tervalidasi oleh admin
+                                    $buttons .= '<form action="' . route('validate-ticket', ['id' => $order->id]) . '" method="POST">
+                                                    ' . csrf_field() . '
+                                                    <button type="submit" class="dropdown-item">Validate Ticket</button>
+                                                 </form>';
+                                } elseif ($order->generate_ticket == 1 && $order->active == 1) {
+                                    // Jika tiket sudah di-generate dan sudah tervalidasi oleh admin
+                                    $buttons .= '<small class="dropdown-item"><i>Has Been Validated <br>' . \Carbon\Carbon::parse($order->updated_at)->format('M d, Y') . '</i></small>';
+                                }
+
+
 
                 $buttons .= '</div></div>';
 

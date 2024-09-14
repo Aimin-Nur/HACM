@@ -62,13 +62,43 @@ class AdminController extends Controller
     {
         $getUser = $this->getGuard->getCurrentUser();
 
+        $totalSumPrice = Order::join('class', 'order.id_class', '=', 'class.id')
+                    ->where('order.status', 1)
+                    ->selectRaw('
+                        SUM(class.price_doctor_specialist) AS sum_price_doctor_specialist,
+                        SUM(class.price_doctor) AS sum_price_doctor,
+                        SUM(class.price_nurses) AS sum_price_nurses,
+                        SUM(class.price_student) AS sum_price_student
+                    ')
+                    ->first();
+
+        $totalSumPriceNullVerif = Order::join('class', 'order.id_class', '=', 'class.id')
+                    ->where('order.status', 0)
+                    ->selectRaw('
+                        SUM(class.price_doctor_specialist) AS sum_price_doctor_specialist,
+                        SUM(class.price_doctor) AS sum_price_doctor,
+                        SUM(class.price_nurses) AS sum_price_nurses,
+                        SUM(class.price_student) AS sum_price_student
+                    ')
+                    ->first();
+
         $sumPrice = Order::join('class', 'order.id_class', '=', 'class.id')
-                            ->where('order.status', 1)
-                            ->sum('class.price');
+                    ->where('order.status', 1)
+                    ->selectRaw('
+                        SUM(class.price_doctor_specialist + class.price_doctor + class.price_nurses + class.price_student) AS total
+                    ')
+                    ->pluck('total')
+                    ->first();
 
         $sumPriceNullVerif = Order::join('class', 'order.id_class', '=', 'class.id')
-                            ->where('order.status', 0)
-                            ->sum('class.price');
+                    ->where('order.status', 0)
+                    ->selectRaw('
+                        SUM(class.price_doctor_specialist + class.price_doctor + class.price_nurses + class.price_student) AS total
+                    ')
+                    ->pluck('total')
+                    ->first();
+
+
 
         // Get the current date and month (Sales Report)
         $currentMonth = Carbon::now()->month;
@@ -93,35 +123,56 @@ class AdminController extends Controller
             $orderCounts[] = $traffic->order_count;
         }
 
-        // Calculate sales for the current month by summing class prices
+       // Menghitung penjualan untuk bulan ini
         $currentMonthSales = DB::table('order')
-            ->join('class', 'order.id_class', '=', 'class.id')
-            ->where('order.status', 1)
-            ->whereMonth('order.created_at', $currentMonth)
-            ->whereYear('order.created_at', $year)
-            ->sum('class.price');
+        ->join('class', 'order.id_class', '=', 'class.id')
+        ->where('order.status', 1)
+        ->whereMonth('order.created_at', $currentMonth)
+        ->whereYear('order.created_at', $year)
+        ->selectRaw('
+            SUM(
+                class.price_doctor_specialist +
+                class.price_doctor +
+                class.price_nurses +
+                class.price_student
+            ) AS total_sales
+        ')
+        ->pluck('total_sales')
+        ->first();
 
-        // Calculate sales for the previous month
+        // Menghitung penjualan untuk bulan lalu
         $previousMonthSales = DB::table('order')
-            ->join('class', 'order.id_class', '=', 'class.id')
-            ->where('order.status', 1)
-            ->whereMonth('order.created_at', Carbon::now()->subMonth()->month)
-            ->whereYear('order.created_at', $year)
-            ->sum('class.price');
+        ->join('class', 'order.id_class', '=', 'class.id')
+        ->where('order.status', 1)
+        ->whereMonth('order.created_at', Carbon::now()->subMonth()->month)
+        ->whereYear('order.created_at', $year)
+        ->selectRaw('
+            SUM(
+                class.price_doctor_specialist +
+                class.price_doctor +
+                class.price_nurses +
+                class.price_student
+            ) AS total_sales
+        ')
+        ->pluck('total_sales')
+        ->first();
 
-        // Calculate the percentage difference between current and previous month
+        // Pastikan variabel tidak null
+        $currentMonthSales = $currentMonthSales ?? 0;
+        $previousMonthSales = $previousMonthSales ?? 0;
+
+        // Menghitung persentase perbedaan antara bulan ini dan bulan lalu
         if ($previousMonthSales > 0) {
-            $difference = (($currentMonthSales - $previousMonthSales) / $previousMonthSales) * 100;
+        $difference = (($currentMonthSales - $previousMonthSales) / $previousMonthSales) * 100;
         } else {
-            $difference = 100; // Assume 100% increase if there were no sales last month
+        $difference = $currentMonthSales > 0 ? 100 : 0; // 100% jika ada penjualan bulan ini dan tidak ada bulan lalu
         }
 
-        // Determine if sales increased or decreased
+        // Menentukan apakah penjualan meningkat atau menurun
         $isIncreased = $currentMonthSales > $previousMonthSales;
 
-        // Format the date range for the current month
-        $currentMonthRange = Carbon::now()->format('01 M') . ' - ' . Carbon::now()->format('d M, Y');
-
+        // Format rentang tanggal untuk bulan ini
+        $currentMonthRange = Carbon::now()->startOfMonth()->format('d M') . ' - ' . Carbon::now()->endOfMonth()->format('d M, Y');
 
         // Get monthly sales report data
         $monthlyData = $this->yearlyChartServices->getMonthlySalesReport();

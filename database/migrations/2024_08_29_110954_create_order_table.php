@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('id_class');
             $table->uuid('id_users');
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->text('description')->nullable();
             $table->text('payment_proof')->nullable();
             $table->timestamps();

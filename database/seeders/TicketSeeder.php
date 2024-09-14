@@ -46,7 +46,7 @@ class TicketSeeder extends Seeder
                 'id_users' => $order->id_users,
                 'id_order' => $order->id,
                 'generate_ticket' => '0',
-                'active' => true,
+                'active' => '0',
                 'ticket_code' => $ticketCode,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

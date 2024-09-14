@@ -32,7 +32,7 @@
                                 <div class="col-8">
                                     <div>
                                         <p class="text-muted fw-medium mt-1 mb-2">Pending Validation</p>
-                                        <h5>Rp. {{$sumPriceNullVerif}}</h5>
+                                      <h6><b>Rp. {{ number_format($sumPriceNullVerif, 0, ',', '.') }}</b></h6>
                                     </div>
                                 </div>
 
@@ -56,7 +56,7 @@
                                 <div class="col-8">
                                     <div>
                                         <p class="text-muted fw-medium mt-1 mb-2">Already Validated</p>
-                                        <h5>Rp. {{$sumPrice}}</h5>
+                                       <h6><b> Rp. {{ number_format($sumPrice, 0, ',', '.') }} </b></h6>
                                     </div>
                                 </div>
 
@@ -344,6 +344,7 @@
             } else {
                 console.error('Mixed chart element not found');
             }
+            console.log(document.querySelector("#mixed-chart"));
 
             // Report Chart Script
             var reportOptions = {
@@ -381,6 +382,7 @@
             } else {
                 console.error('Report chart element not found');
             }
+
         });
 
         document.addEventListener('DOMContentLoaded', function () {

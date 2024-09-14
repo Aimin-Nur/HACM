@@ -39,11 +39,11 @@ class OrderSeeder extends Seeder
                 'id' => (string) Str::uuid(),
                 'id_class' => $classIds[array_rand($classIds)],
                 'id_users' => $userIds[array_rand($userIds)],
-                'status' => rand(0, 1),
+                'status' => collect([null, 1, 0])->random(),
                 'description' => null,
                 'payment_proof' => '1725287553_1.jpg',
                 'created_at' => $randomDate,
-                'updated_at' => $randomDate,                  
+                'updated_at' => $randomDate,
             ]);
         }
 

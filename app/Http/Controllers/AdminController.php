@@ -16,6 +16,8 @@ use App\Services\TicketTableService;
 use App\Services\YearlyChartService;
 use App\Services\ChartRegencyService;
 use App\Services\ChartProvinceService;
+use App\Services\SimposiumChartService;
+use App\Services\SarondeChartService;
 use App\Services\LogUserService;
 use App\Services\GetUser;
 use App\Jobs\SuccessPaymentNotification;
@@ -37,8 +39,10 @@ class AdminController extends Controller
     protected $chartProvinceService;
     protected $logUserService;
     protected $getGuard;
+    protected $simposiumChartService;
+    protected $sarondeChartService;
 
-    public function __construct(UserTableService $userServices, AdminTableService $adminServices, OrderTableService $orderServices, TicketTableService $ticketServices, YearlyChartService $yearlyChartServices, ChartRegencyService $chartRegencyService, ChartProvinceService $chartProvinceService, LogUserService $logUserService, GetUser $getGuard)
+    public function __construct(UserTableService $userServices, AdminTableService $adminServices, OrderTableService $orderServices, TicketTableService $ticketServices, YearlyChartService $yearlyChartServices, ChartRegencyService $chartRegencyService, ChartProvinceService $chartProvinceService, LogUserService $logUserService, GetUser $getGuard, SimposiumChartService $simposiumChartService, SarondeChartService $sarondeChartService)
     {
         $this->userServices = $userServices;
         $this->adminServices = $adminServices;
@@ -49,6 +53,9 @@ class AdminController extends Controller
         $this->chartProvinceService = $chartProvinceService;
         $this->logUserService = $logUserService;
         $this->getGuard = $getGuard;
+        $this->simposiumChartService = $simposiumChartService;
+        $this->sarondeChartService = $sarondeChartService;
+
     }
 
     public function index()
@@ -73,6 +80,7 @@ class AdminController extends Controller
             ->select('class.class_name', DB::raw('COUNT(order.id) as order_count'))
             ->whereMonth('order.created_at', $currentMonth)
             ->whereYear('order.created_at', $year)
+            ->where('order.status', 1)
             ->groupBy('class.class_name')
             ->get();
 
@@ -88,6 +96,7 @@ class AdminController extends Controller
         // Calculate sales for the current month by summing class prices
         $currentMonthSales = DB::table('order')
             ->join('class', 'order.id_class', '=', 'class.id')
+            ->where('order.status', 1)
             ->whereMonth('order.created_at', $currentMonth)
             ->whereYear('order.created_at', $year)
             ->sum('class.price');
@@ -95,6 +104,7 @@ class AdminController extends Controller
         // Calculate sales for the previous month
         $previousMonthSales = DB::table('order')
             ->join('class', 'order.id_class', '=', 'class.id')
+            ->where('order.status', 1)
             ->whereMonth('order.created_at', Carbon::now()->subMonth()->month)
             ->whereYear('order.created_at', $year)
             ->sum('class.price');
@@ -139,6 +149,22 @@ class AdminController extends Controller
 
         $logs = $this->logUserService->getLatestUserLogs();
 
+
+        $roleWiseData = $this->simposiumChartService->getRoleWiseSalesData();
+
+        // Siapkan data untuk Pie Chart
+        $labels = array_keys($roleWiseData);
+        $series = array_values($roleWiseData);
+
+        $roleWiseDataSaronde = $this->sarondeChartService->getRoleWiseSalesData();
+
+        // Siapkan data untuk Donut Chart
+        $labelsSaronde = array_keys($roleWiseDataSaronde);
+        $seriesSaronde = array_values($roleWiseDataSaronde);
+
+        $sumValidated = Order::where('status', 1)->count();
+        $sumUnvalidated = Order::where('status', NULL)->count();
+
         return view('admin.index', compact('getUser','sumPrice','sumPriceNullVerif','currentMonthSales',
             'previousMonthSales',
             'difference',
@@ -152,7 +178,11 @@ class AdminController extends Controller
             'topCity',
             'provinces',
             'orders_prov',
-            'logs')); // Array of order counts for the chart series
+            'logs',
+            'labels', 'series',
+            'labelsSaronde', 'seriesSaronde',
+            'sumValidated',
+            'sumUnvalidated')); // Array of order counts for the chart series
     }
 
     public function yearlySalesReport()

@@ -45,8 +45,7 @@
                                 </div>
                             </div>
 
-                            <p class="mb-0"><span class="badge badge-soft-success me-2"> 0.8% <i
-                                        class="mdi mdi-arrow-up"></i> </span> From previous period</p>
+                            <p class="mb-0"><span class="badge badge-soft-warning me-2">{{$sumUnvalidated}} </span>Unvalidated Order Total</p>
                         </div>
                     </div>
                 </div>
@@ -70,8 +69,7 @@
                                 </div>
                             </div>
 
-                            <p class="mb-0"><span class="badge badge-soft-success me-2"> 0.6% <i
-                                        class="mdi mdi-arrow-up"></i> </span> From previous period</p>
+                            <p class="mb-0"><span class="badge badge-soft-success me-2">{{$sumValidated}} </span>Validated Order Total</p>
                         </div>
                     </div>
                 </div>
@@ -125,7 +123,7 @@
                     <div class="float-end">
                         <ul class="nav nav-pills">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">Year</a>
+                                <a class="nav-link active" href="#">{{ date('Y') }}</a>
                             </li>
                         </ul>
                     </div>
@@ -139,12 +137,34 @@
     </div>
     <!-- end row -->
 
+    {{-- PieChart Event --}}
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Sales <b>Symposium</b> Event Highlights Report</h4>
+
+                    <div id="pie_chart" class="apex-charts" dir="ltr"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Sales <b>Saronde</b> Event Highlights Report</h4>
+
+                    <div id="donut_chart" class="apex-charts" dir="ltr"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">Most customer orders by city</h4>
-                    {{$topCity->city_name}} with the most customers at {{$topCity->total_orders}}
+                    <h4 class="card-title mb-4">Most customer orders by <b>City</b></h4>
+                    {{$topCity->city_name}} with the most customers at {{$topCity->total_orders}} cutomers
                     <div class="row">
                         <div class="col-lg-12">
                             <div>
@@ -158,7 +178,7 @@
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">Most customer orders by Provincies</h4>
+                    <h4 class="card-title mb-4">Most customer orders by <b>Provincies</b></h4>
 
                     <div id="radar-chart" class="apex-charts"></div>
 
@@ -225,9 +245,45 @@
 @push('script')
     <!-- Load ApexCharts Library -->
     <script src="{{ URL::asset('build/libs/apexcharts/apexcharts.min.js') }}"></script>
-    {{-- <script src="{{ URL::asset('build/js/pages/dashboard-2.init.js') }}"></script> --}}
-
     <!-- Mixed Chart Script -->
+    <script>
+        var options = {
+            chart: {
+                height: 320,
+                type: 'pie',
+            },
+            series: @json($series),
+            labels: @json($labels),
+            colors: ["#45cb85", "#3b5de7","#ff715b", "#0caadc"],
+            legend: {
+                show: true,
+                position: 'bottom',
+                horizontalAlign: 'center',
+                verticalAlign: 'middle',
+                floating: false,
+                fontSize: '14px',
+                offsetX: 0,
+            },
+            responsive: [{
+                breakpoint: 600,
+                options: {
+                    chart: {
+                        height: 240
+                    },
+                    legend: {
+                        show: false
+                    },
+                }
+            }]
+        };
+
+        var chart = new ApexCharts(
+            document.querySelector("#pie_chart"),
+            options
+        );
+
+        chart.render();
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var classNames = @json($yearlyData['classNames']);
@@ -495,5 +551,45 @@
         var chart=new ApexCharts(document.querySelector("#radial-chart-1"), options);
         chart.render();
     </script>
+
+    <script>
+        var options = {
+            chart: {
+                height: 320,
+                type: 'donut',
+            },
+            series: @json($seriesSaronde),
+            labels: @json($labelsSaronde),
+            colors: ["#45cb85", "#3b5de7", "#ff715b"],
+            legend: {
+                show: true,
+                position: 'bottom',
+                horizontalAlign: 'center',
+                verticalAlign: 'middle',
+                floating: false,
+                fontSize: '14px',
+                offsetX: 0,
+            },
+            responsive: [{
+                breakpoint: 600,
+                options: {
+                    chart: {
+                        height: 240
+                    },
+                    legend: {
+                        show: false
+                    },
+                }
+            }]
+        };
+
+        var chart = new ApexCharts(
+            document.querySelector("#donut_chart"),
+            options
+        );
+
+        chart.render();
+    </script>
+
 @endpush
 

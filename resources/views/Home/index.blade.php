@@ -102,13 +102,11 @@
         <div class="row">
           <div class="col-lg-6">
             <h2>About The HACM</h2>
-            <p>Sed nam ut dolor qui repellendus iusto odit. Possimus inventore eveniet accusamus error amet eius aut
-              accusantium et. Non odit consequatur repudiandae sequi ea odio molestiae. Enim possimus sunt inventore in
-              est ut optio sequi unde.</p>
+            <p>Holistic Approach Of Cardiovascular Care : From Pediatric To Adult. 2nd Huluntalo Cardiovascular Meeting 2024. Program at Galance: 3 Symposium, 3 Workshop, GP Case Sharing, Modereted Poster.</p>
           </div>
           <div class="col-lg-3">
             <h3>Where</h3>
-            <p>Aston Hotel Gorontalo, South Sulawesi</p>
+            <p>Venue Aston Hotel Gorontalo, Indonesia</p>
           </div>
           <div class="col-lg-3">
             <h3>When</h3>
@@ -134,13 +132,7 @@
               <img src="{{ URL::asset('home/img/speakers/1.jpg')}}" alt="dr. Pendrik Tendean, Sp.PD KKV" class="img-fluid">
               <div class="details">
                 <h3><a href="speaker-details.html">dr. Pendrik Tendean, Sp.PD KKV</a></h3>
-                <p>Quas alias incidunt</p>
-                <div class="social">
-                  <a href=""><i class="fa fa-twitter"></i></a>
-                  <a href=""><i class="fa fa-facebook"></i></a>
-                  <a href=""><i class="fa fa-google-plus"></i></a>
-                  <a href=""><i class="fa fa-linkedin"></i></a>
-                </div>
+                <p>Dinas Dokter Bertugas</p>
               </div>
             </div>
           </div>
@@ -149,13 +141,7 @@
               <img src="{{ URL::asset('home/img/speakers/2.jpg')}}" alt="dr. Julius Patimang, Sp.A., Sp.JP(K) FIHA" class="img-fluid">
               <div class="details">
                 <h3><a href="speaker-details.html">dr. Julius Patimang, Sp.A., Sp.JP(K) FIHA</a></h3>
-                <p>Consequuntur odio aut</p>
-                <div class="social">
-                  <a href=""><i class="fa fa-twitter"></i></a>
-                  <a href=""><i class="fa fa-facebook"></i></a>
-                  <a href=""><i class="fa fa-google-plus"></i></a>
-                  <a href=""><i class="fa fa-linkedin"></i></a>
-                </div>
+                <p>Dinas Dokter Bertugas</p>
               </div>
             </div>
           </div>
@@ -164,13 +150,7 @@
               <img src="{{ URL::asset('home/img/speakers/3.jpg')}}" alt="dr. Andi Alief Utama Armyn, M.Kes., Sp.JP(K) FIHA" class="img-fluid">
               <div class="details">
                 <h3><a href="speaker-details.html">dr. Andi Alief Utama Armyn, M.Kes., Sp.JP(K) FIHA</a></h3>
-                <p>Fugiat laborum et</p>
-                <div class="social">
-                  <a href=""><i class="fa fa-twitter"></i></a>
-                  <a href=""><i class="fa fa-facebook"></i></a>
-                  <a href=""><i class="fa fa-google-plus"></i></a>
-                  <a href=""><i class="fa fa-linkedin"></i></a>
-                </div>
+                <p>Dinas Dokter Bertugas</p>
               </div>
             </div>
           </div>
@@ -179,13 +159,7 @@
               <img src="{{ URL::asset('home/img/speakers/4.jpg')}}" alt="dr. Muchtar Nora Ismail Siregar, Sp.JP FIHA" class="img-fluid">
               <div class="details">
                 <h3><a href="speaker-details.html">dr. Muchtar Nora Ismail Siregar, Sp.JP FIHA</a></h3>
-                <p>Debitis iure vero</p>
-                <div class="social">
-                  <a href=""><i class="fa fa-twitter"></i></a>
-                  <a href=""><i class="fa fa-facebook"></i></a>
-                  <a href=""><i class="fa fa-google-plus"></i></a>
-                  <a href=""><i class="fa fa-linkedin"></i></a>
-                </div>
+                <p>Dinas Dokter Bertugas</p>
               </div>
             </div>
           </div>
@@ -194,13 +168,7 @@
               <img src="{{ URL::asset('home/img/speakers/5.jpg')}}" alt="dr. Diera Gabriela Darda, Sp.JP FIHA" class="img-fluid">
               <div class="details">
                 <h3><a href="speaker-details.html">dr. Diera Gabriela Darda, Sp.JP FIHA</a></h3>
-                <p>Qui molestiae natus</p>
-                <div class="social">
-                  <a href=""><i class="fa fa-twitter"></i></a>
-                  <a href=""><i class="fa fa-facebook"></i></a>
-                  <a href=""><i class="fa fa-google-plus"></i></a>
-                  <a href=""><i class="fa fa-linkedin"></i></a>
-                </div>
+                <p>Dinas Dokter Bertugas</p>
               </div>
             </div>
           </div>
@@ -231,8 +199,7 @@
           </li>
         </ul>
 
-        <h3 class="sub-heading">Voluptatem nulla veniam soluta et corrupti consequatur neque eveniet officia. Eius
-          necessitatibus voluptatem quis labore perspiciatis quia.</h3>
+        <h3 class="sub-heading">2nd Huluntalo Cardiovascular Meeting 2024. Program at Galance: 3 Symposium, 3 Workshop, GP Case Sharing, Modereted Poster.</h3>
 
         <div class="tab-content row justify-content-center">
 
@@ -352,7 +319,9 @@
             <div class="row justify-content-center">
               <div class="col-11 col-lg-8">
                 <h3>Aston Hotel Venue, Gorontalo</h3>
-                <p>Iste nobis eum sapiente sunt enim dolores labore accusantium autem. Cumque beatae ipsam. Est quae sit qui voluptatem corporis velit. Qui maxime accusamus possimus. Consequatur sequi et ea suscipit enim nesciunt quia velit.</p>
+                <br>
+                <h5 p-3 class="text-white">Manggis Street, Distric Libuo, City Dungingi, Gorontalo 96136</h5>
+
               </div>
             </div>
           </div>
@@ -797,7 +766,7 @@
             <div class="contact-email">
               <i class="ion-ios-email-outline"></i>
               <h3>Email</h3>
-              <p><a href="mailto:info@example.com">info@example.com</a></p>
+              <p><a href="mailto:hacmgorontalo@gmail.com">hacmgorontalo@gmail.com</a></p>
             </div>
           </div>
 

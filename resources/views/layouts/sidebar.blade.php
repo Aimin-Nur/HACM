@@ -74,7 +74,7 @@
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title">Menu</li>
 
-            @auth('admin')
+            @auth('superadmin')
                 <li>
                     <a href="{{route('dashboard-admin')}}" class="waves-effect">
                         <i class="mdi mdi-airplay"></i><span class="badge rounded-pill bg-info float-end">2</span>
@@ -88,6 +88,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{route('dashboard-admin-users')}}">Users</a></li>
+                        <li><a href="{{ route('dashboard-panel') }}">Admin</a></li>
                     </ul>
                 </li>
                 <li>
@@ -98,6 +99,7 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{route('pricing-class')}}">Pricing Class</a></li>
                         <li><a href="{{route('form-class')}}">Add Class</a></li>
+                        <li><a href="{{route('show-archive-class')}}">Archive Class</a></li>
                     </ul>
                 </li>
                 <li>
@@ -111,7 +113,7 @@
                 </li>
             @endauth
 
-            @auth('superadmin')
+            @auth('admin')
                 <li>
                     <a href="{{route('dashboard')}}" class=" waves-effect">
                         <i class="mdi mdi-airplay"></i><span class="badge rounded-pill bg-info float-end">2</span>
@@ -124,7 +126,6 @@
                         <span>Users</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('dashboard-panel') }}">Admin</a></li>
                         <li><a href="{{ route('dashboard-users') }}">Users</a></li>
                     </ul>
                 </li>
@@ -137,7 +138,6 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{route('pricing-class')}}">Pricing Class</a></li>
                         <li><a href="{{route('form-class')}}">Add Class</a></li>
-                        <li><a href="{{route('show-archive-class')}}">Archive Class</a></li>
                     </ul>
                 </li>
                 <li>
@@ -183,3 +183,4 @@
     </div>
 </div>
 <!-- Left Sidebar End -->
+

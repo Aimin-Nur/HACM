@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="py-4 mt-4 text-center bg-soft-light">
-                                        <h1 class="m-0"><sup><small>Rp</small></sup> {{$item->formatted_price_doctor}}/ <span class="font-size-13"> 
+                                        <h1 class="m-0"><sup><small>Rp</small></sup> {{$item->formatted_price_doctor}}/ <span class="font-size-13">
                                                 Doctor</span></h1>
                                     </div>
                                 </div>
@@ -185,9 +185,9 @@
                                 aria-label="Close"></button>
                             </div>
                             <div class="modal-body text-center">
-                                @if ($getUser->roles == "Specialist Doctor")
+                                @if ($getUser->roles == "Doctor Specialist")
                                    <p class="text-dark mt-3">Are you sure to take this workshop as a <mark>Specilialist Doctor</mark> at a price of Rp. {{$item->formatted_price_doctor_specialist}}?</p>
-                                @elseif ($getUser->roles == "Specialist Doctor")
+                                @elseif ($getUser->roles == "Doctor")
                                     <p class="text-dark mt-3">Are you sure to take this workshop as a <mark>Doctor</mark> at a price of Rp. {{$item->formatted_price_doctor}}?</p>
                                 @elseif ($getUser->roles == "Nurse")
                                     <p class="text-dark mt-3"> Are you sure to take this workshop as a <mark>Nurse</mark> at a price of Rp. {{$item->formatted_price_nurses}}?</p>
@@ -280,8 +280,6 @@
         });
     });
 </script>
-
-
     <script src="{{ URL::asset('build/libs/dropzone/min/dropzone.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/app.js') }}"></script>
     <script src="{{ URL::asset('build/js/app.js') }}"></script>

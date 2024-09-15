@@ -70,7 +70,7 @@ class UserController extends Controller
 
                 SendPaymentNotification::dispatch($user, $order);
 
-                return redirect()->route('order')->with('success', 'Proof of Payment has been Successfully Saved, Please Check your Email Regularly for More Information!');
+                return redirect()->route('order')->with('success', 'Proof of payment has been successfully saved, please check your email regularly for more information!');
             }
 
             return redirect()->route('order')->with('error', 'There is some problem, plese try again!');
@@ -115,7 +115,7 @@ class UserController extends Controller
                 // Kembalikan JSON dengan status sukses dan URL redirect
                 return response()->json([
                     'status' => 'success',
-                    'message' => 'Proof of Payment has been Successfully Saved, Please Check your Email Regularly for More Information!',
+                    'message' => 'Proof of payment has been successfully saved, please check your email regularly for more information!',
                     'redirect_url' => route('order') // URL untuk redirect
                 ], 200); // Status HTTP 200: OK
             }

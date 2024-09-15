@@ -84,7 +84,7 @@
   ============================-->
   <section id="intro">
     <div class="intro-container wow fadeIn">
-      <h1 class="mb-4 pb-0">Hulundalo<span> Annual</span> <br> Cardiovascular Meeting</h1>
+      <h1 class="mb-4 pb-0">Hulondalo<span> Annual</span> <br> Cardiovascular Meeting</h1>
       <p class="mb-4 pb-0">02-03 November, Aston Hotel Gorontalo, Gorontalo</p>
       <a href="https://www.youtube.com/watch?v=6h48NynSgOw" class="venobox play-btn mb-4" data-vbtype="video"
         data-autoplay="true"></a>
@@ -102,7 +102,7 @@
         <div class="row">
           <div class="col-lg-6">
             <h2>About The HACM</h2>
-            <p>Holistic Approach Of Cardiovascular Care : From Pediatric To Adult. 2nd Huluntalo Cardiovascular Meeting 2024. Program at Galance: 3 Symposium, 3 Workshop, GP Case Sharing, Modereted Poster.</p>
+            <p>Holistic Approach Of Cardiovascular Care : From Pediatric To Adult. 2nd Hulondalo Cardiovascular Meeting 2024. Program at Galance: 3 Symposium, 3 Workshop, GP Case Sharing, Modereted Poster.</p>
           </div>
           <div class="col-lg-3">
             <h3>Where</h3>
@@ -132,7 +132,8 @@
               <img src="{{ URL::asset('home/img/speakers/1.jpg')}}" alt="dr. Pendrik Tendean, Sp.PD KKV" class="img-fluid">
               <div class="details">
                 <h3><a href="speaker-details.html">dr. Pendrik Tendean, Sp.PD KKV</a></h3>
-                <p>Dinas Dokter Bertugas</p>
+               <br>
+               <br>
               </div>
             </div>
           </div>
@@ -141,7 +142,8 @@
               <img src="{{ URL::asset('home/img/speakers/2.jpg')}}" alt="dr. Julius Patimang, Sp.A., Sp.JP(K) FIHA" class="img-fluid">
               <div class="details">
                 <h3><a href="speaker-details.html">dr. Julius Patimang, Sp.A., Sp.JP(K) FIHA</a></h3>
-                <p>Dinas Dokter Bertugas</p>
+               <br>
+               <br>
               </div>
             </div>
           </div>
@@ -150,7 +152,8 @@
               <img src="{{ URL::asset('home/img/speakers/3.jpg')}}" alt="dr. Andi Alief Utama Armyn, M.Kes., Sp.JP(K) FIHA" class="img-fluid">
               <div class="details">
                 <h3><a href="speaker-details.html">dr. Andi Alief Utama Armyn, M.Kes., Sp.JP(K) FIHA</a></h3>
-                <p>Dinas Dokter Bertugas</p>
+               <br>
+               <br>
               </div>
             </div>
           </div>
@@ -159,7 +162,48 @@
               <img src="{{ URL::asset('home/img/speakers/4.jpg')}}" alt="dr. Muchtar Nora Ismail Siregar, Sp.JP FIHA" class="img-fluid">
               <div class="details">
                 <h3><a href="speaker-details.html">dr. Muchtar Nora Ismail Siregar, Sp.JP FIHA</a></h3>
-                <p>Dinas Dokter Bertugas</p>
+               <br>
+               <br>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="speaker">
+              <img src="{{ URL::asset('home/img/speakers/6.jpg')}}" alt="dr. Diera Gabriela Darda, Sp.JP FIHA" class="img-fluid">
+              <div class="details">
+                <h3><a href="speaker-details.html">dr. Diera Gabriela Darda, Sp.JP FIHA</a></h3>
+               <br>
+               <br>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="speaker">
+              <img src="{{ URL::asset('home/img/speakers/7.jpg')}}" alt="dr. Diera Gabriela Darda, Sp.JP FIHA" class="img-fluid">
+              <div class="details">
+                <h3><a href="speaker-details.html">dr. Diera Gabriela Darda, Sp.JP FIHA</a></h3>
+               <br>
+               <br>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="speaker">
+              <img src="{{ URL::asset('home/img/speakers/8.jpg')}}" alt="dr. Diera Gabriela Darda, Sp.JP FIHA" class="img-fluid">
+              <div class="details">
+                <h3><a href="speaker-details.html">dr. Diera Gabriela Darda, Sp.JP FIHA</a></h3>
+               <br>
+               <br>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="speaker">
+              <img src="{{ URL::asset('home/img/speakers/9.jpg')}}" alt="dr. Diera Gabriela Darda, Sp.JP FIHA" class="img-fluid">
+              <div class="details">
+                <h3><a href="speaker-details.html">dr. Diera Gabriela Darda, Sp.JP FIHA</a></h3>
+               <br>
+               <br>
               </div>
             </div>
           </div>
@@ -168,7 +212,8 @@
               <img src="{{ URL::asset('home/img/speakers/5.jpg')}}" alt="dr. Diera Gabriela Darda, Sp.JP FIHA" class="img-fluid">
               <div class="details">
                 <h3><a href="speaker-details.html">dr. Diera Gabriela Darda, Sp.JP FIHA</a></h3>
-                <p>Dinas Dokter Bertugas</p>
+               <br>
+               <br>
               </div>
             </div>
           </div>
@@ -199,7 +244,7 @@
           </li>
         </ul>
 
-        <h3 class="sub-heading">2nd Huluntalo Cardiovascular Meeting 2024. Program at Galance: 3 Symposium, 3 Workshop, GP Case Sharing, Modereted Poster.</h3>
+        <h3 class="sub-heading">2nd Hulondalo Cardiovascular Meeting 2024. Program at Galance: 3 Symposium, 3 Workshop, GP Case Sharing, Modereted Poster.</h3>
 
         <div class="tab-content row justify-content-center">
 
@@ -207,10 +252,10 @@
           <div role="tabpanel" class="col-lg-9 tab-pane fade show active" id="day-1">
 
             <div class="row schedule-item">
-              <div class="col-md-2"><time>09:30 AM</time></div>
+              <div class="col-md-2"><time>07:00 AM</time></div>
               <div class="col-md-10">
                 <h4>Registration</h4>
-                <p>Fugit voluptas iusto maiores temporibus autem numquam magnam.</p>
+                <p>All participants must first register at the venue.</p>
               </div>
             </div>
 
@@ -285,8 +330,8 @@
                 <div class="speaker">
                   <img src="{{ URL::asset('home/img/speakers/4.jpg')}}" alt="dr. Muchtar Nora Ismail Siregar, Sp.JP FIHA">
                 </div>
-                <h4>Keynote <span>Cdr. Muchtar Nora Ismail Siregar, Sp.JP FIHA</span></h4>
-                <p>VTopic : Managing Hypertensive Crisis: Best Practice Recommendation for General Physician</p>
+                <h4>Keynote <span>dr. Muchtar Nora Ismail Siregar, Sp.JP FIHA</span></h4>
+                <p>Topic : Managing Hypertensive Crisis: Best Practice Recommendation for General Physician</p>
               </div>
             </div>
           </div>
@@ -537,7 +582,7 @@
 
         <div class="section-header">
           <h2>Buy Tickets</h2>
-          <p>Velit consequatur consequatur inventore iste fugit unde omnis eum aut.</p>
+          <p>Exploring Recent Developments and Solutions to Global Health Problems.</p>
         </div>
 
         <div class="row">
@@ -661,7 +706,7 @@
                     <hr>
                     <div class="text-center">
                         @if (is_null($getUser))
-                           <a class="btn" id="login">Buy Tickets</a>
+                            <a class="btn login" id="login{{$item->id}}">Buy Tickets</a>
                         @elseif($getUser->roles != 'Student' || $item->class_name != 'Saronde')
                         <a class="btn buy-ticket"
                             id="validation{{$item->id}}"
@@ -675,7 +720,7 @@
                         @else
                         <a class="btn" id="student"
                             >
-                         oo
+                         Buy Tickets
                         </a>
                         @endif
 
@@ -786,7 +831,7 @@
         <div class="row">
 
           <div class="col-lg-3 col-md-6 footer-info">
-            <img src="{{ URL::asset('home/img/logo.png')}}" alt="Hulundalo Annual
+            <img src="{{ URL::asset('home/img/logo.png')}}" alt="Hulondalo Annual
             Cardiovascular Meeting">
             <div class="social-links mt-3">
               <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
@@ -799,24 +844,25 @@
           </div>
 
           <div class="col-lg-5 col-md-6 footer-links">
-            <h4>Useful Links</h4>
+            <h4>About Event</h4>
             <ul>
               <li><i class="fa fa-angle-right"></i> <a href="#">Home</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">About us</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Services</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Privacy policy</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="#speakers">Speakers</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="#schedule">Schedule</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="#annaoucement">Announcement</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="#buy-tickets">Buy Tickets</a></li>
             </ul>
           </div>
 
           <div class="col-lg-4 col-md-6 footer-contact">
             <h4>Contact Us</h4>
             <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
+            Manggis Street, Libuo<br>
+            Dungingi, Gorontalo 96136<br>
+              Indonesia <br>
+              <strong>Phone:</strong> +62 812 418 7433
+              <br>
+              <strong>Email:</strong> hacmgorontalo@gmail.com<br>
             </p>
           </div>
 
@@ -852,6 +898,7 @@
 
   <!-- Template Main Javascript File -->
   <script src="{{ URL::asset('home/js/main.js')}}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <script>
     // Tanggal target
@@ -892,7 +939,7 @@
         text: "You must login to purchase tickets",
         footer: '<a href="/register">I do not have an account yet. register now</a>',
         showCancelButton: true,
-        confirmButtonText: 'Login Now',
+        confirmButtonText: 'login Now',
         cancelButtonText: 'Cancel'
       }).then((result) => {
         if (result.isConfirmed) {
@@ -901,20 +948,22 @@
       });
     });
 
-    document.getElementById('login').addEventListener('click', function() {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "You must login to purchase tickets",
-        footer: '<a href="/register">I do not have an account yet. register now</a>',
-        showCancelButton: true,
-        confirmButtonText: 'Login Now',
-        cancelButtonText: 'Cancel'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location.href = '/login';
+    document.addEventListener('click', function(e) {
+    if (e.target && e.target.classList.contains('login')) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "You must login to purchase tickets",
+                footer: '<a href="/register">I do not have an account yet. register now</a>',
+                showCancelButton: true,
+                confirmButtonText: 'Login now',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/login';
+                }
+            });
         }
-      });
     });
 </script>
 
@@ -929,12 +978,12 @@
             const priceStudent = e.target.dataset.priceStudent;
 
             // Dapatkan role pengguna (ini harus sesuai dengan cara Anda menyimpan role pengguna)
-            const userRole = '{{ auth()->user()->roles ?? '' }}'; // Ganti ini dengan variabel yang sesuai
-
+            const userRole = '{{ auth()->user()->roles ?? '' }}';
+            console.log(userRole);
             // Tentukan harga berdasarkan role pengguna
             let price;
             switch(userRole) {
-                case 'Specialist Doctor':
+                case 'Doctor Specialist':
                     price = priceSpecialist;
                     break;
                 case 'Doctor':
@@ -947,17 +996,19 @@
                     price = priceStudent;
                     break;
                 default:
-                    price = 'Harga tidak tersedia';
+                    price = 'Price Not Found';
             }
+
+            console.log(price);
 
             // Modal 1: Konfirmasi untuk event
             const confirmResult = await Swal.fire({
-                title: `Apakah anda yakin?`,
-                text: `Apakah anda yakin mengambil ${className} seharga Rp. ${price}?`,
+                title: `Are you sure?`,
+                text: `Are you sure for take this ${className} event with price Rp. ${price}?`,
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonText: 'Ya, Saya Yakin',
-                cancelButtonText: 'Batal',
+                confirmButtonText: 'Yes, i sure',
+                cancelButtonText: 'Cancel',
             });
 
             // Jika pengguna mengonfirmasi (klik "Ya, Saya Yakin")
@@ -965,7 +1016,7 @@
                 // Modal 2: Informasi pembayaran dengan logo Bank BRI
                 const paymentInfoResult = await Swal.fire({
                     title: "Payment Information",
-                    html: `<p>Silahkan melakukan pembayaran sebesar Rp. ${price} ke rekening berikut ini:</p>
+                    html: `<p>Please make a payment of Rp. ${price} to the following account :</p>
                     <img src="https://buatlogoonline.com/wp-content/uploads/2022/10/Logo-Bank-BRI.png" alt="Bank BRI Logo" style="width: 100px; margin-bottom: 10px;"> <br>
                         <strong>PERKI Cabang Gorontalo</strong><br>
                         <p>BRI 002701002879560</p>`,
@@ -973,9 +1024,20 @@
                     confirmButtonText: 'OK'
                 });
 
-                // Setelah modal pembayaran, munculkan modal input file
+               // Setelah modal pembayaran, munculkan modal input file
                 const { value: file } = await Swal.fire({
-                    title: "Upload Payment Proof",
+                    title: "Upload proof of payments",
+                    html: `
+                        <div>
+                           <p>Please upload a photo of your payment proof with the following requirements:</p>
+                            <ul>
+                                <li>File format: JPG, PNG, or JPEG</li>
+                                <li>Maximum file size: 2MB</li>
+                                <li>The photo must be clear and readable</li>
+                                <li>The account number and payment amount must be visible</li>
+                            </ul>
+                        </div>
+                    `,
                     input: "file",
                     inputAttributes: {
                         "accept": "image/*",
@@ -1041,6 +1103,31 @@
         });
     });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        @if (isset($getUser) && $getUser->active == 0)
+        Swal.fire({
+            title: 'Your Account is Unactivated by Superadmin',
+            text: 'Sorry, you cannot access this app because your permission is denied.',
+            icon: 'warning',
+            confirmButtonColor: '#3b5de7',
+            showCloseButton: false,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+        }).then(() => {
+            window.location.href = '/';
+        });
+
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+        @endif
+    });
+</script>
+
+
+
 
 </body>
 

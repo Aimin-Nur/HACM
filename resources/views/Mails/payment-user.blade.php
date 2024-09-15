@@ -459,7 +459,7 @@
                     <tr>
                      <td valign="top" class="pc-w620-padding-0-0-0-0" align="center">
                       <div class="pc-font-alt pc-w620-fontSize-16px pc-w620-lineHeight-28" style="line-height: 140%; letter-spacing: 0px; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 14px; font-weight: normal; font-variant-ligatures: normal; color: #001942; text-align: center; text-align-last: center;">
-                       <div><span style="letter-spacing: 0px;" data-letter-spacing-original="0">s</span>
+                       <div><span style="letter-spacing: 0px;" data-letter-spacing-original="0"></span>
                        </div>
                       </div>
                      </td>
@@ -485,7 +485,7 @@
                               <tr>
                                <td valign="top" align="left" style="padding: 0px 0px 0px 0px;">
                                 <div class="pc-font-alt pc-w620-fontSize-16 pc-w620-lineHeight-26" style="line-height: 140%; letter-spacing: -0.03em; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 600; font-variant-ligatures: normal; color: #001942; text-align: left; text-align-last: left;">
-                                 <div><span>Total</span>
+                                 <div><span>{{$order->kelas->class_name ?? ''}} Event</span>
                                  </div>
                                 </div>
                                </td>
@@ -503,7 +503,7 @@
                         <tr>
                          <td valign="top" align="right">
                           <div class="pc-font-alt pc-w620-fontSize-16 pc-w620-lineHeight-20" style="line-height: 140%; letter-spacing: -0.03em; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 600; font-variant-ligatures: normal; color: #001942; text-align: right; text-align-last: right;">
-                           <div><span>Rp. 2</span>
+                           <div><span>Rp. {{ $order->formatted_price ?? ''}}</span>
                            </div>
                           </div>
                          </td>

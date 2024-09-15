@@ -45,7 +45,7 @@ class AuthenticatedSessionController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'Email atau Kata Sandi Anda Tidak Terdaftar.',
+            'email' => 'Your email or password is not registered',
         ]);
     }
 

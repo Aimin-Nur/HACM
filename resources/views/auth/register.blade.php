@@ -111,7 +111,7 @@
                                         <select class="form-control @error('roles') is-invalid @enderror" name="roles">
                                             <option value="">Select Profession</option>
                                             <option value="Specialist Doctor">Specialist Doctor</option>
-                                            <option value="Doctors">Doctor</option>
+                                            <option value="Doctor">Doctor</option>
                                             <option value="Nurse">Nurse</option>
                                             <option value="Student">Student</option>
                                         </select>

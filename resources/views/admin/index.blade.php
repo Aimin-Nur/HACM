@@ -164,7 +164,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4">Most customer orders by <b>City</b></h4>
-                    {{$topCity->city_name}} with the most customers at {{$topCity->total_orders}} cutomers
+                    {{$topCity->city_name ?? ''}} with the most customers at {{$topCity->total_orders ?? ''}} cutomers
                     <div class="row">
                         <div class="col-lg-12">
                             <div>

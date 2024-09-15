@@ -38,6 +38,8 @@ class SendPaymentNotification implements ShouldQueue
         Mail::to($this->user->email)->send(new \App\Mail\UserPaymentSubmitted($this->user, $this->order));
 
         // Kirim email ke admin
-        Mail::to('aiminnur02@gmail.com')->send(new \App\Mail\AdminPaymentNotification($this->user, $this->order));
+        Mail::to('gorontalo.acs@gmail.com')
+        ->cc('projectwebfinal@gmail.com')
+        ->send(new \App\Mail\AdminPaymentNotification($this->user, $this->order));
     }
 }

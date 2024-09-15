@@ -37,9 +37,9 @@
                     <div class="mb-4">
                         <div class="row">
                             <div class="col-lg-6">
-                                <span class="badge badge-soft-danger">Not Generating yet</span> <b>:</b> <p style="display: inline" class="card-title-desc">User Has Not Generated Ticket.
+                                <span class="badge badge-soft-danger">Not generating yet</span> <b>:</b> <p style="display: inline" class="card-title-desc">User has not generated ticket.
                                 </p> <br>
-                                <span class="badge badge-soft-success">Already Generated</span> <b>:</b> <p style="display: inline" class="card-title-desc">User Has Generated Ticket.
+                                <span class="badge badge-soft-success">Already Generated</span> <b>:</b> <p style="display: inline" class="card-title-desc">User has generated ticket.
                                 </p> <br>
                             </div>
                             <div class="col-lg-6">
@@ -87,7 +87,8 @@
                 { data: 'active', name: 'active' },
                 { data: 'update', name: 'update', searchable:false, orderable:true },
                 { data: 'action', name: 'action' }
-            ]
+            ],
+            order: [[5, 'desc']],
         });
     });
 

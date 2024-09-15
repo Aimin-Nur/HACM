@@ -110,7 +110,7 @@
           </div>
           <div class="col-lg-3">
             <h3>When</h3>
-            <p>Monday to Wednesday<br>02-03 November</p>
+            <p>Saturday-Sunday<br>02-03 November 2024</p>
           </div>
         </div>
       </div>
@@ -131,7 +131,7 @@
             <div class="speaker">
               <img src="{{ URL::asset('home/img/speakers/1.jpg')}}" alt="dr. Pendrik Tendean, Sp.PD KKV" class="img-fluid">
               <div class="details">
-                <h3><a href="speaker-details.html">dr. Pendrik Tendean, Sp.PD KKV</a></h3>
+                <h3><a href="speaker-details.html">dr. Vickry H Wahidji, Sp.JP(K) FIHA</a></h3>
                <br>
                <br>
               </div>
@@ -139,9 +139,9 @@
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker">
-              <img src="{{ URL::asset('home/img/speakers/2.jpg')}}" alt="dr. Julius Patimang, Sp.A., Sp.JP(K) FIHA" class="img-fluid">
+              <img src="{{ URL::asset('home/img/speakers/2.jpg')}}" alt="dr. Abubakar S. Zubeidi, M.Kes.,  Sp.JP(K) FIHA" class="img-fluid">
               <div class="details">
-                <h3><a href="speaker-details.html">dr. Julius Patimang, Sp.A., Sp.JP(K) FIHA</a></h3>
+                <h3><a href="speaker-details.html">dr. Abubakar S. Zubeidi, M.Kes.,  Sp.JP(K) FIHA</a></h3>
                <br>
                <br>
               </div>
@@ -149,7 +149,17 @@
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker">
-              <img src="{{ URL::asset('home/img/speakers/3.jpg')}}" alt="dr. Andi Alief Utama Armyn, M.Kes., Sp.JP(K) FIHA" class="img-fluid">
+              <img src="{{ URL::asset('home/img/speakers/3.jpg')}}" alt="dr. Moh. Rijal Alaydrus, Sp.JP(K) FIHA" class="img-fluid">
+              <div class="details">
+                <h3><a href="speaker-details.html">dr. Moh. Rijal Alaydrus, Sp.JP(K) FIHA</a></h3>
+               <br>
+               <br>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="speaker">
+              <img src="{{ URL::asset('home/img/speakers/4.jpg')}}" alt="dr. Andi Alief Utama Armyn, M.Kes., Sp.JP(K) FIHA" class="img-fluid">
               <div class="details">
                 <h3><a href="speaker-details.html">dr. Andi Alief Utama Armyn, M.Kes., Sp.JP(K) FIHA</a></h3>
                <br>
@@ -159,7 +169,17 @@
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker">
-              <img src="{{ URL::asset('home/img/speakers/4.jpg')}}" alt="dr. Muchtar Nora Ismail Siregar, Sp.JP FIHA" class="img-fluid">
+              <img src="{{ URL::asset('home/img/speakers/6.jpg')}}" alt="dr. Doddy Moniaga, Sp.JP FIHA" class="img-fluid">
+              <div class="details">
+                <h3><a href="speaker-details.html">dr. Doddy Moniaga, Sp.JP FIHA</a></h3>
+               <br>
+               <br>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="speaker">
+              <img src="{{ URL::asset('home/img/speakers/7.jpg')}}" alt="dr. Muchtar Nora Ismail Siregar, Sp.JP FIHA" class="img-fluid">
               <div class="details">
                 <h3><a href="speaker-details.html">dr. Muchtar Nora Ismail Siregar, Sp.JP FIHA</a></h3>
                <br>
@@ -169,9 +189,9 @@
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker">
-              <img src="{{ URL::asset('home/img/speakers/6.jpg')}}" alt="dr. Diera Gabriela Darda, Sp.JP FIHA" class="img-fluid">
+              <img src="{{ URL::asset('home/img/speakers/8.jpg')}}" alt="dr. Julius Patimang, Sp.A., Sp.JP(K) FIHA" class="img-fluid">
               <div class="details">
-                <h3><a href="speaker-details.html">dr. Diera Gabriela Darda, Sp.JP FIHA</a></h3>
+                <h3><a href="speaker-details.html">dr. Julius Patimang, Sp.A., Sp.JP(K) FIHA</a></h3>
                <br>
                <br>
               </div>
@@ -179,29 +199,9 @@
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker">
-              <img src="{{ URL::asset('home/img/speakers/7.jpg')}}" alt="dr. Diera Gabriela Darda, Sp.JP FIHA" class="img-fluid">
+              <img src="{{ URL::asset('home/img/speakers/9.jpg')}}" alt="dr. Pendrik Tendean, Sp.PD KKV" class="img-fluid">
               <div class="details">
-                <h3><a href="speaker-details.html">dr. Diera Gabriela Darda, Sp.JP FIHA</a></h3>
-               <br>
-               <br>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="speaker">
-              <img src="{{ URL::asset('home/img/speakers/8.jpg')}}" alt="dr. Diera Gabriela Darda, Sp.JP FIHA" class="img-fluid">
-              <div class="details">
-                <h3><a href="speaker-details.html">dr. Diera Gabriela Darda, Sp.JP FIHA</a></h3>
-               <br>
-               <br>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="speaker">
-              <img src="{{ URL::asset('home/img/speakers/9.jpg')}}" alt="dr. Diera Gabriela Darda, Sp.JP FIHA" class="img-fluid">
-              <div class="details">
-                <h3><a href="speaker-details.html">dr. Diera Gabriela Darda, Sp.JP FIHA</a></h3>
+                <h3><a href="speaker-details.html">dr. Pendrik Tendean, Sp.PD KKV</a></h3>
                <br>
                <br>
               </div>
@@ -252,7 +252,7 @@
           <div role="tabpanel" class="col-lg-9 tab-pane fade show active" id="day-1">
 
             <div class="row schedule-item">
-              <div class="col-md-2"><time>07:00 AM</time></div>
+              <div class="col-md-2"><time>07:00 WITA</time></div>
               <div class="col-md-10">
                 <h4>Registration</h4>
                 <p>All participants must first register at the venue.</p>
@@ -260,10 +260,10 @@
             </div>
 
             <div class="row schedule-item">
-              <div class="col-md-2"><time>10:00 AM</time></div>
+              <div class="col-md-2"><time>10:00 WITA</time></div>
               <div class="col-md-10">
                 <div class="speaker">
-                  <img src="{{ URL::asset('home/img/speakers/2.jpg')}}" alt="dr. Julius Patimang, Sp.A., Sp.JP(K) FIHA">
+                  <img src="{{ URL::asset('home/img/speakers/8.jpg')}}" alt="dr. Julius Patimang, Sp.A., Sp.JP(K) FIHA">
                 </div>
                 <h4>Keynote <span>dr. Julius Patimang, Sp.A., Sp.JP(K) FIHA</span></h4>
                 <p>Topic : Understanding Early Diagnosis of CHD: Clinical in Your Daily Practice</p>
@@ -271,10 +271,10 @@
             </div>
 
             <div class="row schedule-item">
-              <div class="col-md-2"><time>11:00 AM</time></div>
+              <div class="col-md-2"><time>10:30 WITA</time></div>
               <div class="col-md-10">
                 <div class="speaker">
-                  <img src="{{ URL::asset('home/img/speakers/3.jpg')}}" alt="dr. Andi Alief Utama Armyn, M.Kes., Sp.JP(K) FIHA">
+                  <img src="{{ URL::asset('home/img/speakers/4.jpg')}}" alt="dr. Andi Alief Utama Armyn, M.Kes., Sp.JP(K) FIHA">
                 </div>
                 <h4>Keynote <span>dr. Andi Alief Utama Armyn, M.Kes., Sp.JP(K) FIHA</span></h4>
                 <p>Topic : Contemporary Nonsurgical Intervention for Treating CHD in Indonesia</p>
@@ -287,7 +287,7 @@
           <div role="tabpanel" class="col-lg-9  tab-pane fade" id="day-2">
 
             <div class="row schedule-item">
-              <div class="col-md-2"><time>10:00 AM</time></div>
+              <div class="col-md-2"><time>11:30 WITA</time></div>
               <div class="col-md-10">
                 <div class="speaker">
                   <img src="{{ URL::asset('home/img/speakers/5.jpg')}}" alt="dr. Diera Gabriela Darda, Sp.JP FIHA">
@@ -298,10 +298,10 @@
             </div>
 
             <div class="row schedule-item">
-              <div class="col-md-2"><time>11:00 AM</time></div>
+              <div class="col-md-2"><time>12:00 WITA</time></div>
               <div class="col-md-10">
                 <div class="speaker">
-                  <img src="{{ URL::asset('home/img/speakers/2.jpg')}}" alt="dr. Doddy Moniaga, Sp.JP FIHA">
+                  <img src="{{ URL::asset('home/img/speakers/6.jpg')}}" alt="dr. Doddy Moniaga, Sp.JP FIHA">
                 </div>
                 <h4>Keynote <span>dr. Doddy Moniaga, Sp.JP FIHA</span></h4>
                 <p>Topic : The Role and Practical Insights of SGLT-2 inhibitor in Heart Failure Patients: Why is it important?</p>
@@ -314,21 +314,21 @@
           <div role="tabpanel" class="col-lg-9  tab-pane fade" id="day-3">
 
             <div class="row schedule-item">
-              <div class="col-md-2"><time>10:00 AM</time></div>
+              <div class="col-md-2"><time>13:30 WITA</time></div>
               <div class="col-md-10">
                 <div class="speaker">
-                  <img src="{{ URL::asset('home/img/speakers/1.jpg')}}" alt="dr. Pendrik Tendean, Sp.PD KKV">
+                  <img src="{{ URL::asset('home/img/speakers/1.jpg')}}" alt="dr. Vickry H Wahidji, Sp.JP(K) FIHA">
                 </div>
-                <h4>Keynote <span>dr. Pendrik Tendean, Sp.PD KKV</span></h4>
+                <h4>Keynote <span>dr. Vickry H Wahidji, Sp.JP(K) FIHA</span></h4>
                 <p>Topic : The Practical Use of Single Pill Combination Therapy for Hypertension: The Right Pill for the Right Patient</p>
               </div>
             </div>
 
             <div class="row schedule-item">
-              <div class="col-md-2"><time>11:00 AM</time></div>
+              <div class="col-md-2"><time>14:00 WITA</time></div>
               <div class="col-md-10">
                 <div class="speaker">
-                  <img src="{{ URL::asset('home/img/speakers/4.jpg')}}" alt="dr. Muchtar Nora Ismail Siregar, Sp.JP FIHA">
+                  <img src="{{ URL::asset('home/img/speakers/7.jpg')}}" alt="dr. Muchtar Nora Ismail Siregar, Sp.JP FIHA">
                 </div>
                 <h4>Keynote <span>dr. Muchtar Nora Ismail Siregar, Sp.JP FIHA</span></h4>
                 <p>Topic : Managing Hypertensive Crisis: Best Practice Recommendation for General Physician</p>

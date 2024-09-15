@@ -28,7 +28,7 @@
                             <div class="card-body">
                                 <div class="invoice-title">
                                     <div class="mb-4">
-                                       <h5>{{$getOrderId->kelas->class_name}} Class</h5>
+                                       <h5>{{$getOrderId->kelas->class_name ?? '' }} Class</h5>
                                     </div>
                                 </div>
                                 <hr>
@@ -36,17 +36,17 @@
                                     <div class="col-6 mt-3">
                                         <address>
                                             <strong>User Information:</strong><br>
-                                           Name : {{$getOrderId->user->name}}<br>
-                                            Email : {{$getOrderId->user->email}} <br>
-                                            Phone Number : {{$getOrderId->user->phone_number}} <br>
+                                           Name : {{$getOrderId->user->name ?? ''}}<br>
+                                            Email : {{$getOrderId->user->email ?? ''}} <br>
+                                            Phone Number : {{$getOrderId->user->phone_number ?? ''}} <br>
 
                                         </address>
                                     </div>
                                     <div class="col-6 mt-3 text-end">
                                         <address>
-                                            <strong>Order Date:</strong><br>
-                                            {{ \Carbon\Carbon::parse($getOrderId->created_at)->format('M d, Y') }}
-                                            <br><br>
+                                            {{-- <strong>Order Date:</strong><br>
+                                            {{ \Carbon\Carbon::parse($getOrderId->created_at)->format('M d, Y') ?? 'NULL'}}
+                                            <br><br> --}}
                                         </address>
                                     </div>
                                 </div>
@@ -71,13 +71,13 @@
                                 <div class="d-print-none">
                                     <div class="float-end">
                                         @if ($getOrderId->status == 1)
-                                        <p class="me-3" style="display: inline"><strong><i>You have validated this order on the date {{ \Carbon\Carbon::parse($getOrderId->updated_at)->format('M d, Y') }}</i></strong></p>
+                                        <p class="me-3" style="display: inline"><strong><i>You have validated this order on the date {{ \Carbon\Carbon::parse($getOrderId->updated_at)->format('M d, Y') ?? 'NULL'}}</i></strong></p>
                                         <button type="button" class="btn btn-outline-primary" disabled>Already Validated</button>
                                         @elseif ($getOrderId->status == NULL)
                                         <a data-bs-toggle="modal" data-bs-target="#rejectedModalScrollable{{$getOrderId->id}}" class="btn btn-danger w-md waves-effect waves-light">Rejected Payment</a>
                                         <a data-bs-toggle="modal" data-bs-target="#exampleModalScrollable{{$getOrderId->id}}" class="btn btn-primary w-md waves-effect waves-light">Accepted Payment</a>
                                         @else
-                                        <p class="me-3" style="display: inline"><strong><i>You have rejected this order on the date{{ \Carbon\Carbon::parse($getOrderId->updated_at)->format('M d, Y') }}</i></strong></p>
+                                        <p class="me-3" style="display: inline"><strong><i>You have rejected this order on the date{{ \Carbon\Carbon::parse($getOrderId->updated_at)->format('M d, Y') ?? 'NULL'}}</i></strong></p>
                                         <button type="button" class="btn btn-outline-danger w-md waves-effect waves-light" disabled>Already Rejected</button>
                                         <a data-bs-toggle="modal" data-bs-target="#exampleModalScrollable{{$getOrderId->id}}" class="btn btn-primary w-md waves-effect waves-light">Accepted Payment</a>
                                         @endif

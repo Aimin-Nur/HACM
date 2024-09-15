@@ -79,7 +79,8 @@
                     { data: 'price', name: 'price' },
                     { data: 'status', name: 'status' },
                     { data: 'action', name: 'action' }
-                ]
+                ],
+                order: [[4, 'desc']],
             });
         @elseif(Auth::guard('admin')->check())
             $('#datatable').DataTable({
@@ -93,7 +94,8 @@
                     { data: 'price', name: 'price' },
                     { data: 'status', name: 'status' },
                     { data: 'action', name: 'action' }
-                ]
+                ],
+                order: [[4, 'desc']],
             });
         @endif
     });

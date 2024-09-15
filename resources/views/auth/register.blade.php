@@ -15,7 +15,7 @@
                             <div class="bg-login-overlay"></div>
                             <div class="position-relative">
                                 <h5 class="text-white font-size-20">Free Register</h5>
-                                <p class="text-white-50 mb-0">Get your free Qovex account now</p>
+                                <p class="text-white-50 mb-0">Get your free HACM account now</p>
                                 <a href="/" class="logo logo-admin mt-4">
                                     <img src="{{ URL::asset('build/images/logo-sm-dark.png') }}" alt="" style="width: 55px">
                                 </a>

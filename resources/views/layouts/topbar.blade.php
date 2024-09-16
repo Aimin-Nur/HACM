@@ -2,7 +2,6 @@
     <div class="navbar-header">
         <div class="container-fluid">
             <div class="float-end">
-
                 <div class="dropdown d-inline-block d-lg-none ms-2">
                     <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -96,7 +95,7 @@
             <div>
                 <!-- LOGO -->
                 <div class="navbar-brand-box">
-                    <a href="index" class="logo logo-dark">
+                    <a href="/" class="logo logo-dark">
                         <span class="logo-sm">
                             <img src="{{ URL::asset('build/images/logo-sm-dark.png') }}" alt="" height="20">
                         </span>
@@ -105,7 +104,7 @@
                         </span>
                     </a>
 
-                    <a href="index" class="logo logo-light">
+                    <a href="/" class="logo logo-light">
                         <span class="logo-sm">
                             <img src="{{ URL::asset('build/images/logo-sm-dark.png') }}" alt="" height="20">
                         </span>

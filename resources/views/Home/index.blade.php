@@ -3,10 +3,10 @@
 
 <head>
   <meta charset="utf-8">
-  <title>HACM - Annual Meeting</title>
+  <title>HACM - Hulondalo Annual Cardiovascular Meeting</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
+  <meta content="HACM - Hulondalo Annual Cardiovascular Meeting" name="keywords">
+  <meta content="HACM - Holistic Approach Of Cardiovascular Care : From Pediatric To Adult. 2nd Hulondalo Cardiovascular Meeting 2024. Program at Galance: 3 Symposium, 3 Workshop, GP Case Sharing, Modereted Poster." name="description">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- Favicons -->
@@ -740,41 +740,6 @@
             Ticket prices will increase on November 03, 2024.</span>
         </div>
     </div>
-      <!-- Modal Order Form -->
-      <div id="buy-ticket-modal" class="modal fade">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Buy Tickets</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form method="POST" action="#">
-                <div class="form-group">
-                  <input type="text" class="form-control" name="your-name" placeholder="Your Name">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" name="your-email" placeholder="Your Email">
-                </div>
-                <div class="form-group">
-                  <select id="ticket-type" name="ticket-type" class="form-control" >
-                    <option value="">-- Select Your Ticket Type --</option>
-                    <option value="standard-access">Standard Access</option>
-                    <option value="pro-access">Pro Access</option>
-                    <option value="premium-access">Premium Access</option>
-                  </select>
-                </div>
-                <div class="text-center">
-                  <button type="submit" class="btn">Buy Now</button>
-                </div>
-              </form>
-            </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
-
     </section>
 
     <!--==========================
@@ -803,7 +768,7 @@
             <div class="contact-phone">
               <i class="ion-ios-telephone-outline"></i>
               <h3>Phone Number</h3>
-              <p><a href="tel:+155895548855">+62 812 418 7433</a></p>
+              <p><a href="https://wa.me/08124187433">+62 812 418 7433</a></p>
             </div>
           </div>
 
@@ -811,7 +776,7 @@
             <div class="contact-email">
               <i class="ion-ios-email-outline"></i>
               <h3>Email</h3>
-              <p><a href="mailto:hacmgorontalo@gmail.com">hacmgorontalo@gmail.com</a></p>
+              <p><a href="mailto:hgorontalo.acs@gmail.com">gorontalo.acs@gmail.com</a></p>
             </div>
           </div>
 
@@ -862,7 +827,7 @@
               Indonesia <br>
               <strong>Phone:</strong> +62 812 418 7433
               <br>
-              <strong>Email:</strong> hacmgorontalo@gmail.com<br>
+              <strong>Email:</strong> gorontalo.acs@gmail.com<br>
             </p>
           </div>
 

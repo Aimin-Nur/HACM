@@ -706,22 +706,30 @@
                     <hr>
                     <div class="text-center">
                         @if (is_null($getUser))
-                            <a class="btn login" id="login{{$item->id}}">Buy Tickets</a>
+                            <a class="btn btn-md mb-3 login" id="login{{$item->id}}">Buy Ticket</a>
                         @elseif($getUser->roles != 'Student' || $item->class_name != 'Saronde')
-                        <a class="btn buy-ticket"
+                        <a class="btn btn-md mb-3 buy-ticket"
                             id="validation{{$item->id}}"
                             data-class-name="{{$item->class_name}}"
                             data-price-specialist="{{$item->formatted_price_doctor_specialist}}"
                             data-price-doctor="{{$item->formatted_price_doctor}}"
                             data-price-nurse="{{$item->formatted_price_nurses}}"
                             data-price-student="{{$item->formatted_price_student}}">
-                            Buy Tickets
+                            Buy Ticket
                         </a>
                         @else
-                        <a class="btn" id="student"
-                            >
-                         Buy Tickets
+                        <a class="btn btn-md mb-3" id="student">
+                         Buy Ticket
                         </a>
+                        @endif
+                        @if ($item->class_name == 'Saronde')
+                            <a class="btn btn-md mb-3" style="background-color: #e62020" href="https://drive.google.com/uc?export=download&id=1LB_p0Q63HyIBjPmZjBHrgeaG9Bs3cqSX">
+                                Download Schedule
+                            </a>
+                        @else
+                            <a class="btn btn-md mb-3" style="background-color: #e62020" href="https://drive.google.com/uc?export=download&id=1p_zYv3mMIGHZAV8Vu91IeGnsQGWsDoOG">
+                                Download Schedule
+                            </a>
                         @endif
 
                     </div>

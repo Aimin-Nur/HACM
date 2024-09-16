@@ -70,7 +70,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-lg-4">
                                             <label for="province" class="form-label">Province<span class="text-danger">*</span></label>
-                                            <select class="form-control" name="province" id="province">
+                                            <select class="form-control" name="province" id="province" /required>
                                                 <option value="">Select Province</option>
                                                 @foreach($provinces as $province)
                                                     <option value="{{ $province->id }}">{{ $province->name }}</option>
@@ -80,14 +80,14 @@
 
                                         <div class="mb-3 col-lg-4">
                                             <label for="city" class="form-label">City<span class="text-danger">*</span></label>
-                                            <select class="form-control" name="city" id="city">
+                                            <select class="form-control" name="city" id="city" /required>
                                                 <option value="">Select City</option>
                                             </select>
                                         </div>
 
                                         <div class="mb-3 col-lg-4">
                                             <label for="district" class="form-label">District<span class="text-danger">*</span></label>
-                                            <select class="form-control" name="district" id="district">
+                                            <select class="form-control" name="district" id="district" /required>
                                                 <option value="">Select District</option>
                                             </select>
                                         </div>

@@ -127,21 +127,31 @@
         </div>
 
         <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="speaker">
+                  <img src="{{ URL::asset('home/img/speakers/9.jpg')}}" alt="dr. Pendrik Tendean, Sp.PD KKV" class="img-fluid">
+                  <div class="details">
+                    <h3><a href="speaker-details.html">dr. Pendrik Tendean, Sp.PD KKV</a></h3>
+                   <br>
+                   <br>
+                  </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="speaker">
+                  <img src="{{ URL::asset('home/img/speakers/8.jpg')}}" alt="dr. Julius Patimang, Sp.A., Sp.JP(K) FIHA" class="img-fluid">
+                  <div class="details">
+                    <h3><a href="speaker-details.html">dr. Julius Patimang, Sp.A., Sp.JP(K) FIHA</a></h3>
+                   <br>
+                   <br>
+                  </div>
+                </div>
+              </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker">
-              <img src="{{ URL::asset('home/img/speakers/1.jpg')}}" alt="dr. Pendrik Tendean, Sp.PD KKV" class="img-fluid">
+              <img src="{{ URL::asset('home/img/speakers/1.jpg')}}" alt="dr. Vickry H Wahidji, Sp.JP(K) FIHA" class="img-fluid">
               <div class="details">
                 <h3><a href="speaker-details.html">dr. Vickry H Wahidji, Sp.JP(K) FIHA</a></h3>
-               <br>
-               <br>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="speaker">
-              <img src="{{ URL::asset('home/img/speakers/2.jpg')}}" alt="dr. Abubakar S. Zubeidi, M.Kes.,  Sp.JP(K) FIHA" class="img-fluid">
-              <div class="details">
-                <h3><a href="speaker-details.html">dr. Abubakar S. Zubeidi, M.Kes.,  Sp.JP(K) FIHA</a></h3>
                <br>
                <br>
               </div>
@@ -159,9 +169,9 @@
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker">
-              <img src="{{ URL::asset('home/img/speakers/4.jpg')}}" alt="dr. Andi Alief Utama Armyn, M.Kes., Sp.JP(K) FIHA" class="img-fluid">
+              <img src="{{ URL::asset('home/img/speakers/2.jpg')}}" alt="dr. Abubakar S. Zubeidi, M.Kes.,  Sp.JP(K) FIHA" class="img-fluid">
               <div class="details">
-                <h3><a href="speaker-details.html">dr. Andi Alief Utama Armyn, M.Kes., Sp.JP(K) FIHA</a></h3>
+                <h3><a href="speaker-details.html">dr. Abubakar S. Zubeidi, M.Kes.,  Sp.JP(K) FIHA</a></h3>
                <br>
                <br>
               </div>
@@ -169,9 +179,9 @@
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker">
-              <img src="{{ URL::asset('home/img/speakers/6.jpg')}}" alt="dr. Doddy Moniaga, Sp.JP FIHA" class="img-fluid">
+              <img src="{{ URL::asset('home/img/speakers/4.jpg')}}" alt="dr. Andi Alief Utama Armyn, M.Kes., Sp.JP(K) FIHA" class="img-fluid">
               <div class="details">
-                <h3><a href="speaker-details.html">dr. Doddy Moniaga, Sp.JP FIHA</a></h3>
+                <h3><a href="speaker-details.html">dr. Andi Alief Utama Armyn, M.Kes., Sp.JP(K) FIHA</a></h3>
                <br>
                <br>
               </div>
@@ -189,9 +199,9 @@
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker">
-              <img src="{{ URL::asset('home/img/speakers/8.jpg')}}" alt="dr. Julius Patimang, Sp.A., Sp.JP(K) FIHA" class="img-fluid">
+              <img src="{{ URL::asset('home/img/speakers/10.jpg')}}" alt="dr. Adymas Perdana, Sp.Jp FIHA" class="img-fluid">
               <div class="details">
-                <h3><a href="speaker-details.html">dr. Julius Patimang, Sp.A., Sp.JP(K) FIHA</a></h3>
+                <h3><a href="speaker-details.html">dr. Adymas Perdana, Sp.Jp FIHA</a></h3>
                <br>
                <br>
               </div>
@@ -199,9 +209,9 @@
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker">
-              <img src="{{ URL::asset('home/img/speakers/9.jpg')}}" alt="dr. Pendrik Tendean, Sp.PD KKV" class="img-fluid">
+              <img src="{{ URL::asset('home/img/speakers/6.jpg')}}" alt="dr. Doddy Moniaga, Sp.JP FIHA" class="img-fluid">
               <div class="details">
-                <h3><a href="speaker-details.html">dr. Pendrik Tendean, Sp.PD KKV</a></h3>
+                <h3><a href="speaker-details.html">dr. Doddy Moniaga, Sp.JP FIHA</a></h3>
                <br>
                <br>
               </div>
@@ -317,9 +327,9 @@
               <div class="col-md-2"><time>13:30 WITA</time></div>
               <div class="col-md-10">
                 <div class="speaker">
-                  <img src="{{ URL::asset('home/img/speakers/1.jpg')}}" alt="dr. Vickry H Wahidji, Sp.JP(K) FIHA">
+                  <img src="{{ URL::asset('home/img/speakers/9.jpg')}}" alt="dr. Pendrik Tendean, Sp.PD KKV">
                 </div>
-                <h4>Keynote <span>dr. Vickry H Wahidji, Sp.JP(K) FIHA</span></h4>
+                <h4>Keynote <span>dr. Pendrik Tendean, Sp.PD KKV</span></h4>
                 <p>Topic : The Practical Use of Single Pill Combination Therapy for Hypertension: The Right Pill for the Right Patient</p>
               </div>
             </div>
@@ -807,11 +817,7 @@
             <img src="{{ URL::asset('home/img/logo.png')}}" alt="Hulondalo Annual
             Cardiovascular Meeting">
             <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+              <a href="https://www.instagram.com/hacmofficial?igsh=YmQ0cWx6eDd0aTQ0" class="instagram"><i class="fa fa-instagram"></i></a>
             </div>
 
           </div>
@@ -846,9 +852,6 @@
     <div class="container">
       <div class="copyright">
         &copy; Copyright <strong>HACM Gorontalo</strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        Designed by <a href="https://aiminnur.vercel.app/home">Aiminnur</a>
       </div>
     </div>
   </footer><!-- #footer -->

@@ -10,7 +10,9 @@ class YearlyChartService
 {
     public function getYearlySalesData()
     {
-        $classes = Kelas::with('orders')->get();
+        $classes = Kelas::with(['orders' => function($query) {
+            $query->where('status', 1);
+        }])->get();
         $classNames = [];
         $seriesData = [];
         $months = [];

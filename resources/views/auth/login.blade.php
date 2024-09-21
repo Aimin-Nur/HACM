@@ -83,6 +83,11 @@
                                         </div>
                                     @endif
                                 </form>
+
+                                <div class="mt-4 text-center">
+                                    <p class="mb-0">Click here to view the Ticket Purchase <a href="#"
+                                            class="text-primary"  data-bs-toggle="modal" data-bs-target="#guidlines">Guidelines</a></p>
+                                </div>
                             </div>
 
                         </div>
@@ -99,6 +104,67 @@
             </div>
         </div>
     </div>
+
+    <!-- guidelines modal content -->
+    <div id="guidlines" class="modal fade" tabindex="-1" role="dialog"
+    data-bs-toggle="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myModalLabel">Ticket Purchase Guidelines</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5 class="font-size-16 text-center fw-bold">Ticket Purchase Procedure</h5>
+                <br>
+
+                <span class="mt-2"><strong>1. User Account Registration</strong></span>
+                <p>
+                    a. Users must register an account through the provided registration page.<br>
+                    b. Ensure that the information, especially the email address, is accurate and active.<br>
+                    c. It is crucial that users use an active email address during the registration process.<br>
+                </p>
+
+                <span><strong>2. Selecting a Ticket</strong></span>
+                <p>
+                    a. Users can choose their desired ticket from the ticket purchase page.<br>
+                    b. Click the "Buy Tickets" button to proceed to the purchase process.<br>
+                    c. Users will be directed to the payment details page.
+                </p>
+
+                <span><strong>3. Uploading Payment Proof</strong></span>
+                <p>
+                    a. After making the payment, users must upload their payment proof through the designated upload page.<br>
+                    b. Ensure that the payment proof is clear and matches the provided payment details.
+                </p>
+
+                <span><strong>4. Waiting for Payment Validation</strong></span>
+                <p>
+                    a. Once the payment proof is uploaded, the system will process the payment validation by the admin.<br>
+                    b. The validation process may take up to 2 x 24 hours.<br>
+                    c. Users will receive an email notification about the payment validation status.
+                </p>
+
+                <span><strong>5. Receiving Payment Notification</strong></span>
+                <p>
+                    a. Users will receive an email notification regarding the payment status after validation by the admin.<br>
+                    b. If the payment is validated, users will be provided with a link to generate their ticket.
+                </p>
+
+                <span><strong>6. Generating the Ticket</strong></span>
+                <p>
+                    a. After receiving the notification that the payment has been validated, users can generate their ticket through the link provided in the email.<br>
+                    b. The generated ticket can be downloaded and used according to the applicable terms.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- /.modal-dialog -->
 @endsection
 @push('script')
     <!-- Sweet Alerts js -->

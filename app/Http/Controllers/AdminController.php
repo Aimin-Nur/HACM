@@ -83,20 +83,39 @@ class AdminController extends Controller
                     ->first();
 
         $sumPrice = Order::join('class', 'order.id_class', '=', 'class.id')
-                    ->where('order.status', 1)
+                ->join('users', 'order.id_users', '=', 'users.id')
+                ->where('order.status', 1)
+                ->selectRaw('
+                    SUM(
+                        CASE
+                            WHEN users.roles = "Specialist Doctor" THEN class.price_doctor_specialist
+                            WHEN users.roles = "Doctor" THEN class.price_doctor
+                            WHEN users.roles = "Nurse" THEN class.price_nurses
+                            WHEN users.roles = "Student" THEN class.price_student
+                            ELSE 0
+                        END
+                    ) AS total
+                ')
+                ->pluck('total')
+                ->first();
+
+        $sumPriceNullVerif = Order::join('class', 'order.id_class', '=', 'class.id')
+                    ->join('users', 'order.id_users', '=', 'users.id')
+                    ->whereNull('order.status')
                     ->selectRaw('
-                        SUM(class.price_doctor_specialist + class.price_doctor + class.price_nurses + class.price_student) AS total
+                        SUM(
+                            CASE
+                                WHEN users.roles = "Specialist Doctor" THEN class.price_doctor_specialist
+                                WHEN users.roles = "Doctor" THEN class.price_doctor
+                                WHEN users.roles = "Nurse" THEN class.price_nurses
+                                WHEN users.roles = "Student" THEN class.price_student
+                                ELSE 0
+                            END
+                        ) AS total
                     ')
                     ->pluck('total')
                     ->first();
 
-        $sumPriceNullVerif = Order::join('class', 'order.id_class', '=', 'class.id')
-                    ->where('order.status', 0)
-                    ->selectRaw('
-                        SUM(class.price_doctor_specialist + class.price_doctor + class.price_nurses + class.price_student) AS total
-                    ')
-                    ->pluck('total')
-                    ->first();
 
 
 

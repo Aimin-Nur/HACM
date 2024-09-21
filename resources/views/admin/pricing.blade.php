@@ -33,11 +33,8 @@
     <div class="row">
         @foreach ($getClass as $item)
         <div class="col-lg-6">
-            <img class="card-img-top img-fluid" src="{{ asset('storage/uploads/' . $item->img) }}" alt="Card image cap">
             <div class="card card-body">
-                <h3 class="card-title mt-0">{{$item->class_name}}</h3>
-                <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam, iusto! Veniam asperiores harum dolores est magnam porro consectetur beatae minima.
-                </p>
+                <h4 class="mt-0 text-center fw-bold">{{$item->class_name}} Event</h4>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="py-4 mt-4 text-center bg-soft-light">

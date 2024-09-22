@@ -39,14 +39,14 @@
                                            Name : {{$getOrderId->user->name ?? ''}}<br>
                                             Email : {{$getOrderId->user->email ?? ''}} <br>
                                             Phone Number : {{$getOrderId->user->phone_number ?? ''}} <br>
-
+                                            Order Data :
                                         </address>
                                     </div>
                                     <div class="col-6 mt-3 text-end">
                                         <address>
-                                            {{-- <strong>Order Date:</strong><br>
+                                            <strong>Order Date:</strong><br>
                                             {{ \Carbon\Carbon::parse($getOrderId->created_at)->format('M d, Y') ?? 'NULL'}}
-                                            <br><br> --}}
+                                            <br><br>
                                         </address>
                                     </div>
                                 </div>

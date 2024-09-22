@@ -76,17 +76,15 @@
 
                                     @if (Route::has('password.request'))
                                         <div class="mt-4 text-center">
-                                             <a href="#" id="sa-title" class="text-muted"><i
+                                            <a href="{{ route('password.request') }}" class="text-muted"><i
                                                     class="mdi mdi-lock me-1"></i> Forgot your password?</a>
-                                            {{-- <a href="{{ route('password.request') }}" id="sa-title" class="text-muted"><i
-                                                    class="mdi mdi-lock me-1"></i> Forgot your password?</a> --}}
                                         </div>
                                     @endif
                                 </form>
 
                                 <div class="mt-4 text-center">
                                     <p class="mb-0">Click here to view the Ticket Purchase <a href="#"
-                                            class="text-primary"  data-bs-toggle="modal" data-bs-target="#guidlines">Guidelines</a></p>
+                                            class="text-primary" data-bs-toggle="modal" data-bs-target="#guidlines">Guidelines</a></p>
                                 </div>
                             </div>
 
@@ -169,18 +167,7 @@
 @push('script')
     <!-- Sweet Alerts js -->
     <script src="{{ URL::asset('build/libs/sweetalert2/sweetalert2.min.js') }}"></script>
-
-    <script>
-        $('#sa-title').click(function () {
-                Swal.fire(
-                    {
-                        title: "Forgot Password is waiting for activate",
-                        text: 'Soory, this feature is still in the administators hand, please contact the developer to activate it.',
-                        type: 'warning',
-                        confirmButtonColor: '#3b5de7'
-                    }
-                )
-            });
-    </script>
     <script src="{{ URL::asset('build/js/app.js') }}"></script>
 @endpush
+
+

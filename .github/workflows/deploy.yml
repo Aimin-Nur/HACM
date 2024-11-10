@@ -38,7 +38,7 @@ jobs:
         SOURCE: "."  
         REMOTE_HOST: ${{ secrets.VPS_HOST }}  
         REMOTE_USER: ${{ secrets.VPS_USER }}  
-        TARGET: "/var/www/domains/hacm-gorontalo.com/HACM"  
+        TARGET: "/var/www/domains/hacm-gorontalo.com"  
         PORT: 65002  
 
     - name: Run Remote Artisan Commands  

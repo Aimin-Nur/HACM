@@ -31,15 +31,17 @@ jobs:
     - name: Build NPM Assets  
       run: npm run build  
 
+    - name: Set up SSH  
+      run: |  
+        mkdir -p ~/.ssh  
+        # Menyimpan kunci ssh dari secret ke file  
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa  
+        chmod 600 ~/.ssh/id_rsa  
+        ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts  
+
     - name: Synchronize Files To Server  
-      uses: easingthemes/ssh-deploy@v2.1.5  
-      env:  
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}  
-        SOURCE: "."  
-        REMOTE_HOST: ${{ secrets.VPS_HOST }}  
-        REMOTE_USER: ${{ secrets.VPS_USER }}  
-        TARGET: "/var/www/domains/hacm-gorontalo.com"  
-        PORT: 65002  
+      run: |  
+        rsync -avz -e "ssh -p 65002 -i ~/.ssh/id_rsa" ./ u926100489@${{ secrets.VPS_HOST }}:/var/www/domains/hacm-gorontalo.com/HACM  
 
     - name: Run Remote Artisan Commands  
       uses: appleboy/ssh-action@v0.1.6  

@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
             IndoRegionSeeder::class,
             KelasTableSeeder::class,
             UsersTableSeeder::class,
-            SuperAdminTableSeeder::class,
+            // SuperAdminTableSeeder::class,
             AdminTableSeeder::class,
             OrderSeeder::class,
             TicketSeeder::class,

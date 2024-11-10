@@ -1,55 +1,58 @@
-name: Deploy Laravel Application to Production Server  
-on:  
-  push:  
-    branches:  
-      - main  
+name: Deploy Laravel Application to Production Server
 
-jobs:  
-  deploy:  
-    runs-on: ubuntu-latest  
+on:
+  push:
+    branches:
+      - main
 
-    steps:  
-    - name: Checkout Code  
-      uses: actions/checkout@v3  
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
-    - name: Setup PHP  
-      uses: shivammathur/setup-php@v2  
-      with:  
-        php-version: 8.3  
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
 
-    - name: Install Composer Dependencies  
-      run: composer install --optimize-autoloader --no-dev --no-progress --no-interaction --prefer-dist  
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.3
 
-    - name: Install Node  
-      uses: actions/setup-node@v3  
-      with:  
-        node-version: '20'  
+    - name: Install Composer Dependencies
+      run: composer install --optimize-autoloader --no-dev --no-progress --no-interaction --prefer-dist
 
-    - name: Install NPM Dependencies  
-      run: npm install  
+    - name: Install Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
 
-    - name: Build NPM Assets  
-      run: npm run build  
+    - name: Install NPM Dependencies
+      run: npm install
 
-    - name: Set up SSH  
-      run: |  
-        mkdir -p ~/.ssh  
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa  
-        chmod 600 ~/.ssh/id_rsa  
-        ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts  
+    - name: Build NPM Assets
+      run: npm run build
 
-    - name: Synchronize Files To Server  
-      run: |  
-        rsync -avz -e "ssh -p 65002 -i ~/.ssh/id_rsa" ./ u926100489@${{ secrets.VPS_HOST }}:/var/www/domains/hacm-gorontalo.com/HACM  
+    - name: Set up SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts
 
-    - name: Run Remote Artisan Commands  
-      uses: appleboy/ssh-action@v0.1.6  
-      with:  
-        host: ${{ secrets.VPS_HOST }}    
-        username: ${{ secrets.VPS_USER }}   
-        key: ${{ secrets.SSH_PRIVATE_KEY }}  
-        port: 65002  
-        script: |  
-          cd /var/www/domains/hacm-gorontalo.com  
-          php artisan migrate --force  
+    - name: Synchronize Files To Server
+      env:
+        SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      run: |
+        rsync -avz --delete -e "ssh -p 65002 -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" ./ u926100489@${{ secrets.VPS_HOST }}:/var/www/domains/hacm-gorontalo.com/HACM
+
+    - name: Run Remote Artisan Commands
+      uses: appleboy/ssh-action@v0.1.6
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: 65002
+        script: |
+          cd /var/www/domains/hacm-gorontalo.com/HACM
+          php artisan migrate --force
           php artisan optimize

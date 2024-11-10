@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('kecamatan')->nulable();
             $table->integer('NIK')->unique()->nullable();
             $table->boolean('active');
-            $table->string('address')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->string('roles');

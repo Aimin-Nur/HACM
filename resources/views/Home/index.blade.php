@@ -738,7 +738,7 @@
                             </a>
                         @else
                             <a class="btn btn-md mb-3" style="background-color: #e62020" href="https://drive.google.com/uc?export=download&id=1p_zYv3mMIGHZAV8Vu91IeGnsQGWsDoOG">
-                                TES
+                              Buy Ticket
                             </a>
                         @endif
 

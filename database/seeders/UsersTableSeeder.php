@@ -42,6 +42,7 @@ class UsersTableSeeder extends Seeder
                 'kecamatan' => $district->id, // Storing the ID
                 'roles' => $faker->randomElement(['Specialist Doctor', 'Doctor', 'Nurse', 'Student']),
                 'active' => $faker->boolean,
+                'address' => $faker->address,
             ]);
         }
     }

@@ -1,58 +1,125 @@
-name: Deploy Laravel Application to Production Server
+# name: Deploy Laravel Application to Production Server
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Checkout Code
+#       uses: actions/checkout@v3
+
+#     - name: Setup PHP
+#       uses: shivammathur/setup-php@v2
+#       with:
+#         php-version: 8.3
+
+#     - name: Install Composer Dependencies
+#       run: composer install --optimize-autoloader --no-dev --no-progress --no-interaction --prefer-dist
+
+#     - name: Install Node
+#       uses: actions/setup-node@v3
+#       with:
+#         node-version: '20'
+
+#     - name: Install NPM Dependencies
+#       run: npm install
+
+#     - name: Build NPM Assets
+#       run: npm run build
+
+#     - name: Set up SSH
+#       run: |
+#         mkdir -p ~/.ssh
+#         echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
+#         chmod 600 ~/.ssh/id_rsa
+#         ssh-keyscan -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts
+
+#     - name: Synchronize Files To Server
+#       env:
+#         SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+#       run: |
+#         rsync -avz --delete -e "ssh -p 65002 -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" ./ u926100489@${{ secrets.VPS_HOST }}:/var/www/domains/hacm-gorontalo.com/HACM
+
+#     - name: Run Remote Artisan Commands
+#       uses: appleboy/ssh-action@v0.1.6
+#       with:
+#         host: ${{ secrets.VPS_HOST }}
+#         username: ${{ secrets.VPS_USER }}
+#         key: ${{ secrets.SSH_PRIVATE_KEY }}
+#         port: 65002
+#         script: |
+#           cd /var/www/domains/hacm-gorontalo.com/HACM
+#           php artisan migrate --force
+#           php artisan optimize
+
+name: CI Nexa
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "developing" ]
+  pull_request:
+    branches: [ "developing" ]
 
 jobs:
-  deploy:
+  test-and-merge:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-    - name: Setup PHP
+    - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: 8.3
+        php-version: '8.2'
+        extensions: mbstring, sqlite2
+        ini-values: post_max_size=256M, upload_max_filesize=256M
+        coverage: none
 
-    - name: Install Composer Dependencies
-      run: composer install --optimize-autoloader --no-dev --no-progress --no-interaction --prefer-dist
-
-    - name: Install Node
-      uses: actions/setup-node@v3
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
       with:
-        node-version: '20'
+        node-version: '16' # Sesuaikan jika perlu
 
-    - name: Install NPM Dependencies
+    - name: Install dependencies via Composer
+      run: composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+
+    - name: Install npm dependencies
       run: npm install
 
-    - name: Build NPM Assets
-      run: npm run build
+    - name: Run npm production build (optional)
+      run: npm run prod
 
-    - name: Set up SSH
+    - name: Set up .env
+      run: cp .env.example .env
+
+    - name: Generate application key
+      run: php artisan key:generate
+
+    # Buat database SQLite
+    - name: Create SQLite Database
       run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts
+        mkdir -p database
+        touch database/database.sqlite
 
-    - name: Synchronize Files To Server
+    # Jalankan migrasi dan seeding dengan menggunakan SQLite
+    - name: Run migrations and seed
       env:
-        SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
       run: |
-        rsync -avz --delete -e "ssh -p 65002 -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" ./ u926100489@${{ secrets.VPS_HOST }}:/var/www/domains/hacm-gorontalo.com/HACM
+        php artisan migrate --env=testing
+        php artisan db:seed --env=testing
 
-    - name: Run Remote Artisan Commands
-      uses: appleboy/ssh-action@v0.1.6
-      with:
-        host: ${{ secrets.VPS_HOST }}
-        username: ${{ secrets.VPS_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: 65002
-        script: |
-          cd /var/www/domains/hacm-gorontalo.com/HACM
-          php artisan migrate --force
-          php artisan optimize
+    # Jalankan pengujian unit dan feature
+    - name: Run tests (Unit and Feature) with SQLite
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
+      run: php artisan test
+

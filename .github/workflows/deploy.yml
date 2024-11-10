@@ -41,7 +41,7 @@ jobs:
         TARGET: "/var/www/domains/hacm-gorontalo.com/HACM"  
         PORT: 65002  
 
-    - name: Run Remote/Artisan Commands  
+    - name: Run Remote Artisan Commands  
       uses: appleboy/ssh-action@v0.1.6  
       with:  
         host: ${{ secrets.VPS_HOST }}    
@@ -49,6 +49,6 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}  
         port: 65002  
         script: |  
-          cd /var/www/HACM/hacm-gorontalo.com  
+          cd /var/www/domains/hacm-gorontalo.com  
           php artisan migrate --force  
           php artisan optimize

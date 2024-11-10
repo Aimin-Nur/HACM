@@ -31,7 +31,8 @@ class User extends Authenticatable
         'kota',
         'kecamatan',
         'roles',
-        'NIK'
+        'NIK',
+        'address',
     ];
 
     public function orders()

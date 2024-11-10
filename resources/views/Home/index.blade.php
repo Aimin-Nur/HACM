@@ -752,7 +752,7 @@
       </div>
       <div class="container">
         <div class="countdown text-primary" id="countdown">
-            <!-- Timer akan muncul di sini -->
+            Ticket Prices Have Already Increased
         </div>
         <div class="message">
             Ticket prices will increase on November 03, 2024.</span>
@@ -876,35 +876,6 @@
   <script src="{{ URL::asset('home/js/main.js')}}"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <script>
-    // Tanggal target
-    const targetDate = new Date("November 2, 2024 00:00:00").getTime();
-
-    // Update countdown setiap detik
-    const countdownFunction = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
-
-        // Hitung waktu yang tersisa
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // Tampilkan hasil di elemen dengan id "countdown"
-        document.getElementById("countdown").innerHTML = `${days} Days : ${hours} Hours : ${minutes} Minutes : ${seconds} Second`;
-
-        // Tampilkan waktu yang tersisa untuk pesan
-        document.getElementById("time-remaining").innerHTML = `${days} Hari ${hours} Jam ${minutes} Menit ${seconds} Detik`;
-
-        // Jika waktu habis, tampilkan pesan
-        if (distance < 0) {
-            clearInterval(countdownFunction);
-            document.getElementById("countdown").innerHTML = "Time is out!";
-            document.getElementById("time-remaining").innerHTML = "Ticket Prices Have Already Increased";
-        }
-    }, 1000);
-</script>
 
 <script>
     // Event listener untuk tombol 'myButton'
@@ -959,7 +930,7 @@
             // Tentukan harga berdasarkan role pengguna
             let price;
             switch(userRole) {
-                case 'Doctor Specialist':
+                case 'Specialist Doctor':
                     price = priceSpecialist;
                     break;
                 case 'Doctor':

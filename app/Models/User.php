@@ -30,7 +30,8 @@ class User extends Authenticatable
         'provinsi',
         'kota',
         'kecamatan',
-        'roles'
+        'roles',
+        'NIK'
     ];
 
     public function orders()

@@ -4,11 +4,14 @@
 @endsection
 @push('css')
     <!-- DataTables -->
-    <link href="{{ URL::asset('build/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ URL::asset('build/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('build/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
+        type="text/css" />
+    <link href="{{ URL::asset('build/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}" rel="stylesheet"
+        type="text/css" />
 
     <!-- Responsive datatable examples -->
-    <link href="{{ URL::asset('build/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('build/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}"
+        rel="stylesheet" type="text/css" />
 @endpush
 @section('content')
     <!-- start page title -->
@@ -35,17 +38,24 @@
                 <div class="card-body">
                     <h4 class="card-title">Order's Information</h4>
                     <div class="mb-4">
-                        <span class="badge badge-soft-warning">Pending</span> <b>:</b> <p style="display: inline" class="card-title-desc">Pending status occurs when the user has sent proof of ticket payment and is still waiting for admin payment validation.
+                        <span class="badge badge-soft-warning">Pending</span> <b>:</b>
+                        <p style="display: inline" class="card-title-desc">Pending status occurs when the user has sent
+                            proof of ticket payment and is still waiting for admin payment validation.
                         </p> <br>
-                        <span class="badge badge-soft-success">Success</span> <b>:</b> <p style="display: inline" class="card-title-desc">Success status occurs when users have sent proof of payment and the admin has approved the payment.
+                        <span class="badge badge-soft-success">Success</span> <b>:</b>
+                        <p style="display: inline" class="card-title-desc">Success status occurs when users have sent proof
+                            of payment and the admin has approved the payment.
                         </p> <br>
-                        <span class="badge badge-soft-danger">Rejected</span> <b>:</b> <p style="display: inline" class="card-title-desc">Rejected status occurs when users have sent proof of payment and the admin has rejected the payment.
+                        <span class="badge badge-soft-danger">Rejected</span> <b>:</b>
+                        <p style="display: inline" class="card-title-desc">Rejected status occurs when users have sent proof
+                            of payment and the admin has rejected the payment.
                         </p>
                     </div>
                     <table id="datatable" class="table table-bordered dt-responsive nowrap"
                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
+                                <th>NIK</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Class</th>
@@ -62,45 +72,144 @@
         <!-- end col -->
     </div>
     <!-- end row -->
-
 @endsection
 @push('script')
-<script>
-    $(document).ready(function () {
-        @if(Auth::guard('superadmin')->check())
-            $('#datatable').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: '{{ route('order-list') }}',
-                columns: [
-                    { data: 'name', name: 'name', searchable: true, orderable: true },
-                    { data: 'email', name: 'email' },
-                    { data: 'class', name: 'class' },
-                    { data: 'price', name: 'price' },
-                    { data: 'status', name: 'status' },
-                    { data: 'action', name: 'action' }
-                ],
-                order: [[4, 'desc']],
-            });
-        @elseif(Auth::guard('admin')->check())
-            $('#datatable').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: '{{ route('order-list-admin') }}',
-                columns: [
-                    { data: 'name', name: 'name', searchable: true, orderable: true },
-                    { data: 'email', name: 'email' },
-                    { data: 'class', name: 'class' },
-                    { data: 'price', name: 'price' },
-                    { data: 'status', name: 'status' },
-                    { data: 'action', name: 'action' }
-                ],
-                order: [[4, 'desc']],
-            });
-        @endif
-    });
-</script>
-        <!-- Required datatable js -->
+    <script>
+        $(document).ready(function() {
+            @if (Auth::guard('superadmin')->check())
+                $('#datatable').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: '{{ route('order-list') }}',
+                    columns: [{
+                            data: 'NIK',
+                            name: 'NIK',
+                            searchable: true,
+                            orderable: true
+                        },
+                        {
+                            data: 'name',
+                            name: 'name',
+                            searchable: true,
+                            orderable: true
+                        },
+                        {
+                            data: 'email',
+                            name: 'email'
+                        },
+                        {
+                            data: 'class',
+                            name: 'class'
+                        },
+                        {
+                            data: 'price',
+                            name: 'price'
+                        },
+                        {
+                            data: 'status',
+                            name: 'status'
+                        },
+                        {
+                            data: 'action',
+                            name: 'action'
+                        }
+                    ],
+                    order: [
+                        [4, 'desc']
+                    ],
+                });
+            @elseif (Auth::guard('admin')->check())
+                $('#datatable').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    dom: '<"d-flex justify-content-between align-items-center"<"flex-grow-4"l><"text-center"B><"ml-auto"f>>rt<"d-flex justify-content-between bottom"<"align-self-center"i><"ml-auto pagination p-2 justify-content-end"p>>',
+                    lengthMenu: [
+                        [10, 25, 50, 100, -1],
+                        [10, 25, 50, 100, "All"]
+                    ],
+                    buttons: [{
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            className: 'btn btn-sm btn-success',
+                            exportOptions: {
+                                columns: ':not(:last-child)'
+                            }
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            className: 'btn btn-sm btn-primary',
+                            exportOptions: {
+                                columns: ':not(:last-child)'
+                            }
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            className: 'btn btn-sm btn-primary',
+                            exportOptions: {
+                                columns: ':not(:last-child)'
+                            }
+                        },
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            className: 'btn btn-sm btn-primary',
+                            exportOptions: {
+                                columns: ':not(:last-child)'
+                            }
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            className: 'btn btn-sm btn-primary',
+                            exportOptions: {
+                                columns: ':not(:last-child)'
+                            }
+                        }
+                    ],
+                    ajax: '{{ route('order-list-admin') }}',
+                    columns: [{
+                            data: 'NIK',
+                            name: 'NIK',
+                            searchable: true,
+                            orderable: true
+                        },
+                        {
+                            data: 'name',
+                            name: 'name',
+                            searchable: true,
+                            orderable: true
+                        },
+                        {
+                            data: 'email',
+                            name: 'email'
+                        },
+                        {
+                            data: 'class',
+                            name: 'class'
+                        },
+                        {
+                            data: 'price',
+                            name: 'price'
+                        },
+                        {
+                            data: 'status',
+                            name: 'status'
+                        },
+                        {
+                            data: 'action',
+                            name: 'action'
+                        }
+                    ],
+                    order: [
+                        [4, 'desc']
+                    ],
+                });
+            @endif
+        });
+    </script>
+    <!-- Required datatable js -->
     <script src="{{ URL::asset('build/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ URL::asset('build/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <!-- Buttons examples -->

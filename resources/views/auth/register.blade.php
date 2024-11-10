@@ -27,6 +27,18 @@
                                 <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                                     @csrf
                                     <div class="mb-3">
+                                        <label for="nik" class="form-label">NIK <span
+                                                class="text-danger">*</span></label>
+                                        <input type="number" class="form-control @error('nik') is-invalid @enderror"
+                                            name="nik" value="{{ old('nik') }}"
+                                            autofocus id="nik" placeholder="Enter your nik">
+                                        @error('nik')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
                                         <label for="name" class="form-label">Name <span
                                                 class="text-danger">*</span></label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
@@ -44,7 +56,7 @@
                                             <label for="email" class="form-label">Email<span
                                                     class="text-danger">*</span></label>
                                             <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                                name="email" value="{{ old('phone_number') }}"  autocomplete="email"
+                                                name="email" value="{{ old('email') }}"  autocomplete="email"
                                                 id="email" placeholder="Enter email">
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
@@ -57,7 +69,7 @@
                                             <label for="phone_number" class="form-label">Phone Number <span
                                                     class="text-danger">*</span></label>
                                             <input type="number" class="form-control @error('number') is-invalid @enderror"
-                                                name="phone_number"  autocomplete="+62 *78-xxx-xxx"
+                                                name="phone_number" value="{{ old('phone_number') }}"  autocomplete="+62 *78-xxx-xxx"
                                                 id="phone_number" placeholder="Enter your phone number">
                                             @error('phone_number')
                                                 <span class="invalid-feedback" role="alert">
@@ -71,9 +83,9 @@
                                         <div class="mb-3 col-lg-4">
                                             <label for="province" class="form-label">Province<span class="text-danger">*</span></label>
                                             <select class="form-control" name="province" id="province" /required>
-                                                <option value="">Select Province</option>
+                                                <option value="{{ old('province') }}">Select Province</option>
                                                 @foreach($provinces as $province)
-                                                    <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                                    <option value="{{ $province->id }}" {{ old('province') == $province->id ? 'selected' : '' }}>{{ $province->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -81,14 +93,14 @@
                                         <div class="mb-3 col-lg-4">
                                             <label for="city" class="form-label">City<span class="text-danger">*</span></label>
                                             <select class="form-control" name="city" id="city" /required>
-                                                <option value="">Select City</option>
+                                                <option value="{{ old('city') }} ">Select City</option>
                                             </select>
                                         </div>
 
                                         <div class="mb-3 col-lg-4">
                                             <label for="district" class="form-label">District<span class="text-danger">*</span></label>
                                             <select class="form-control" name="district" id="district" /required>
-                                                <option value="">Select District</option>
+                                                <option value="{{ old('district') }}">Select District</option>
                                             </select>
                                         </div>
                                     </div>
@@ -109,11 +121,11 @@
                                     <div class="mb-3">
                                         <label for="roles" class="form-label">Profession<span class="text-danger">*</span></label>
                                         <select class="form-control @error('roles') is-invalid @enderror" name="roles">
-                                            <option value="">Select Profession</option>
-                                            <option value="Specialist Doctor">Specialist Doctor</option>
-                                            <option value="Doctor">Doctor</option>
-                                            <option value="Nurse">Nurse</option>
-                                            <option value="Student">Student</option>
+                                            <option value="{{ old('roles') }}">Select Profession</option>
+                                            <option value="Specialist Doctor" {{ old('roles') == 'Specialist Doctor' ? 'selected' : '' }}>Specialist Doctor</option>
+                                            <option value="Doctor" {{ old('roles') == 'Doctor' ? 'selected' : '' }}>Doctor</option>
+                                            <option value="Nurse" {{ old('roles') == 'Nurse' ? 'selected' : '' }}>Nurse</option>
+                                            <option value="Student" {{ old('roles') == 'Student' ? 'selected' : '' }}>Student</option>
                                         </select>
                                         @error('roles')
                                             <span class="invalid-feedback" role="alert">

@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        $roles = ['Doctor Specialist', 'Doctor', 'Nurse', 'Student'];
+        $roles = ['Specialist Doctor', 'Doctor', 'Nurse', 'Student'];
 
         for ($i = 0; $i < 380; $i++) {
             // Randomly select a province
@@ -40,7 +40,7 @@ class UsersTableSeeder extends Seeder
                 'provinsi' => $province->id, // Storing the ID
                 'kota' => $regency->id, // Storing the ID
                 'kecamatan' => $district->id, // Storing the ID
-                'roles' => $faker->randomElement(['Doctor Specialist', 'Doctor', 'Nurse', 'Student']),
+                'roles' => $faker->randomElement(['Specialist Doctor', 'Doctor', 'Nurse', 'Student']),
                 'active' => $faker->boolean,
             ]);
         }

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('provinsi')->nulable();
             $table->string('kota')->nulable();
             $table->string('kecamatan')->nulable();
+            $table->integer('NIK')->unique()->nullable();
             $table->boolean('active');
             $table->rememberToken();
             $table->timestamps();

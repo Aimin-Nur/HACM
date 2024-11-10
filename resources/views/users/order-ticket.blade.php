@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <h5 class="font-size-15">Your Class Payment  <b>"{{$item->kelas->class_name}}"</b> is still waiting for Admin validation  <span style="display: inline-block" class="badge badge-soft-warning mb-2">Pending</span></h5>
-                                    <p class="text-muted">Your payment is currently awaiting validation from the admin. Please be patient, and we will notify you as soon as the validation process is complete. Please check your email address periodically</p>
+                                    <p class="text-muted">Your payment is currently awaiting validation from the admin. Please be patient, and we will notify you as soon as the validation process is complete. Please check your email, including the spam folder.</p>
                                 </div>
                             </div>
                             <hr>

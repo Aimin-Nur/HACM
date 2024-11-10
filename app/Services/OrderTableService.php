@@ -17,8 +17,16 @@ class OrderTableService
     public function generateDataTable($usersQuery)
     {
         return DataTables::of($usersQuery)
+            ->addColumn('NIK', function ($order) {
+                if ($order->user->NIK == NULL) {
+                    $nik = '<small><b>0000000000000000</b></small>';
+                } else {
+                    $nik = '<small><b>'. $order->user->NIK .'</b></small>';
+                }
+                return $nik;
+            })
             ->addColumn('name', function ($order) {
-               return $order->user->name;
+               return $order->user->name. ' - '  .$order->user->roles;
             })
             ->addColumn('email', function ($order) {
                 return $order->user->email;
@@ -101,7 +109,7 @@ class OrderTableService
                 }
 
             })
-            ->rawColumns(['action', 'status'])
+            ->rawColumns(['action', 'status','NIK'])
             ->make(true);
     }
 

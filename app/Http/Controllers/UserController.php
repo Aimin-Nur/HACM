@@ -16,6 +16,8 @@ use PDF;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use App\Services\GetUser;
+use App\Services\LogServices;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 
 class UserController extends Controller
 {
@@ -49,6 +51,11 @@ class UserController extends Controller
 
         if ($validator->fails()) {
             $firstError = $validator->errors()->first();
+
+            // Log Service
+            $ipUser = $request->ip();
+            LogServices::logServices('failed', 'Failed Create Order : ' . $firstError, $ipUser);
+
             session()->flash('error', $firstError);
             return redirect()->back()->withErrors($validator)->withInput();
         }
@@ -70,12 +77,17 @@ class UserController extends Controller
 
                 SendPaymentNotification::dispatch($user, $order);
 
+                // Log Service
+                LogServices::logServices('create', 'Added new order', $order);
+
                 return redirect()->route('order')->with('success', 'Proof of payment has been successfully saved, please check your email regularly for more information!');
             }
 
             return redirect()->route('order')->with('error', 'There is some problem, plese try again!');
 
         } catch (\Exception $e) {
+            $idUser = Auth()->user()->id;
+            LogServices::logServices('failed', 'Failed Create Order : ' . $e->getMessage(), $idUser);
             return redirect()->route('order')->with('error', 'Failed: ' . $e->getMessage());
         }
     }
@@ -89,6 +101,11 @@ class UserController extends Controller
 
         if ($validator->fails()) {
             $firstError = $validator->errors()->first();
+
+            // Log Service
+            $ipUser = $request->ip();
+            LogServices::logServices('failed', 'Failed Create Order : ' . $firstError, $ipUser);
+
             return response()->json([
                 'status' => 'error',
                 'message' => $firstError
@@ -112,6 +129,7 @@ class UserController extends Controller
 
                 SendPaymentNotification::dispatch($user, $order);
 
+                LogServices::logServices('create', 'Added new order', $order);
                 // Kembalikan JSON dengan status sukses dan URL redirect
                 return response()->json([
                     'status' => 'success',
@@ -126,6 +144,11 @@ class UserController extends Controller
             ], 400); // Status HTTP 400: Bad Request
 
         } catch (\Exception $e) {
+
+            // Log Service
+            $ipUser = $request->ip();
+            LogServices::logServices('failed', 'Failed Create Order : ' . $e->getMessage(), $ipUser);
+
             return response()->json([
                 'status' => 'error',
                 'message' => 'Failed: ' . $e->getMessage()
@@ -166,10 +189,16 @@ class UserController extends Controller
             ];
 
             // Buat PDF
-            $pdf = PDF::loadView('ticket.ticket', $data)->setPaper([0, 0, 397.6378, 510.236], 'landscape');
+            $pdf = FacadePdf::loadView('ticket.ticket', $data)->setPaper([0, 0, 397.6378, 510.236], 'landscape');
+
+            // Log Service
+            LogServices::logServices('Generate Ticket', 'Success Generate Ticket by User', $user);
 
             return $pdf->download('ticket.pdf');
         } catch (\Exception $e) {
+            // Log Service
+            LogServices::logServices('Generate Ticket', 'Failed Generate Ticket by User : ' . $e->getMessage(), $user);
+
             session()->flash('error', 'Failed: ' . $e->getMessage());
             return redirect()->back()->withInput();
         }

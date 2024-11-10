@@ -107,7 +107,7 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <small style="font-size: 30px">Hulundalo Annual Cardiovascular Meeting</small>
+                                <small style="font-size: 30px">Hulondalo Annual Cardiovascular Meeting</small>
                             </td>
                         </tr>
                     </table>

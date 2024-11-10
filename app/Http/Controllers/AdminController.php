@@ -22,6 +22,7 @@ use App\Services\LogUserService;
 use App\Services\GetUser;
 use App\Jobs\SuccessPaymentNotification;
 use App\Jobs\RejectedPaymentNotification;
+use App\Services\LogServices;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
@@ -359,8 +360,14 @@ class AdminController extends Controller
             $user->active = $request->input('is_active');
             $user->save();
 
+            // Log Service
+            LogServices::logServices('Activate User', 'Success Activate User', $user);
+
             return redirect('/dashboard/users')->with('success', 'Status User saved successfully!');
         } catch (\Exception $e) {
+            // Log Service
+            LogServices::logServices('Activate User', 'Failed Activate User : ' . $e->getMessage(), $user);
+
             return redirect()->back()->with('error', $e->getMessage())->withInput();
         }
     }
@@ -429,9 +436,16 @@ class AdminController extends Controller
                 'img' => implode(',', $uploadedFileNames),
             ]);
 
+            // Log Service
+            LogServices::logServices('Add Class', 'Success Add Class', Kelas::latest()->first());
+
             return redirect()->route('pricing-class')->with('success', 'Data saved successfully!');
 
         } catch (\Exception $e) {
+            // Log Service
+            $ipUser = $request->ip();
+            LogServices::logServices('Add Class', 'Failed Add Class : ' .$e->getMessage(), $ipUser);
+
             return redirect()->back()->with('error', $e->getMessage())->withInput();
         }
     }
@@ -472,7 +486,6 @@ class AdminController extends Controller
             $request->validate([
                 'status' => 'boolean',
             ]);
-
 
             // Konversi status input ke boolean
             $status = filter_var($request->input('status'), FILTER_VALIDATE_BOOLEAN);
@@ -521,8 +534,14 @@ class AdminController extends Controller
 
             SuccessPaymentNotification::dispatch($user, $getOrder);
 
+            // Log Service
+            LogServices::logServices('Edit Payment', 'Success Approval Payment', $getOrder);
+
             return redirect()->route('order-list')->with('success', 'Data has been successfully validated.');
         } catch (\Exception $e) {
+            // Log Service
+            LogServices::logServices('Edit Payment', 'Failed Approval Payment', $getOrder);
+
             return redirect()->route('order-list')->with('error', 'An error occurred while validating the data.');
         }
     }
@@ -545,9 +564,15 @@ class AdminController extends Controller
 
             RejectedPaymentNotification::dispatch($user, $getOrder);
 
+            // Log Service
+            LogServices::logServices('Edit Payment', 'Success Rejected Payment', $getOrder);
+
             return redirect()->back()->with('success', 'Payment has been Rejected');
 
         } catch (\Exception $e) {
+             // Log Service
+             LogServices::logServices('Edit Payment', 'Failed Rejected Payment', $getOrder);
+
             return redirect()->back()->with('error', 'An error occurred while validating the data.');
         }
     }
@@ -564,9 +589,14 @@ class AdminController extends Controller
 
             $getClass->update();
 
+            LogServices::logServices('Delete Class', 'Success Delete Class', $getClass);
+
             session()->flash('success', 'Workshop Successfully Removed');
             return redirect()->session('status', 'success');
         } catch (\Exception $e) {
+            // Log Service
+            LogServices::logServices('Delete Class', 'Failed Delete Class', $getClass);
+
             session()->flash('error', 'Failed: ' . $e->getMessage());
             return redirect()->back()
             ->with('status', 'error')
@@ -583,8 +613,13 @@ class AdminController extends Controller
 
             $getTicket->save();
 
+            // Log Service
+            LogServices::logServices('Generate Ticket', 'Success Generate Ticket Agian', $getTicket);
+
             return redirect()->route('ticket-list')->with('success', 'Generate ticket has been successfully update.');
         } catch (\Exception $e) {
+            // Log Service
+            LogServices::logServices('Generate Ticket', 'Failed Generate Ticket Agian', $getTicket);
             return redirect()->route('ticket-list')->with('error', 'An error occurred: ' . $e->getMessage());
         }
     }
@@ -598,8 +633,14 @@ class AdminController extends Controller
 
             $getTicket->save();
 
+            // Log Service
+            LogServices::logServices('Validation Order', 'Success Validate Order', $getTicket);
+
             return redirect()->route('ticket-list')->with('success', 'Ticket has been successfully validate.');
         } catch (\Exception $e) {
+            // Log Service
+            LogServices::logServices('Validation Order', 'Failed Validate Order : ' . $e->getMessage(), $getTicket);
+
             return redirect()->route('ticket-list')->with('error', 'An error occurred: ' . $e->getMessage());
         }
     }

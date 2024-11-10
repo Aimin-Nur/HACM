@@ -47,6 +47,7 @@
                                 <span class="badge badge-soft-danger">Unvalidate</span> <b>:</b> <p style="display: inline" class="card-title-desc">Ticket has not been validated.
                                     </p>
                             </div>
+                            <p class="card-title mt-4 text-center text-dark"><i>To maintain the authenticity of the ticket, you must validate the ticket first. Find the ticket code on the user ticket and validate it. Ticket validation can only be done if the user has generated a ticket.</i></p>
                         </div>
                     </div>
                     <table id="datatable" class="table table-bordered dt-responsive nowrap"

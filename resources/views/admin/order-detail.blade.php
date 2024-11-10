@@ -36,10 +36,10 @@
                                     <div class="col-6 mt-3">
                                         <address>
                                             <strong>User Information:</strong><br>
-                                           Name : {{$getOrderId->user->name ?? ''}}<br>
+                                            Name : {{$getOrderId->user->name ?? ''}}<br>
+                                            NIK : {{$getOrderId->user->NIK ?? ''}}<br>
                                             Email : {{$getOrderId->user->email ?? ''}} <br>
-                                            Phone Number : {{$getOrderId->user->phone_number ?? ''}} <br>
-                                            Order Data :
+                                            Phone Number : {{$getOrderId->user->phone_number ?? ''}}
                                         </address>
                                     </div>
                                     <div class="col-6 mt-3 text-end">

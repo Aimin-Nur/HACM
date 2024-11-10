@@ -33,8 +33,9 @@ jobs:
     - name: Install npm dependencies
       run: npm install
 
-    - name: Run npm production build (optional)
-      run: npm run prod
+    - name: Run npm production build
+      # Ubah perintah berikut sesuai skrip yang ada di package.json
+      run: npm run build  # atau npm run production
 
     - name: Set up .env
       run: cp .env.example .env
@@ -63,7 +64,6 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php artisan test
-
 
 
 # name: Deploy Laravel Application to Production Server

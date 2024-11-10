@@ -39,6 +39,7 @@ jobs:
         REMOTE_HOST: ${{ secrets.VPS_HOST }}
         REMOTE_USER: ${{ secrets.VPS_USER }}
         TARGET: "/var/www/html/hacm-gorontalo.com"
+        PORT: 65002
 
     - name: Run Remote/Artisan Commands
       uses: appleboy/ssh-action@v0.1.6
@@ -46,6 +47,7 @@ jobs:
         host: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
+        PORT: 65002
         script: |
           cd /var/www/html/hacm-gorontalo.com
           php artisan migrate --force

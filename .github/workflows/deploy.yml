@@ -1,4 +1,4 @@
-name: Deploy 
+name: Deploy Laravel Application to Production Server
 
 on:
   push:
@@ -25,7 +25,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '16' # Sesuaikan jika perlu
+        node-version: '16' 
 
     - name: Install dependencies via Composer
       run: composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
@@ -34,8 +34,7 @@ jobs:
       run: npm install
 
     - name: Run npm production build
-      # Ubah perintah berikut sesuai skrip yang ada di package.json
-      run: npm run build  # atau npm run production
+      run: npm run build 
 
     - name: Set up .env
       run: cp .env.example .env
@@ -43,13 +42,11 @@ jobs:
     - name: Generate application key
       run: php artisan key:generate
 
-    # Buat database SQLite
     - name: Create SQLite Database
       run: |
         mkdir -p database
         touch database/database.sqlite
 
-    # Jalankan migrasi dan seeding dengan menggunakan SQLite
     - name: Run migrations and seed
       env:
         DB_CONNECTION: sqlite
@@ -58,7 +55,6 @@ jobs:
         php artisan migrate --env=testing
         php artisan db:seed --env=testing
 
-    # Jalankan pengujian unit dan feature
     - name: Run tests (Unit and Feature) with SQLite
       env:
         DB_CONNECTION: sqlite

@@ -1,4 +1,4 @@
-name: CI Nexa
+name: Deploy 
 
 on:
   push:
